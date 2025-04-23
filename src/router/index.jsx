@@ -12,6 +12,7 @@ const Home = lazy(() => import("@/pages/Home"));
 const Article = lazy(() => import("../pages/Article"));
 const Publish = lazy(() => import("../pages/Publish"));
 const Register = lazy(() => import("../pages/Register"));
+const Mapbox = lazy(() => import("../pages/Mapbox"));
 
 const lazyLoad = (Component) => (
   <Suspense fallback={<div>页面加载中...</div>}>
@@ -53,6 +54,12 @@ const routes = [
         element: lazyLoad(Publish),
         icon: <NotificationOutlined />, // 添加图标
         label: "websocket", // 添加标签
+      },
+      {
+        path: "/mapbox",
+        element: lazyLoad(Mapbox),
+        icon: <NotificationOutlined />, // 添加图标
+        label: "mapbox", // 添加标签
       },
     ],
   },
