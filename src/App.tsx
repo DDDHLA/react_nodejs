@@ -6,7 +6,7 @@ import zhCN from "antd/locale/zh_CN";
 import enUS from "antd/locale/en_US";
 import { useRoutes } from "react-router-dom"; // 确保使用 useRoutes
 import routes from "./router/index.jsx"; // 引入路由配置
-
+import SSEHandler from "./SSEHandler";
 function App() {
   // theme
   function getDefaultTheme() {
@@ -34,10 +34,8 @@ function App() {
   const element = useRoutes(routes); // 使用 useRoutes 渲染路由
 
   return (
-    <ConfigProvider
-      locale={getLanguage(currentLanguage)}
-      theme={currentTheme}
-    >
+    <ConfigProvider locale={getLanguage(currentLanguage)} theme={currentTheme}>
+      <SSEHandler />
       {element}
     </ConfigProvider>
   );

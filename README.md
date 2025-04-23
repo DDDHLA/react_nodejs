@@ -1,50 +1,89 @@
-# React + TypeScript + Vite
+## zustand用法
+```
+npm i zustand
+```
+建立仓库
+```
+import { create } from 'zustand';
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+const useCounterStore = create((set, get) => {
+  return {
+    count: 0,
 
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
-
-- Configure the top-level `parserOptions` property like this:
-
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
+    increase: function () {
+      const state = get();
+      set({ count: state.count + 1 });
     },
-  },
-})
+
+    decrease: function () {
+      const state = get();
+      set({ count: state.count - 1 });
+    },
+
+    reset: function () {
+      set({ count: 0 });
+    },
+  };
+});
+
+export default useCounterStore;
 ```
-
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
-
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
-
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
+或
 ```
+import { create } from 'zustand';
+
+const useCounterStore = create((set) => ({
+  count: 0,
+
+  increase: () =>
+    set((state) => ({
+      count: state.count + 1,
+    })),
+
+  decrease: () =>
+    set((state) => ({
+      count: state.count - 1,
+    })),
+
+  reset: () =>
+    set(() => ({
+      count: 0,
+    })),
+}));
+
+export default useCounterStore;
+```
+使用仓库
+```
+import useCounterStore from './useCounterStore';
+function Counter() {
+  const { count, increase, decrease, reset } = useCounterStore();
+  return (
+    <div>
+      <h1>Count: {count}</h1>
+      <button onClick={increase}>Increase</button>
+      <button onClick={decrease}>Decrease</button>
+      <button onClick={reset}>Reset</button>
+    </div>
+  )
+}
+```
+或
+```
+import useCounterStore from './useCounterStore';
+function Counter() {
+  const { count, increase, decrease, reset } = useCounterStore((state) => ({
+    count: state.count,
+    increase: state.increase,
+    decrease: state.decrease,
+    reset: state.reset,
+  }));
+  return (
+    <div> 
+      <h1>Count: {count}</h1>
+      <button onClick={increase}>Increase</button>
+      <button onClick={decrease}>Decrease</button>
+      <button onClick={reset}>Reset</button>
+    </div>
+  )
+}

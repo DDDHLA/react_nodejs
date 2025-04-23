@@ -24,10 +24,6 @@ const routes = [
     path: "/login",
     element: <AuthRoute>{lazyLoad(Login)}</AuthRoute>,
   },
-  // {
-  //   path: "/login",
-  //   element: lazyLoad(Login),
-  // },
   {
     path: "/register",
     element: lazyLoad(Register),
@@ -44,7 +40,7 @@ const routes = [
         path: "/home",
         element: lazyLoad(Home),
         icon: <UserOutlined />, // 添加图标
-        label: "首页", // 添加标签
+        label: "流式数据", // 添加标签
       },
       {
         path: "/article",
@@ -56,7 +52,7 @@ const routes = [
         path: "/publish",
         element: lazyLoad(Publish),
         icon: <NotificationOutlined />, // 添加图标
-        label: "发布文章", // 添加标签
+        label: "websocket", // 添加标签
       },
     ],
   },
