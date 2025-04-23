@@ -13,6 +13,9 @@ const Article = lazy(() => import("../pages/Article"));
 const Publish = lazy(() => import("../pages/Publish"));
 const Register = lazy(() => import("../pages/Register"));
 const Mapbox = lazy(() => import("../pages/Mapbox"));
+const Rodar = lazy(() => import("../pages/Rodar"));
+const Relation = lazy(() => import("../pages/Relation"));
+const Info = lazy(() => import("../pages/Info"));
 
 const lazyLoad = (Component) => (
   <Suspense fallback={<div>页面加载中...</div>}>
@@ -60,6 +63,24 @@ const routes = [
         element: lazyLoad(Mapbox),
         icon: <NotificationOutlined />, // 添加图标
         label: "mapbox", // 添加标签
+      },
+      {
+        path: "/rodar",
+        element: lazyLoad(Rodar),
+        icon: <NotificationOutlined />, // 添加图标
+        label: "雷达", // 添加标签
+      },
+      {
+        path: "/relation",
+        element: lazyLoad(Relation),
+        icon: <NotificationOutlined />, // 添加图标
+        label: "关系", // 添加标签
+      },
+      {
+        path: "/info",
+        element: lazyLoad(Info),
+        icon: <NotificationOutlined />, // 添加图标
+        label: "信息发送测试", // 添加标签
       },
     ],
   },
