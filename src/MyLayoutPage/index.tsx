@@ -24,6 +24,37 @@ const breadcrumbNameMap: Record<string, string> = {
   "/publish": "发布文章",
 };
 
+// 递归函数：将路由配置转换为 Menu items
+const mapRoutesToMenuItems = (
+  routeList: any[],
+  parentPath = ""
+): MenuProps["items"] => {
+  return routeList
+    ?.filter((route) => route.label) // 只判断label，不判断icon
+    .map((route) => {
+      const fullPath = route.path.startsWith("/")
+        ? route.path
+        : parentPath
+        ? `${parentPath}/${route.path}`
+        : route.path;
+
+      const menuItem: any = {
+        key: fullPath,
+        label: route.label,
+      };
+
+      // 有icon就加，没有就不加
+      if (route.icon) {
+        menuItem.icon = route.icon;
+      }
+
+      if (route.children && route.children.length > 0) {
+        menuItem.children = mapRoutesToMenuItems(route.children, fullPath);
+      }
+      return menuItem;
+    });
+};
+
 const MyLayoutPage = () => {
   const [info, setInfo] = useState({});
   const hasFetched = useRef(false); // 添加标志位
@@ -51,7 +82,6 @@ const MyLayoutPage = () => {
 
   const handleModalSubmit = async (values) => {
     setIsModalVisible(false);
-    console.log(values);
     try {
       // const formData = new FormData();
       // formData.append("username", values.username);
@@ -121,7 +151,7 @@ const MyLayoutPage = () => {
       .map((snippet, idx) => {
         const url = `/${pathSnippets.slice(0, idx + 1).join("/")}`;
         return {
-          title: breadcrumbNameMap[url] || snippet,
+          title: snippet,
           path: url,
         };
       }),
@@ -129,16 +159,12 @@ const MyLayoutPage = () => {
     title: item.title,
   }));
 
-  // 动态生成侧边栏菜单项
-  const siderMenuItems: MenuProps["items"] =
-    routes
-      .find((route) => route.path === "/")
-      ?.children?.filter((child) => child.icon && child.label) // 过滤掉没有图标和标签的项
-      .map((child) => ({
-        key: child.path,
-        icon: child.icon, // 从路由中获取图标
-        label: child.label, // 从路由中获取标签
-      })) || [];
+  // 动态生成侧边栏菜单项 - 使用递归函数
+  const siderMenuItems: MenuProps["items"] = mapRoutesToMenuItems(
+    routes.find((route) => route.path === "/")?.children || []
+  );
+  // siderMenuItems  是object对象怎么查看值？
+  // 查看生成的菜单项
 
   return (
     <Layout style={{ height: "100vh" }}>
@@ -198,6 +224,16 @@ const MyLayoutPage = () => {
             items={siderMenuItems}
             onClick={({ key }) => {
               navigate(key);
+              // 检查点击的菜单项是否有子菜单
+              // const hasChildren = siderMenuItems.some(
+              //   (item) =>
+              //     item.key === key && item.children && item.children.length > 0
+              // );
+
+              // // 只有当点击的不是有子菜单的项时才导航
+              // if (!hasChildren) {
+              //   navigate(key);
+              // }
             }}
           />
         </Sider>

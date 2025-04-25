@@ -1,0 +1,38 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [114.305393, 30.593099] },
+      "properties": { "name": "武汉" }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [113.453974, 30.36251] },
+      "properties": { "name": "仙桃" }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [112.899297, 30.421215] },
+      "properties": { "name": "潜江" }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [113.166078, 30.663336] },
+      "properties": { "name": "天门" }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [113.453974, 30.36251],
+          [112.899297, 30.421215],
+          [113.166078, 30.663336],
+          [113.453974, 30.36251]
+        ]
+      },
+      "properties": { "name": "三地连线" }
+    }
+  ]
+}

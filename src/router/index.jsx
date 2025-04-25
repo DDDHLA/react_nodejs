@@ -16,7 +16,10 @@ const Mapbox = lazy(() => import("../pages/Mapbox"));
 const Rodar = lazy(() => import("../pages/Rodar"));
 const Relation = lazy(() => import("../pages/Relation"));
 const Info = lazy(() => import("../pages/Info"));
-
+const MyOpenLayersFirst = lazy(() => import("../pages/MyOpenLayers/First"));
+const MyOpenLayersSecond = lazy(() => import("../pages/MyOpenLayers/Second"));
+const MyOpenLayersThird = lazy(() => import("../pages/MyOpenLayers/Third"));
+const Ways = lazy(() => import("../pages/MyOpenLayers/Ways"));
 const lazyLoad = (Component) => (
   <Suspense fallback={<div>页面加载中...</div>}>
     <Component />
@@ -81,6 +84,37 @@ const routes = [
         element: lazyLoad(Info),
         icon: <NotificationOutlined />, // 添加图标
         label: "信息发送测试", // 添加标签
+      },
+      {
+        path: "/openlayers",
+        label: "openlayers",
+        icon: <NotificationOutlined />,
+        children: [
+          {
+            path: "first", // 这里必须是相对路径
+            label: "first",
+            icon: <NotificationOutlined />,
+            element: lazyLoad(MyOpenLayersFirst),
+          },
+          {
+            path: "second",
+            label: "second",
+            icon: <NotificationOutlined />,
+            element: lazyLoad(MyOpenLayersSecond),
+          },
+          {
+            path: "third",
+            label: "third",
+            icon: <NotificationOutlined />,
+            element: lazyLoad(MyOpenLayersThird),
+          },
+          {
+            path: "ways",
+            label: "ways",
+            icon: <NotificationOutlined />,
+            element: lazyLoad(Ways),
+          },
+        ],
       },
     ],
   },
