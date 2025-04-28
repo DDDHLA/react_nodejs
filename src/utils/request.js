@@ -24,35 +24,38 @@ service.interceptors.request.use(
 );
 
 // 响应拦截器
-service.interceptors.response.use((response) => {
-  // 对响应数据做点什么
-  // 请求成功，业务失败
-  // if (response.data.status === 401) {
-  //   window.location.href = "/login";
-  //   localStorage.removeItem("token");
-  //   message.error(response.data.message);
-  //   console.log(response.data.message);
-  //   return;
-  // }
-  
-  if (response.data.status === 401) {
-    message.error(response.data.message); // 先提示
-    localStorage.removeItem("token");
-    // 延迟跳转
-    setTimeout(() => {
-      window.location.href = "/login";
-    }, 1500); // 1.5秒后跳转，足够用户看到提示
-    return;
+service.interceptors.response.use(
+  (response) => {
+    // 对响应数据做点什么
+    // 请求成功，业务失败
+    // if (response.data.status === 401) {
+    //   window.location.href = "/login";
+    //   localStorage.removeItem("token");
+    //   message.error(response.data.message);
+    //   console.log(response.data.message);
+    //   return;
+    // }
+
+    if (response.data.status === 401) {
+      message.error(response.data.message); // 先提示
+      localStorage.removeItem("token");
+      // 延迟跳转
+      setTimeout(() => {
+        window.location.href = "/login";
+      }, 1500); // 1.5秒后跳转，足够用户看到提示
+      return;
+    }
+    return response.data;
+  },
+  (error) => {
+    // 处理响应错误
+    // 401 未登录
+    // if (error.response.status === 401) {
+    //   localStorage.removeItem("token");
+    //   window.location.href = "/login";
+    // }
+    return Promise.reject(error);
   }
-  return response.data;
-}, (error) => {
-  // 处理响应错误
-  // 401 未登录
-  // if (error.response.status === 401) {
-  //   localStorage.removeItem("token");
-  //   window.location.href = "/login";
-  // }
-  return Promise.reject(error);
-});
+);
 
 export default service;

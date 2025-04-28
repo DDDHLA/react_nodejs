@@ -113,6 +113,11 @@ const Article: React.FC = () => {
   const handleModalCancel = () => {
     setIsModalVisible(false);
   };
+  const [selectList, setSelectList] = useState([]);
+  const handleRowSelectionChange = (selectedRowKeys, selectedRows) => {
+    console.log(selectedRowKeys, selectedRows);
+    setSelectList(selectedRowKeys);
+  };
 
   const handleModalSubmit = async (values) => {
     console.log(values);
@@ -166,6 +171,13 @@ const Article: React.FC = () => {
         </Form.Item>
       </Form>
       <Table
+        rowKey="id"
+        rowSelection={{
+          type: "checkbox",
+          onChange: handleRowSelectionChange,
+          selectedRowKeys: selectList,
+          preserveSelectedRowKeys: true,
+        }}
         dataSource={dataSource}
         columns={columns}
         pagination={{
