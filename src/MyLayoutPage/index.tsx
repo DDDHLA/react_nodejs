@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from "react";
+import { useEffect, useState, useRef } from "react";
 import type { MenuProps } from "antd";
 import {
   Breadcrumb,
@@ -18,11 +18,11 @@ import ChangePasswordModal from "./components/ChangePasswordModal"; // 引入Cha
 
 const { Header, Content, Sider } = Layout;
 
-const breadcrumbNameMap: Record<string, string> = {
-  "/home": "首页",
-  "/article": "文章管理",
-  "/publish": "发布文章",
-};
+// const breadcrumbNameMap: Record<string, string> = {
+//   "/home": "首页",
+//   "/article": "文章管理",
+//   "/publish": "发布文章",
+// };
 
 // 递归函数：将路由配置转换为 Menu items
 const mapRoutesToMenuItems = (

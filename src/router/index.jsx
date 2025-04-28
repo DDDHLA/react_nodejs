@@ -20,6 +20,8 @@ const MyOpenLayersFirst = lazy(() => import("../pages/MyOpenLayers/First"));
 const MyOpenLayersSecond = lazy(() => import("../pages/MyOpenLayers/Second"));
 const MyOpenLayersThird = lazy(() => import("../pages/MyOpenLayers/Third"));
 const Ways = lazy(() => import("../pages/MyOpenLayers/Ways"));
+const Canva = lazy(() => import("../pages/Canva"));
+const Video = lazy(() => import("../pages/Video"));
 const lazyLoad = (Component) => (
   <Suspense fallback={<div>页面加载中...</div>}>
     <Component />
@@ -115,6 +117,18 @@ const routes = [
             element: lazyLoad(Ways),
           },
         ],
+      },
+      {
+        path: "/canva",
+        label: "canva",
+        icon: <NotificationOutlined />,
+        element: lazyLoad(Canva),
+      },
+      {
+        path: "/video",
+        label: "video",
+        icon: <NotificationOutlined />,
+        element: lazyLoad(Video),
       },
     ],
   },
