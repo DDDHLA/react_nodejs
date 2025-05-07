@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import  { useState, useEffect } from "react";
 import { Form, Input, Button, Table, Space, message, Modal } from "antd";
 import {
   getArticlesType,

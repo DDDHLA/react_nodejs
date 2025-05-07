@@ -1,4 +1,3 @@
-import React from "react";
 import { Form, Input, Button, message } from "antd";
 import { useNavigate } from "react-router-dom";
 import { register } from "@/api/user";

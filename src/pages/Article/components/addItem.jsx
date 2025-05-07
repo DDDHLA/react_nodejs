@@ -1,4 +1,3 @@
-import React from "react";
 import { Modal, Form, Input, message, Button, Upload } from "antd";
 import { UploadOutlined } from "@ant-design/icons";
 const AddItem = ({ visible, onCancel, onSubmit }) => {
