@@ -1,0 +1,43 @@
+.statisticCard {
+  background: rgba(13, 28, 59, 0.8);
+  border: 1px solid rgba(0, 180, 255, 0.3);
+  border-radius: 4px;
+  padding: 16px;
+  height: 120px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-shadow: 0 0 10px rgba(0, 149, 255, 0.1);
+  position: relative;
+  overflow: hidden;
+}
+.statisticCard::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, rgba(0, 212, 255, 0) 0%, #00d4ff 50%, rgba(0, 212, 255, 0) 100%);
+}
+.cardTitle {
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.65);
+}
+.cardValue {
+  font-size: 24px;
+  font-weight: bold;
+}
+.cardFooter {
+  display: flex;
+  align-items: center;
+  font-size: 12px;
+}
+.increaseValue {
+  display: flex;
+  align-items: center;
+  margin-right: 8px;
+}
+.compareText {
+  color: rgba(255, 255, 255, 0.45);
+}

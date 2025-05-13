@@ -1,0 +1,37 @@
+.headerPanel {
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  margin-bottom: 16px;
+  background: linear-gradient(90deg, rgba(0, 0, 0, 0) 0%, rgba(7, 44, 82, 0.8) 50%, rgba(0, 0, 0, 0) 100%);
+}
+.title {
+  font-size: 28px;
+  color: #fff;
+  margin: 0;
+  text-shadow: 0 0 10px rgba(0, 149, 255, 0.8);
+  letter-spacing: 2px;
+}
+.leftDecoration,
+.rightDecoration {
+  width: 100px;
+  height: 3px;
+  background: linear-gradient(90deg, rgba(0, 212, 255, 0) 0%, #00d4ff 100%);
+  position: absolute;
+  bottom: 10px;
+}
+.leftDecoration {
+  left: 30%;
+}
+.rightDecoration {
+  right: 30%;
+  transform: rotate(180deg);
+}
+.timeDisplay {
+  position: absolute;
+  right: 20px;
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.8);
+}
