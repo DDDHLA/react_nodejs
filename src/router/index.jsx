@@ -24,6 +24,7 @@ const Canva = lazy(() => import("../pages/Canva"));
 const Video = lazy(() => import("../pages/Video"));
 const Echarts = lazy(() => import("../pages/Echarts"));
 const DataScreen = lazy(() => import("../pages/DataScreen"));
+const GovernmentDataScreen = lazy(() => import("../pages/GovernmentDataScreen"));
 const lazyLoad = (Component) => (
   <Suspense fallback={<div>页面加载中...</div>}>
     <Component />
@@ -144,6 +145,13 @@ const routes = [
         icon: <NotificationOutlined />,
         element: lazyLoad(DataScreen),
       },
+      {
+        path: "/government-data-screen",
+        label: "government-data-screen",
+        icon: <NotificationOutlined />,
+        element: lazyLoad(GovernmentDataScreen),
+      },
+
     ],
   },
 ];

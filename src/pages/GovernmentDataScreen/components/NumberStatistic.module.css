@@ -1,0 +1,35 @@
+.numberContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.numberContainer .number {
+  font-family: "Impact", "Arial", sans-serif;
+  font-size: 36px;
+  font-weight: bold;
+  color: #36a8fe;
+  line-height: 1;
+  text-shadow: 0 0 5px rgba(54, 168, 254, 0.6);
+  position: relative;
+  padding: 0 5px;
+}
+.numberContainer .number::before {
+  content: "";
+  position: absolute;
+  left: -10px;
+  top: 0;
+  width: 5px;
+  height: 80%;
+  background: linear-gradient(to bottom, transparent, #36a8fe, transparent);
+  opacity: 0.7;
+}
+.numberContainer .unit {
+  font-size: 16px;
+  color: #fff;
+  margin-left: 5px;
+}
+.numberContainer .desc {
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.7);
+  margin-top: 5px;
+}

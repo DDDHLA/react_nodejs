@@ -1,0 +1,70 @@
+.tableContainer {
+  width: 100%;
+  height: 90%;
+  color: #fff;
+  overflow: hidden;
+}
+.tableHeader {
+  display: flex;
+  height: 40px;
+  line-height: 40px;
+  background-color: rgba(11, 35, 74, 0.5);
+  border-radius: 4px;
+  font-weight: bold;
+  margin-bottom: 10px;
+  padding: 0 10px;
+}
+.tableHeader .titleColumn {
+  flex: 3;
+  text-align: left;
+}
+.tableHeader .dateColumn {
+  flex: 1;
+  text-align: center;
+}
+.tableBody {
+  width: 100%;
+  height: calc(100% - 50px);
+  overflow: hidden;
+}
+.tableBody .tableRow {
+  display: flex;
+  height: 36px;
+  line-height: 36px;
+  margin-bottom: 5px;
+  background-color: rgba(11, 35, 74, 0.3);
+  border-radius: 4px;
+  padding: 0 10px;
+  transition: all 0.5s;
+}
+.tableBody .tableRow:hover {
+  background-color: rgba(54, 168, 254, 0.2);
+}
+.tableBody .tableRow.scrollOut {
+  margin-top: -36px;
+  opacity: 0;
+}
+.tableBody .tableRow .titleColumn {
+  flex: 3;
+  text-align: left;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  position: relative;
+  padding-left: 15px;
+}
+.tableBody .tableRow .titleColumn .dot {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: #36a8fe;
+}
+.tableBody .tableRow .dateColumn {
+  flex: 1;
+  text-align: center;
+  color: rgba(255, 255, 255, 0.7);
+}

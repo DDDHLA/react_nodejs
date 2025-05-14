@@ -1,0 +1,56 @@
+.headerTitle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
+
+  .title {
+    font-size: 32px;
+    font-weight: bold;
+    color: #fff;
+    letter-spacing: 4px;
+    text-shadow: 0 0 10px rgba(32, 160, 255, 0.6);
+    background-image: linear-gradient(to bottom, #fff, #4db4ff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin: 0 30px;
+    text-align: center;
+    position: relative;
+    padding: 0 20px;
+
+    &::before,
+    &::after {
+      content: "";
+      position: absolute;
+      top: 50%;
+      width: 40px;
+      height: 8px;
+      background: linear-gradient(
+        to right,
+        rgba(32, 160, 255, 0),
+        rgba(32, 160, 255, 0.8),
+        rgba(32, 160, 255, 0)
+      );
+      transform: translateY(-50%);
+    }
+
+    &::before {
+      left: -30px;
+    }
+
+    &::after {
+      right: -30px;
+    }
+  }
+
+  .leftDecoration,
+  .rightDecoration {
+    width: 60px;
+    height: 60px;
+  }
+
+  .rightDecoration {
+    transform: rotateY(180deg);
+  }
+}
