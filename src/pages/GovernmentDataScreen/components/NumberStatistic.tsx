@@ -1,7 +1,14 @@
-import React from 'react';
-import styles from './NumberStatistic.module.less';
+import styles from "./NumberStatistic.module.less";
 
-const NumberStatistic = ({ value = '0', unit = '', desc = '' }) => {
+const NumberStatistic = ({
+  value = "0",
+  unit = "",
+  desc = "",
+}: {
+  value: string;
+  unit: string;
+  desc: string;
+}) => {
   return (
     <div className={styles.numberContainer}>
       <div className={styles.number}>{value}</div>
@@ -11,4 +18,4 @@ const NumberStatistic = ({ value = '0', unit = '', desc = '' }) => {
   );
 };
 
-export default NumberStatistic; 
+export default NumberStatistic;

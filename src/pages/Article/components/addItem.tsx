@@ -1,9 +1,9 @@
-import { Modal, Form, Input, message, Button, Upload } from "antd";
+import { Modal, Form, Input, Button, Upload } from "antd";
 import { UploadOutlined } from "@ant-design/icons";
 const AddItem = ({ visible, onCancel, onSubmit }) => {
   const [form] = Form.useForm();
 
-  const handleOk = async () => {
+  const handleOk = async (): Promise<void> => {
     try {
       const values = await form.validateFields();
       onSubmit(values);

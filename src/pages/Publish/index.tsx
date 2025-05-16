@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 
 const Publish: React.FC = () => {
-  const [messages, setMessages] = useState([]);
+  const [messages, setMessages] = useState<string[]>([]);
 
   useEffect(() => {
     const token = JSON.parse(localStorage.getItem("token") || '""');

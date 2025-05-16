@@ -1,4 +1,4 @@
-import  { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { Form, Input, Button, Table, Space, message, Modal } from "antd";
 import {
   getArticlesType,
@@ -30,10 +30,14 @@ const Article: React.FC = () => {
   const [dataSource, setDataSource] = useState([]);
   const [isModalVisible, setIsModalVisible] = useState(false);
 
-  const onFinsh = (values) => {
+  interface Values {
+    articleType: string;
+    alias: string;
+  }
+  const onFinsh = (values: Values): void => {
     setQuerySearch({ ...querySearch, ...values });
   };
-  const handleDelete = async (id) => {
+  const handleDelete = async (id: string): Promise<void> => {
     Modal.confirm({
       title: "确认删除",
       content: "您确定要删除这篇文章吗？",
@@ -54,7 +58,7 @@ const Article: React.FC = () => {
   };
 
   // 重置
-  const handleReset = () => {
+  const handleReset = (): void => {
     form.resetFields();
     setQuerySearch({
       pageNo: 1,
@@ -64,7 +68,7 @@ const Article: React.FC = () => {
     });
   };
 
-  const handleDownload = async (id) => {
+  const handleDownload = async (id: string): Promise<void> => {
     try {
       const res = await download(id);
       const fileType = res.type.split("/")[1]; // 从MIME类型获取文件后缀

@@ -1,7 +1,12 @@
 import request from "../utils/request";
 
 // 获取文章分类列表
-export const getArticlesType = (data) => {
+export const getArticlesType = (data: {
+  pageNo: number;
+  pageSize: number;
+  articleType: string;
+  alias: string;
+}) => {
   return request({
     url: "/my/articles/cates",
     method: "POST",
@@ -33,8 +38,9 @@ export const addArticlesType = (data) => {
   });
 };
 
+
 // 下载
-export const download = (id) => {
+export const download = (id: any) : Blob => {
   return request({
     url: `/my/articles/download`,
     method: "POST",

@@ -10,7 +10,7 @@ const Register = () => {
     nickname?: string;
     email?: string;
     confirmPassword: string;
-  }) => {
+  }): Promise<void> => {
     console.log("Received values of form: ", values);
     delete values.confirmPassword;
     try {

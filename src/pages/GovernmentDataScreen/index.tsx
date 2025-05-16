@@ -1,7 +1,6 @@
-import React, { useEffect, useState } from 'react';
-import * as echarts from 'echarts';
-import { Row, Col } from 'antd';
-import { FullscreenOutlined, FullscreenExitOutlined } from '@ant-design/icons';
+import { useEffect, useState } from "react";
+import { Row, Col } from "antd";
+import { FullscreenOutlined, FullscreenExitOutlined } from "@ant-design/icons";
 import {
   BorderBox1,
   BorderBox2,
@@ -10,20 +9,17 @@ import {
   BorderBox8,
   BorderBox9,
   BorderBox10,
-  Decoration1,
-  Decoration3,
-  Decoration10
-} from '@jiaminghi/data-view-react';
-import styles from './index.module.less';
+} from "@jiaminghi/data-view-react";
+import styles from "./index.module.less";
 
 // 导入各个子组件
-import HeaderTitle from './components/HeaderTitle';
-import NumberStatistic from './components/NumberStatistic';
-import CircleChart from './components/CircleChart';
-import PieChart from './components/PieChart';
-import RadarChart from './components/RadarChart';
-import BarChart from './components/BarChart';
-import DataTable from './components/DataTable';
+import HeaderTitle from "./components/HeaderTitle";
+import NumberStatistic from "./components/NumberStatistic";
+import CircleChart from "./components/CircleChart";
+import PieChart from "./components/PieChart";
+import RadarChart from "./components/RadarChart";
+import BarChart from "./components/BarChart";
+import DataTable from "./components/DataTable";
 
 const GovernmentDataScreen = () => {
   const [isFullscreen, setIsFullscreen] = useState(false);
@@ -33,28 +29,37 @@ const GovernmentDataScreen = () => {
     const handleFullscreenChange = () => {
       setIsFullscreen(
         document.fullscreenElement ||
-        document.webkitFullscreenElement ||
-        document.mozFullScreenElement ||
-        document.msFullscreenElement
+          document.webkitFullscreenElement ||
+          document.mozFullScreenElement ||
+          document.msFullscreenElement
       );
     };
 
-    document.addEventListener('fullscreenchange', handleFullscreenChange);
-    document.addEventListener('webkitfullscreenchange', handleFullscreenChange);
-    document.addEventListener('mozfullscreenchange', handleFullscreenChange);
-    document.addEventListener('MSFullscreenChange', handleFullscreenChange);
+    document.addEventListener("fullscreenchange", handleFullscreenChange);
+    document.addEventListener("webkitfullscreenchange", handleFullscreenChange);
+    document.addEventListener("mozfullscreenchange", handleFullscreenChange);
+    document.addEventListener("MSFullscreenChange", handleFullscreenChange);
 
     return () => {
-      document.removeEventListener('fullscreenchange', handleFullscreenChange);
-      document.removeEventListener('webkitfullscreenchange', handleFullscreenChange);
-      document.removeEventListener('mozfullscreenchange', handleFullscreenChange);
-      document.removeEventListener('MSFullscreenChange', handleFullscreenChange);
+      document.removeEventListener("fullscreenchange", handleFullscreenChange);
+      document.removeEventListener(
+        "webkitfullscreenchange",
+        handleFullscreenChange
+      );
+      document.removeEventListener(
+        "mozfullscreenchange",
+        handleFullscreenChange
+      );
+      document.removeEventListener(
+        "MSFullscreenChange",
+        handleFullscreenChange
+      );
     };
   }, []);
 
   // 切换全屏状态
   const toggleFullscreen = () => {
-    const element = document.getElementById('governmentScreenContainer');
+    const element = document.getElementById("governmentScreenContainer");
 
     if (!isFullscreen) {
       if (element.requestFullscreen) {
@@ -82,7 +87,9 @@ const GovernmentDataScreen = () => {
   return (
     <div
       id="governmentScreenContainer"
-      className={isFullscreen ? styles.fullscreenContainer : styles.screenContainer}
+      className={
+        isFullscreen ? styles.fullscreenContainer : styles.screenContainer
+      }
     >
       <div className={styles.fullscreenButton} onClick={toggleFullscreen}>
         {isFullscreen ? <FullscreenExitOutlined /> : <FullscreenOutlined />}
@@ -162,11 +169,11 @@ const GovernmentDataScreen = () => {
                     <div className={styles.chartTitle}>XX公开数量占比</div>
                     <CircleChart
                       data={[
-                        { name: '类目1', value: 25 },
-                        { name: '类目2', value: 20 },
-                        { name: '类目3', value: 18 },
-                        { name: '类目4', value: 15 },
-                        { name: '类目5', value: 22 }
+                        { name: "类目1", value: 25 },
+                        { name: "类目2", value: 20 },
+                        { name: "类目3", value: 18 },
+                        { name: "类目4", value: 15 },
+                        { name: "类目5", value: 22 },
                       ]}
                     />
                   </BorderBox4>
@@ -176,11 +183,11 @@ const GovernmentDataScreen = () => {
                     <div className={styles.chartTitle}>XX公开数量占比</div>
                     <CircleChart
                       data={[
-                        { name: '类目1', value: 30 },
-                        { name: '类目2', value: 25 },
-                        { name: '类目3', value: 15 },
-                        { name: '类目4', value: 10 },
-                        { name: '类目5', value: 20 }
+                        { name: "类目1", value: 30 },
+                        { name: "类目2", value: 25 },
+                        { name: "类目3", value: 15 },
+                        { name: "类目4", value: 10 },
+                        { name: "类目5", value: 20 },
                       ]}
                       type="circle"
                     />
@@ -227,11 +234,11 @@ const GovernmentDataScreen = () => {
               <BarChart
                 horizontal={true}
                 data={[
-                  { name: '类目1', value: 200 },
-                  { name: '类目2', value: 300 },
-                  { name: '类目3', value: 400 },
-                  { name: '类目4', value: 250 },
-                  { name: '类目5', value: 320 }
+                  { name: "类目1", value: 200 },
+                  { name: "类目2", value: 300 },
+                  { name: "类目3", value: 400 },
+                  { name: "类目4", value: 250 },
+                  { name: "类目5", value: 320 },
                 ]}
               />
             </BorderBox2>
@@ -242,11 +249,11 @@ const GovernmentDataScreen = () => {
               <div className={styles.chartTitle}>XXXX数据占比</div>
               <PieChart
                 data={[
-                  { name: '类目1', value: 28 },
-                  { name: '类目2', value: 22 },
-                  { name: '类目3', value: 18 },
-                  { name: '类目4', value: 15 },
-                  { name: '类目5', value: 17 }
+                  { name: "类目1", value: 28 },
+                  { name: "类目2", value: 22 },
+                  { name: "类目3", value: 18 },
+                  { name: "类目4", value: 15 },
+                  { name: "类目5", value: 17 },
                 ]}
               />
             </BorderBox3>
@@ -257,11 +264,11 @@ const GovernmentDataScreen = () => {
               <div className={styles.chartTitle}>XXXX按来源占比</div>
               <PieChart
                 data={[
-                  { name: '类目1', value: 25 },
-                  { name: '类目2', value: 20 },
-                  { name: '类目3', value: 15 },
-                  { name: '类目4', value: 25 },
-                  { name: '类目5', value: 15 }
+                  { name: "类目1", value: 25 },
+                  { name: "类目2", value: 20 },
+                  { name: "类目3", value: 15 },
+                  { name: "类目4", value: 25 },
+                  { name: "类目5", value: 15 },
                 ]}
               />
             </BorderBox3>
@@ -318,17 +325,31 @@ const GovernmentDataScreen = () => {
                   <div className={styles.infoTitle}>XX指南</div>
                   <DataTable
                     data={[
-                      { title: '更多免费插画素材尽在公众号 "DreamCoders"', date: '2023/05/20' },
-                      { title: '更多免费插画素材尽在公众号 "DreamCoders"', date: '2023/05/20' },
-                      { title: '更多免费插画素材尽在公众号 "DreamCoders"', date: '2023/05/20' },
-                      { title: '更多免费插画素材尽在公众号 "DreamCoders"', date: '2023/05/20' }
+                      {
+                        title: '更多免费插画素材尽在公众号 "DreamCoders"',
+                        date: "2023/05/20",
+                      },
+                      {
+                        title: '更多免费插画素材尽在公众号 "DreamCoders"',
+                        date: "2023/05/20",
+                      },
+                      {
+                        title: '更多免费插画素材尽在公众号 "DreamCoders"',
+                        date: "2023/05/20",
+                      },
+                      {
+                        title: '更多免费插画素材尽在公众号 "DreamCoders"',
+                        date: "2023/05/20",
+                      },
                     ]}
                   />
                 </BorderBox10>
               </Col>
               <Col span={24}>
                 <BorderBox1 className={styles.bottomLeftChart}>
-                  <div className={styles.chartTitle}>更多免费插画模板关注公众号</div>
+                  <div className={styles.chartTitle}>
+                    更多免费插画模板关注公众号
+                  </div>
                   <RadarChart />
                 </BorderBox1>
               </Col>
@@ -340,18 +361,18 @@ const GovernmentDataScreen = () => {
               <div className={styles.chartTitle}>关于XXXX占比</div>
               <BarChart
                 data={[
-                  { name: '1月', value: 75 },
-                  { name: '2月', value: 45 },
-                  { name: '3月', value: 60 },
-                  { name: '4月', value: 85 },
-                  { name: '5月', value: 55 },
-                  { name: '6月', value: 40 },
-                  { name: '7月', value: 65 },
-                  { name: '8月', value: 90 },
-                  { name: '9月', value: 50 },
-                  { name: '10月', value: 80 },
-                  { name: '11月', value: 45 },
-                  { name: '12月', value: 70 }
+                  { name: "1月", value: 75 },
+                  { name: "2月", value: 45 },
+                  { name: "3月", value: 60 },
+                  { name: "4月", value: 85 },
+                  { name: "5月", value: 55 },
+                  { name: "6月", value: 40 },
+                  { name: "7月", value: 65 },
+                  { name: "8月", value: 90 },
+                  { name: "9月", value: 50 },
+                  { name: "10月", value: 80 },
+                  { name: "11月", value: 45 },
+                  { name: "12月", value: 70 },
                 ]}
                 multiColor={true}
               />
@@ -365,11 +386,26 @@ const GovernmentDataScreen = () => {
                   <div className={styles.infoTitle}>政策XX</div>
                   <DataTable
                     data={[
-                      { title: '更多免费插画素材尽在公众号 "DreamCoders"', date: '2023/05/20' },
-                      { title: '更多免费插画素材尽在公众号 "DreamCoders"', date: '2023/05/20' },
-                      { title: '更多免费插画素材尽在公众号 "DreamCoders"', date: '2023/05/20' },
-                      { title: '更多免费插画素材尽在公众号 "DreamCoders"', date: '2023/05/20' },
-                      { title: '更多免费插画素材尽在公众号 "DreamCoders"', date: '2023/05/20' }
+                      {
+                        title: '更多免费插画素材尽在公众号 "DreamCoders"',
+                        date: "2023/05/20",
+                      },
+                      {
+                        title: '更多免费插画素材尽在公众号 "DreamCoders"',
+                        date: "2023/05/20",
+                      },
+                      {
+                        title: '更多免费插画素材尽在公众号 "DreamCoders"',
+                        date: "2023/05/20",
+                      },
+                      {
+                        title: '更多免费插画素材尽在公众号 "DreamCoders"',
+                        date: "2023/05/20",
+                      },
+                      {
+                        title: '更多免费插画素材尽在公众号 "DreamCoders"',
+                        date: "2023/05/20",
+                      },
                     ]}
                   />
                 </BorderBox10>
@@ -380,11 +416,11 @@ const GovernmentDataScreen = () => {
                   <BarChart
                     horizontal={true}
                     data={[
-                      { name: '类目1', value: 850 },
-                      { name: '类目2', value: 750 },
-                      { name: '类目3', value: 650 },
-                      { name: '类目4', value: 900 },
-                      { name: '类目5', value: 700 }
+                      { name: "类目1", value: 850 },
+                      { name: "类目2", value: 750 },
+                      { name: "类目3", value: 650 },
+                      { name: "类目4", value: 900 },
+                      { name: "类目5", value: 700 },
                     ]}
                     color="#36b5fd"
                   />
@@ -398,4 +434,4 @@ const GovernmentDataScreen = () => {
   );
 };
 
-export default GovernmentDataScreen; 
+export default GovernmentDataScreen;

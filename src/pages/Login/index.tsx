@@ -4,7 +4,10 @@ import { login } from "@/api/user";
 const Login: React.FC = () => {
   const navigate = useNavigate();
 
-  const onFinish = async (values: { username: string; password: string }) => {
+  const onFinish = async (values: {
+    username: string;
+    password: string;
+  }): Promise<void> => {
     // navigate("/home");
     try {
       const res = await login(values);
