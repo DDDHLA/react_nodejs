@@ -1,0 +1,87 @@
+.flow-canvas-container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.flow-canvas-wrapper {
+  flex-grow: 1;
+  width: 100%;
+  height: 600px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.react-flow__node {
+  padding: 10px;
+  border-radius: 3px;
+  width: 150px;
+  font-size: 12px;
+  color: #222;
+  text-align: center;
+  border-width: 1px;
+  border-style: solid;
+}
+
+.react-flow__node-input {
+  border-color: #0041d0;
+  background-color: #f6f8ff;
+}
+
+.react-flow__node-default {
+  border-color: #1a192b;
+  background-color: white;
+}
+
+.react-flow__node-output {
+  border-color: #ff0072;
+  background-color: #fff1f6;
+}
+
+.react-flow__handle {
+  width: 8px;
+  height: 8px;
+  background-color: #1a192b;
+}
+
+.react-flow__handle-top {
+  top: -4px;
+}
+
+.react-flow__handle-bottom {
+  bottom: -4px;
+}
+
+.react-flow__handle-left {
+  left: -4px;
+}
+
+.react-flow__handle-right {
+  right: -4px;
+}
+
+.react-flow__edge-path {
+  stroke: #b1b1b7;
+  stroke-width: 2;
+}
+
+/* 增强连线标签样式 */
+.react-flow__edge-text {
+  font-size: 12px;
+  font-weight: bold;
+  fill: #333;
+  background-color: white;
+  padding: 2px 4px;
+  border-radius: 4px;
+}
+
+.react-flow__edge-textbg {
+  fill: white;
+  opacity: 0.8;
+}
+
+/* 增强箭头样式 */
+.react-flow__arrowhead {
+  fill: #1a192b;
+}

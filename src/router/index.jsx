@@ -4,6 +4,7 @@ import {
   UserOutlined,
   LaptopOutlined,
   NotificationOutlined,
+  NodeIndexOutlined,
 } from "@ant-design/icons"; // 引入图标
 import AuthRoute from "@/components/AuthRoute";
 const Login = lazy(() => import("@/pages/Login"));
@@ -25,6 +26,7 @@ const Video = lazy(() => import("../pages/Video"));
 const Echarts = lazy(() => import("../pages/Echarts"));
 const DataScreen = lazy(() => import("../pages/DataScreen"));
 const GovernmentDataScreen = lazy(() => import("../pages/GovernmentDataScreen"));
+const FlowCanvasPage = lazy(() => import("../FlowCanvas"));
 const lazyLoad = (Component) => (
   <Suspense fallback={<div>页面加载中...</div>}>
     <Component />
@@ -151,7 +153,12 @@ const routes = [
         icon: <NotificationOutlined />,
         element: lazyLoad(GovernmentDataScreen),
       },
-
+      {
+        path: "/flow-canvas",
+        label: "流程图画布",
+        icon: <NodeIndexOutlined />,
+        element: lazyLoad(FlowCanvasPage),
+      },
     ],
   },
 ];
