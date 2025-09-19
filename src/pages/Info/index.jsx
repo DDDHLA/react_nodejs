@@ -225,7 +225,7 @@ function InfoMapChart() {
     };
   }, []);
 
-  return <div ref={chartRef} style={{ width: '100%', height: '800px' }}></div>; // 增加高度以便更好显示
+  return <div ref={chartRef} style={{ width: '100%', height: '100%' }}></div>; // 增加高度以便更好显示
 }
 
 export default InfoMapChart;

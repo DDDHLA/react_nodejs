@@ -125,7 +125,7 @@ const FlowCanvas: React.FC = () => {
   );
 
   return (
-    <div style={{ padding: 24 }}>
+    <div>
       <Typography>
         <Title level={2}>流程图画布</Title>
         <Paragraph>

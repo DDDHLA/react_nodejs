@@ -1,9 +1,14 @@
 import { message } from "antd";
 import axios from "axios";
 
-// 创建axios实例
+// 创建axios实例（优先使用环境变量，其次开发指向本地后端，生产同域相对路径）
+// 创建axios实例（开发指向本地后端，生产同域相对路径）
+// const baseURL = import.meta?.env?.DEV ? "http://127.0.0.1:3000" : "";
+const baseURL =
+  import.meta?.env?.VITE_API_BASE ||
+  (import.meta?.env?.DEV ? "http://127.0.0.1:3000" : "");
 const service = axios.create({
-  baseURL: "http://127.0.0.1:3000", // 请求的基础URL
+  baseURL,
   timeout: 5000, // 请求超时时间
 });
 

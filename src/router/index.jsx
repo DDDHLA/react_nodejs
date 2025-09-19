@@ -27,6 +27,7 @@ const Echarts = lazy(() => import("../pages/Echarts"));
 const DataScreen = lazy(() => import("../pages/DataScreen"));
 const GovernmentDataScreen = lazy(() => import("../pages/GovernmentDataScreen"));
 const FlowCanvasPage = lazy(() => import("../FlowCanvas"));
+const Animation = lazy(() => import("../pages/Animation"));
 const lazyLoad = (Component) => (
   <Suspense fallback={<div>页面加载中...</div>}>
     <Component />
@@ -158,6 +159,12 @@ const routes = [
         label: "流程图画布",
         icon: <NodeIndexOutlined />,
         element: lazyLoad(FlowCanvasPage),
+      },
+      {
+        path: "/animation",
+        label: "动画",
+        icon: <NotificationOutlined />,
+        element: lazyLoad(Animation),
       },
     ],
   },
