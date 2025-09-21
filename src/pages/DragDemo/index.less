@@ -1,0 +1,123 @@
+.drag-demo-container {
+  padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+  height: calc(100vh - 200px);
+  min-height: 500px;
+  box-sizing: border-box;
+  overflow-y: auto;
+
+  .demo-header {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    padding: 24px;
+    border-radius: 12px;
+    color: white;
+    margin-bottom: 24px;
+
+    .ant-typography {
+      color: white !important;
+    }
+
+    .anticon {
+      color: white !important;
+    }
+  }
+
+  .demo-navigation {
+    margin-bottom: 24px;
+
+    .nav-card {
+      height: 140px;
+      transition: all 0.3s ease;
+      border: 2px solid transparent;
+      cursor: pointer;
+
+      &:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+      }
+
+      &.active {
+        border-color: #1890ff;
+        box-shadow: 0 0 0 2px rgba(24, 144, 255, 0.2);
+        transform: translateY(-2px);
+      }
+
+      .nav-icon {
+        font-size: 28px;
+        color: #1890ff;
+        margin-bottom: 8px;
+      }
+
+      .ant-card-body {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100%;
+      }
+    }
+  }
+
+  .demo-content {
+    margin-bottom: 24px;
+
+    .demo-card {
+      min-height: 400px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      border-radius: 8px;
+
+      .ant-card-head {
+        background: #fafafa;
+        border-bottom: 1px solid #f0f0f0;
+      }
+
+      .ant-card-body {
+        padding: 24px;
+      }
+    }
+  }
+
+  .tech-info {
+    background: #f8f9fa;
+    border: none;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+
+    .ant-card-head {
+      background: transparent;
+      border-bottom: 1px solid #e8e8e8;
+    }
+
+    ul {
+      padding-left: 20px;
+      
+      li {
+        margin-bottom: 8px;
+        line-height: 1.6;
+      }
+    }
+  }
+}
+
+// 响应式设计
+@media (max-width: 768px) {
+  .drag-demo-container {
+    padding: 16px;
+
+    .demo-header {
+      padding: 20px;
+      text-align: center;
+    }
+
+    .nav-card {
+      height: 120px !important;
+      
+      .nav-icon {
+        font-size: 24px !important;
+      }
+    }
+
+    .demo-content .demo-card {
+      min-height: 300px;
+    }
+  }
+}

@@ -1,0 +1,47 @@
+// 光源组件样式
+.light-highlight {
+  animation: highlightShimmer 1.5s ease-in-out infinite alternate;
+}
+
+// 光源脉动动画
+@keyframes lightPulse {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.1);
+    opacity: 0.8;
+  }
+}
+
+// 光晕脉动动画
+@keyframes glowPulse {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 0.6;
+  }
+  50% {
+    transform: scale(1.2);
+    opacity: 0.3;
+  }
+}
+
+// 高光闪烁动画
+@keyframes highlightShimmer {
+  0% {
+    opacity: 0.6;
+    transform: scale(1);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1.2);
+  }
+}
+
+// 性能优化
+@media (prefers-reduced-motion: reduce) {
+  .light-highlight {
+    animation: none;
+  }
+}

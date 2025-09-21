@@ -2,9 +2,18 @@ import { Navigate } from "react-router-dom";
 import React, { lazy, Suspense } from "react";
 import {
   UserOutlined,
-  LaptopOutlined,
+  VideoCameraOutlined,
+  UploadOutlined,
+  DesktopOutlined,
+  PieChartOutlined,
+  FileOutlined,
+  TeamOutlined,
+  PlayCircleOutlined,
   NotificationOutlined,
+  CrownOutlined,
   NodeIndexOutlined,
+  LaptopOutlined,
+  BulbOutlined,
 } from "@ant-design/icons"; // 引入图标
 import AuthRoute from "@/components/AuthRoute";
 const Login = lazy(() => import("@/pages/Login"));
@@ -25,9 +34,18 @@ const Canva = lazy(() => import("../pages/Canva"));
 const Video = lazy(() => import("../pages/Video"));
 const Echarts = lazy(() => import("../pages/Echarts"));
 const DataScreen = lazy(() => import("../pages/DataScreen"));
-const GovernmentDataScreen = lazy(() => import("../pages/GovernmentDataScreen"));
+const GovernmentDataScreen = lazy(() =>
+  import("../pages/GovernmentDataScreen")
+);
 const FlowCanvasPage = lazy(() => import("../FlowCanvas"));
 const Animation = lazy(() => import("../pages/Animation"));
+const GomokuGame = lazy(() => import("../pages/Game/Gomoku/GamePage"));
+const ChessGame = lazy(() => import("../pages/Game/Chess/GamePage"));
+const DragDemo = lazy(() => import("../pages/DragDemo"));
+const SeasonalDemo = lazy(() => import("../pages/SeasonalDemo"));
+const QuantumEntanglement = lazy(() => import("../pages/QuantumEntanglement"));
+const LiquidGlass = lazy(() => import("../pages/LiquidGlass"));
+const LightGlass = lazy(() => import("../pages/LightGlass"));
 const lazyLoad = (Component) => (
   <Suspense fallback={<div>页面加载中...</div>}>
     <Component />
@@ -165,6 +183,57 @@ const routes = [
         label: "动画",
         icon: <NotificationOutlined />,
         element: lazyLoad(Animation),
+      },
+      {
+        path: "/drag-demo",
+        label: "拖拽组件演示",
+        icon: <NotificationOutlined />,
+        element: lazyLoad(DragDemo),
+      },
+      {
+        path: "/seasonal-demo",
+        label: "季节主题演示",
+        icon: <CrownOutlined />,
+        element: lazyLoad(SeasonalDemo),
+      },
+      {
+        path: "/quantum-entanglement",
+        label: "量子纠缠实验室",
+        icon: <NodeIndexOutlined />,
+        element: lazyLoad(QuantumEntanglement),
+      },
+      {
+        path: "/liquid-glass",
+        label: "液态玻璃实验室",
+        icon: <LaptopOutlined />,
+        element: lazyLoad(LiquidGlass),
+      },
+      {
+        path: "/light-glass",
+        label: "光影玻璃实验室",
+        icon: <BulbOutlined />,
+        element: lazyLoad(LightGlass),
+      },
+      {
+        path: "/game",
+        label: "游戏中心",
+        icon: <PlayCircleOutlined />,
+        children: [
+          {
+            path: "gomoku",
+            label: "五子棋",
+            element: lazyLoad(GomokuGame),
+          },
+          {
+            path: "chinese-chess",
+            label: "中国象棋",
+            element: lazyLoad(ChessGame),
+          },
+          {
+            path: "",
+            element: <Navigate to="/game/gomoku" replace />,
+          },
+        ],
       },
     ],
   },

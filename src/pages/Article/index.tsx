@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { Form, Input, Button, Table, Space, message, Modal } from "antd";
 import {
   getArticlesType,
@@ -17,15 +17,15 @@ const Article: React.FC = () => {
     articleType: "",
     alias: "",
   });
-  const getArticlesList = async () => {
+  const getArticlesList = useCallback(async () => {
     const res = await getArticlesType(querySearch);
     console.log(res);
     setDataSource(res.data);
     setTotal(res.total);
-  };
+  }, [querySearch]);
   useEffect(() => {
     getArticlesList();
-  }, [querySearch]);
+  }, [getArticlesList]);
   const [form] = Form.useForm();
   const [dataSource, setDataSource] = useState([]);
   const [isModalVisible, setIsModalVisible] = useState(false);
@@ -35,7 +35,7 @@ const Article: React.FC = () => {
     alias: string;
   }
   const onFinsh = (values: Values): void => {
-    setQuerySearch({ ...querySearch, ...values });
+    setQuerySearch(prev => ({ ...prev, ...values, pageNo: 1 }));
   };
   const handleDelete = async (id: string): Promise<void> => {
     Modal.confirm({
@@ -60,12 +60,12 @@ const Article: React.FC = () => {
   // 重置
   const handleReset = (): void => {
     form.resetFields();
-    setQuerySearch({
+    setQuerySearch(prev => ({
+      ...prev,
       pageNo: 1,
-      pageSize: 5,
       articleType: "",
       alias: "",
-    });
+    }));
   };
 
   const handleDownload = async (id: string): Promise<void> => {
@@ -193,7 +193,7 @@ const Article: React.FC = () => {
           showQuickJumper: true,
           pageSizeOptions: ["5", "10", "20"],
           onChange: (page, pageSize) => {
-            setQuerySearch({ ...querySearch, pageNo: page, pageSize });
+            setQuerySearch(prev => ({ ...prev, pageNo: page, pageSize }));
           },
         }}
       />

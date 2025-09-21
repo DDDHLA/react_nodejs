@@ -1,0 +1,114 @@
+.game-page {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  padding: 0;
+}
+.game-page .game-header {
+  padding: 20px;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+.game-page .game-header .header-card {
+  background: rgba(255, 255, 255, 0.95);
+  border: none;
+  border-radius: 12px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(10px);
+}
+.game-page .game-header .header-card .ant-card-body {
+  padding: 24px;
+}
+.game-page .game-header .game-icon {
+  font-size: 48px;
+  color: #667eea;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.game-page .game-header .game-title {
+  margin: 0;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.game-page .game-header .game-description {
+  margin: 8px 0 0 0;
+  color: #666;
+  font-size: 16px;
+}
+.game-page .game-header .feature-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  background: rgba(102, 126, 234, 0.1);
+  border-radius: 20px;
+  color: #667eea;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+.game-page .game-header .feature-item:hover {
+  background: rgba(102, 126, 234, 0.2);
+  transform: translateY(-2px);
+}
+.game-page .game-header .feature-item .feature-icon {
+  font-size: 18px;
+}
+.game-page .game-content {
+  padding: 20px;
+  min-height: calc(100vh - 120px);
+}
+@media (max-width: 768px) {
+  .game-page .game-header {
+    padding: 16px;
+  }
+  .game-page .game-header .header-card .ant-card-body {
+    padding: 16px;
+  }
+  .game-page .game-header .game-icon {
+    font-size: 36px;
+  }
+  .game-page .game-header .game-title {
+    font-size: 20px;
+  }
+  .game-page .game-header .game-description {
+    font-size: 14px;
+  }
+  .game-page .game-header .feature-item {
+    padding: 6px 12px;
+    font-size: 14px;
+  }
+  .game-page .game-header .feature-item .feature-icon {
+    font-size: 16px;
+  }
+  .game-page .game-content {
+    padding: 16px;
+  }
+}
+@media (max-width: 480px) {
+  .game-page .game-header {
+    padding: 12px;
+  }
+  .game-page .game-header .header-card .ant-card-body {
+    padding: 12px;
+  }
+  .game-page .game-header .game-icon {
+    font-size: 28px;
+  }
+  .game-page .game-header .game-title {
+    font-size: 18px;
+  }
+  .game-page .game-header .feature-item {
+    padding: 4px 8px;
+    font-size: 12px;
+  }
+  .game-page .game-header .feature-item .feature-icon {
+    font-size: 14px;
+  }
+  .game-page .game-content {
+    padding: 12px;
+  }
+}

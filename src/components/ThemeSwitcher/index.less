@@ -1,0 +1,133 @@
+.theme-settings {
+  .setting-section {
+    margin-bottom: 24px;
+
+    .ant-typography {
+      margin-bottom: 12px;
+    }
+  }
+
+  // 主题模式卡片
+  .theme-mode-card {
+    text-align: center;
+    cursor: pointer;
+    border: 2px solid transparent;
+    transition: all 0.3s ease;
+
+    &.active {
+      border-color: #1890ff;
+      box-shadow: 0 0 0 2px rgba(24, 144, 255, 0.2);
+    }
+
+    &:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    .ant-card-body {
+      padding: 12px 8px;
+    }
+
+    .theme-preview {
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 4px;
+      margin-bottom: 8px;
+      font-size: 18px;
+
+      &.light-preview {
+        background: linear-gradient(135deg, #f5f5f5 0%, #ffffff 100%);
+        color: #1890ff;
+        border: 1px solid #d9d9d9;
+      }
+
+      &.dark-preview {
+        background: linear-gradient(135deg, #141414 0%, #1f1f1f 100%);
+        color: #ffd700;
+        border: 1px solid #434343;
+      }
+
+      &.custom-preview {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+      }
+    }
+
+    .ant-typography {
+      margin: 0;
+      font-size: 12px;
+    }
+  }
+
+  // 预设颜色选择
+  .preset-colors {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 8px;
+
+    .color-item {
+      width: 32px;
+      height: 32px;
+      border-radius: 6px;
+      cursor: pointer;
+      border: 2px solid transparent;
+      transition: all 0.3s ease;
+      position: relative;
+
+      &:hover {
+        transform: scale(1.1);
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+      }
+
+      &.active {
+        border-color: #fff;
+        box-shadow: 0 0 0 2px rgba(24, 144, 255, 0.6);
+
+        &::after {
+          content: '✓';
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          color: white;
+          font-size: 14px;
+          font-weight: bold;
+          text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+        }
+      }
+    }
+  }
+
+  // 滑块样式优化
+  .ant-slider {
+    .ant-slider-track {
+      background: linear-gradient(90deg, #1890ff, #722ed1);
+    }
+
+    .ant-slider-handle {
+      border-color: #1890ff;
+      box-shadow: 0 0 0 2px rgba(24, 144, 255, 0.2);
+
+      &:hover,
+      &:focus {
+        border-color: #40a9ff;
+        box-shadow: 0 0 0 4px rgba(24, 144, 255, 0.2);
+      }
+    }
+  }
+}
+
+// 响应式设计
+@media (max-width: 768px) {
+  .theme-settings {
+    .preset-colors {
+      .color-item {
+        width: 28px;
+        height: 28px;
+      }
+    }
+  }
+}

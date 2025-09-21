@@ -1,0 +1,204 @@
+:root {
+  --primary-color: #1890ff;
+  --heading-color: rgba(0, 0, 0, 0.85);
+  --text-color: rgba(0, 0, 0, 0.65);
+  --text-color-secondary: rgba(0, 0, 0, 0.45);
+}
+
+.game-page {
+  display: flex;
+  flex-direction: column;
+  min-height: calc(100vh - 200px);
+  background: #f0f2f5;
+  padding: 0;
+  margin: 0;
+  
+  .game-header {
+    margin-bottom: 24px;
+    
+    .header-card {
+      border-radius: 0 0 8px 8px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      
+      .game-icon {
+        font-size: 36px;
+        color: var(--primary-color);
+      }
+      
+      .game-title {
+        margin: 0;
+        color: var(--heading-color);
+      }
+      
+      .game-description {
+        margin: 8px 0 0;
+        font-size: 16px;
+      }
+    }
+  }
+  
+  .game-content {
+    flex: 1;
+    padding: 0 24px 24px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    
+    .chess-board {
+      background: #e8c887;
+      border: 2px solid #8b4513;
+      border-radius: 8px;
+      padding: 20px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+      
+      .board-grid {
+        display: grid;
+        grid-template-columns: repeat(9, 1fr);
+        gap: 1px;
+      }
+      
+      .cell {
+        width: 50px;
+        height: 50px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+        cursor: pointer;
+        transition: all 0.2s;
+        
+        &:hover {
+          background: rgba(255, 255, 255, 0.3);
+        }
+        
+        &.red {
+          color: #f5222d;
+        }
+        
+        &.black {
+          color: #000;
+        }
+      }
+      
+      .river {
+        grid-column: 1 / -1;
+        height: 30px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 18px;
+        color: #1d39c4;
+        font-weight: bold;
+        margin: 10px 0;
+      }
+    }
+  }
+  
+  .game-footer {
+    margin-top: 24px;
+    padding: 0 24px 24px;
+    
+    .footer-card {
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      
+      .game-stat {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 0 16px;
+        
+        .ant-typography {
+          margin: 0;
+          line-height: 1.5;
+        }
+      }
+    }
+  }
+  
+  // 响应式设计
+  @media (max-width: 768px) {
+    .game-content {
+      padding: 0 16px 16px;
+      
+      .chess-board {
+        padding: 10px;
+        
+        .cell {
+          width: 36px;
+          height: 36px;
+          font-size: 14px;
+        }
+      }
+    }
+    
+    .game-footer {
+      padding: 0 16px 16px;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .game-content {
+      .chess-board {
+        padding: 5px;
+        
+        .cell {
+          width: 30px;
+          height: 30px;
+          font-size: 12px;
+        }
+      }
+    }
+  }
+}
+
+// 按钮样式
+.ant-btn {
+  border-radius: 6px;
+  font-weight: 500;
+  transition: all 0.3s;
+  
+  &-primary {
+    background: var(--primary-color);
+    border-color: var(--primary-color);
+    
+    &:hover, &:focus {
+      background: var(--primary-color);
+      border-color: var(--primary-color);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(24, 144, 255, 0.3); /* #1890ff with 30% opacity */
+    }
+  }
+  
+  &-default {
+    &:hover, &:focus {
+      color: var(--primary-color);
+      border-color: var(--primary-color);
+    }
+  }
+  
+  &-icon {
+    margin-right: 8px;
+  }
+}
+
+// 卡片标题样式
+.ant-card-head-title {
+  font-weight: 600;
+  color: var(--heading-color);
+}
+
+// 统计卡片样式
+.ant-statistic {
+  .ant-statistic-title {
+    color: var(--text-color-secondary);
+    font-size: 14px;
+    margin-bottom: 4px;
+  }
+  
+  .ant-statistic-content {
+    font-size: 24px;
+    font-weight: 600;
+    color: var(--heading-color);
+  }
+}

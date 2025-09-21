@@ -1,0 +1,532 @@
+.chess-game {
+  padding: 20px;
+  background: #f5f5f5;
+  min-height: 100vh;
+
+  .game-control-panel {
+    margin-bottom: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  }
+
+  .chess-board-container {
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    background: #fff;
+  }
+
+  .chess-board {
+    display: inline-block;
+    border: 3px solid #8b4513;
+    background: #f5deb3;
+    border-radius: 8px;
+    padding: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+
+    .chess-row {
+      display: flex;
+      height: 50px;
+
+      .chess-cell {
+        width: 50px;
+        height: 50px;
+        border: 1px solid #8b4513;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        position: relative;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        background: linear-gradient(135deg, #f5deb3 0%, #deb887 100%);
+
+        &:hover {
+          background: linear-gradient(135deg, #fff8dc 0%, #f0e68c 100%);
+          transform: scale(1.02);
+          box-shadow: inset 0 0 10px rgba(255, 215, 0, 0.4);
+        }
+
+        &.selected {
+          background: linear-gradient(135deg, #ffe6e6 0%, #ffb3b3 100%);
+          box-shadow: 
+            inset 0 0 0 3px #ff4d4f,
+            0 0 15px rgba(255, 77, 79, 0.5);
+          transform: scale(1.05);
+        }
+
+        &.possible-move {
+          background: linear-gradient(135deg, #e8f5e8 0%, #c8e6c9 100%);
+          box-shadow: inset 0 0 0 2px #4caf50;
+
+          &::after {
+            content: "";
+            position: absolute;
+            width: 16px;
+            height: 16px;
+            background: radial-gradient(circle, #4caf50 0%, #388e3c 100%);
+            border-radius: 50%;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            box-shadow: 
+              0 2px 8px rgba(76, 175, 80, 0.4),
+              inset 0 1px 0 rgba(255, 255, 255, 0.3);
+            animation: possibleMovePulse 1.5s ease-in-out infinite;
+          }
+        }
+
+        &.ai-move-from {
+          background-color: rgba(255, 165, 0, 0.3);
+          box-shadow: inset 0 0 0 2px #ff8c00;
+          animation: aiMoveFrom 1s ease-in-out;
+
+          &::before {
+            content: "从";
+            position: absolute;
+            top: -8px;
+            left: -8px;
+            width: 16px;
+            height: 16px;
+            background-color: #ff8c00;
+            color: white;
+            font-size: 10px;
+            font-weight: bold;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10;
+          }
+        }
+
+        &.ai-move-to {
+          background-color: rgba(255, 165, 0, 0.4);
+          box-shadow: inset 0 0 0 2px #ff6600;
+          animation: aiMoveTo 1s ease-in-out;
+
+          &::before {
+            content: "到";
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            width: 16px;
+            height: 16px;
+            background-color: #ff6600;
+            color: white;
+            font-size: 10px;
+            font-weight: bold;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10;
+          }
+        }
+
+        .chess-piece {
+          font-size: 22px;
+          font-weight: bold;
+          font-family: 'SimHei', 'Microsoft YaHei', '黑体', sans-serif;
+          text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+          transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+          cursor: pointer;
+          user-select: none;
+          position: relative;
+          z-index: 5;
+          
+          // 棋子背景圆形
+          &::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            z-index: -1;
+            transition: all 0.3s ease;
+          }
+
+          &.red-piece {
+            color: #d32f2f;
+            
+            &::before {
+              background: linear-gradient(135deg, #ffebee 0%, #ffcdd2 30%, #ef5350 100%);
+              border: 3px solid #d32f2f;
+              box-shadow: 
+                0 3px 12px rgba(211, 47, 47, 0.4),
+                inset 0 1px 0 rgba(255, 255, 255, 0.5);
+            }
+          }
+
+          &.black-piece {
+            color: #212121;
+            
+            &::before {
+              background: linear-gradient(135deg, #f5f5f5 0%, #e0e0e0 30%, #757575 100%);
+              border: 3px solid #424242;
+              box-shadow: 
+                0 3px 12px rgba(66, 66, 66, 0.4),
+                inset 0 1px 0 rgba(255, 255, 255, 0.5);
+            }
+          }
+        }
+
+        &:hover .chess-piece {
+          transform: scale(1.1) translateY(-2px);
+          
+          &::before {
+            transform: translate(-50%, -50%) scale(1.05);
+            box-shadow: 
+              0 5px 20px rgba(0, 0, 0, 0.3),
+              inset 0 1px 0 rgba(255, 255, 255, 0.6);
+          }
+          
+          &.red-piece::before {
+            box-shadow: 
+              0 5px 20px rgba(211, 47, 47, 0.5),
+              inset 0 1px 0 rgba(255, 255, 255, 0.6);
+          }
+          
+          &.black-piece::before {
+            box-shadow: 
+              0 5px 20px rgba(66, 66, 66, 0.5),
+              inset 0 1px 0 rgba(255, 255, 255, 0.6);
+          }
+        }
+        
+        // 选中状态的棋子效果
+        &.selected .chess-piece {
+          transform: scale(1.15) translateY(-3px);
+          animation: selectedPiecePulse 1.5s ease-in-out infinite;
+          
+          &::before {
+            transform: translate(-50%, -50%) scale(1.1);
+            animation: selectedPieceGlow 1.5s ease-in-out infinite;
+          }
+        }
+      }
+    }
+  }
+
+  // 响应式设计
+  @media (max-width: 1200px) {
+    .chess-board {
+      .chess-row {
+        height: 45px;
+
+        .chess-cell {
+          width: 45px;
+          height: 45px;
+
+          .chess-piece {
+            font-size: 20px;
+          }
+        }
+      }
+    }
+  }
+
+  @media (max-width: 768px) {
+    padding: 10px;
+
+    .chess-board {
+      .chess-row {
+        height: 40px;
+
+        .chess-cell {
+          width: 40px;
+          height: 40px;
+
+          .chess-piece {
+            font-size: 18px;
+          }
+        }
+      }
+    }
+  }
+
+  // 游戏状态样式
+  .game-status {
+    &.waiting {
+      .chess-board {
+        opacity: 0.6;
+        pointer-events: none;
+      }
+    }
+
+    &.paused {
+      .chess-board {
+        opacity: 0.8;
+        filter: grayscale(0.3);
+      }
+    }
+
+    &.finished {
+      .chess-board {
+        opacity: 0.9;
+        filter: grayscale(0.2);
+      }
+    }
+  }
+
+  // 按钮样式增强
+  .ant-btn {
+    border-radius: 6px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+
+    &:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+    }
+
+    &.ant-btn-primary {
+      background: linear-gradient(135deg, #1890ff, #40a9ff);
+      border: none;
+    }
+  }
+
+  // 卡片样式增强
+  .ant-card {
+    border-radius: 8px;
+    border: 1px solid #e8e8e8;
+
+    .ant-card-head {
+      border-bottom: 1px solid #f0f0f0;
+
+      .ant-card-head-title {
+        font-weight: 600;
+        color: #262626;
+      }
+    }
+  }
+
+  // 统计数字样式
+  .ant-statistic {
+    .ant-statistic-title {
+      color: #8c8c8c;
+      font-size: 14px;
+      margin-bottom: 4px;
+    }
+
+    .ant-statistic-content {
+      color: #262626;
+      font-weight: 600;
+    }
+  }
+
+  // 选择器样式
+  .ant-select {
+    .ant-select-selector {
+      border-radius: 6px;
+      border: 1px solid #d9d9d9;
+      transition: all 0.3s ease;
+
+      &:hover {
+        border-color: #40a9ff;
+      }
+    }
+  }
+
+  // 文字样式
+  .ant-typography {
+    &.ant-typography-strong {
+      color: #262626;
+    }
+  }
+
+  // 消息提示样式
+  .ant-message {
+    .ant-message-notice {
+      .ant-message-notice-content {
+        border-radius: 6px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+      }
+    }
+  }
+
+  // 楚河汉界样式
+  .river-boundary {
+    height: 40px;
+    width: 100%;
+    background: linear-gradient(135deg, #f5deb3 0%, #deb887 50%, #cd853f 100%);
+    border-top: 2px solid #8b4513;
+    border-bottom: 2px solid #8b4513;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    margin: 2px 0;
+    box-shadow: 
+      inset 0 2px 4px rgba(139, 69, 19, 0.3),
+      0 2px 4px rgba(0, 0, 0, 0.1);
+
+    // 装饰性边框线
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: repeating-linear-gradient(
+        90deg,
+        transparent 0px,
+        transparent 8px,
+        rgba(139, 69, 19, 0.2) 8px,
+        rgba(139, 69, 19, 0.2) 10px
+      );
+    }
+
+    .river-text {
+      display: flex;
+      width: 100%;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 60px;
+      font-size: 18px;
+      font-weight: bold;
+      font-family: '楷体', 'KaiTi', 'SimKai', serif;
+      z-index: 1;
+      position: relative;
+
+      .chu-text {
+        color: #8b4513;
+        text-shadow: 
+          1px 1px 2px rgba(255, 255, 255, 0.8),
+          -1px -1px 1px rgba(139, 69, 19, 0.3);
+        letter-spacing: 8px;
+      }
+
+      .han-text {
+        color: #8b4513;
+        text-shadow: 
+          1px 1px 2px rgba(255, 255, 255, 0.8),
+          -1px -1px 1px rgba(139, 69, 19, 0.3);
+        letter-spacing: 8px;
+      }
+
+      // 中间分隔线
+      &::after {
+        content: '';
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        width: 2px;
+        height: 24px;
+        background: linear-gradient(
+          to bottom,
+          transparent 0%,
+          #8b4513 20%,
+          #8b4513 80%,
+          transparent 100%
+        );
+        box-shadow: 1px 0 0 rgba(255, 255, 255, 0.5);
+      }
+    }
+  }
+
+  // AI移动动画
+  @keyframes aiMoveFrom {
+    0% {
+      background-color: rgba(255, 165, 0, 0.1);
+      box-shadow: inset 0 0 0 1px #ff8c00;
+    }
+    50% {
+      background-color: rgba(255, 165, 0, 0.5);
+      box-shadow: inset 0 0 0 3px #ff8c00;
+    }
+    100% {
+      background-color: rgba(255, 165, 0, 0.3);
+      box-shadow: inset 0 0 0 2px #ff8c00;
+    }
+  }
+
+  @keyframes aiMoveTo {
+    0% {
+      background-color: rgba(255, 165, 0, 0.2);
+      box-shadow: inset 0 0 0 1px #ff6600;
+    }
+    50% {
+      background-color: rgba(255, 165, 0, 0.6);
+      box-shadow: inset 0 0 0 3px #ff6600;
+    }
+    100% {
+      background-color: rgba(255, 165, 0, 0.4);
+      box-shadow: inset 0 0 0 2px #ff6600;
+    }
+  }
+
+  // 选中棋子的脉冲动画
+  @keyframes selectedPulse {
+    0%, 100% {
+      text-shadow: 
+        2px 2px 4px rgba(0, 0, 0, 0.4),
+        0 0 8px rgba(255, 255, 255, 0.3);
+    }
+    50% {
+      text-shadow: 
+        2px 2px 6px rgba(0, 0, 0, 0.6),
+        0 0 12px rgba(255, 255, 255, 0.5),
+        0 0 20px rgba(255, 0, 0, 0.3);
+    }
+  }
+
+  // 选中棋子背景的发光动画
+  @keyframes selectedGlow {
+    0%, 100% {
+      box-shadow: 
+        0 4px 16px rgba(255, 0, 0, 0.4),
+        inset 0 1px 0 rgba(255, 255, 255, 0.6);
+    }
+    50% {
+      box-shadow: 
+        0 6px 24px rgba(255, 0, 0, 0.6),
+        0 0 30px rgba(255, 0, 0, 0.4),
+        inset 0 1px 0 rgba(255, 255, 255, 0.8);
+    }
+  }
+
+  // 可移动位置的脉冲动画
+  @keyframes possibleMovePulse {
+    0%, 100% {
+      transform: translate(-50%, -50%) scale(1);
+      opacity: 0.8;
+    }
+    50% {
+      transform: translate(-50%, -50%) scale(1.2);
+      opacity: 1;
+    }
+  }
+
+  // 选中棋子的脉冲动画
+  @keyframes selectedPiecePulse {
+    0%, 100% {
+      text-shadow: 
+        1px 1px 2px rgba(0, 0, 0, 0.5);
+    }
+    50% {
+      text-shadow: 
+        1px 1px 4px rgba(0, 0, 0, 0.7),
+        0 0 8px rgba(255, 0, 0, 0.4);
+    }
+  }
+
+  // 选中棋子背景的发光动画
+  @keyframes selectedPieceGlow {
+    0%, 100% {
+      box-shadow: 
+        0 3px 12px rgba(211, 47, 47, 0.4),
+        inset 0 1px 0 rgba(255, 255, 255, 0.5);
+    }
+    50% {
+      box-shadow: 
+        0 6px 24px rgba(211, 47, 47, 0.6),
+        0 0 20px rgba(255, 0, 0, 0.4),
+        inset 0 1px 0 rgba(255, 255, 255, 0.7);
+    }
+  }
+}

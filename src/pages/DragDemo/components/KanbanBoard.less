@@ -1,0 +1,261 @@
+.kanban-board {
+  // 全局禁用所有拖拽相关的变换
+  * {
+    &[draggable="true"] {
+      transform: none !important;
+      rotate: none !important;
+      scale: none !important;
+      translate: none !important;
+      
+      &:active, &:focus, &:hover {
+        transform: none !important;
+        rotate: none !important;
+        scale: none !important;
+        translate: none !important;
+      }
+    }
+  }
+  
+  .board-actions {
+    margin-bottom: 16px;
+  }
+
+  .drag-hint {
+    margin-bottom: 16px;
+    background: #f0f8ff;
+    border: 1px solid #d6e4ff;
+    
+    .ant-card-body {
+      padding: 12px 16px;
+    }
+  }
+
+  .kanban-columns {
+    display: flex;
+    gap: 16px;
+    overflow-x: auto;
+    padding-bottom: 16px;
+
+    .kanban-column {
+      flex: 1;
+      min-width: 280px;
+      background: #f8f9fa;
+      border-radius: 8px;
+      border: 2px solid transparent;
+      transition: all 0.3s ease;
+
+      &.drag-over {
+        border-color: #52c41a;
+        background: #f6ffed;
+        transform: none;
+        box-shadow: 0 4px 12px rgba(82, 196, 26, 0.2);
+      }
+
+      .column-header {
+        padding: 16px;
+        border-top: 4px solid;
+        border-radius: 8px 8px 0 0;
+        background: white;
+        border-bottom: 1px solid #f0f0f0;
+
+        .column-indicator {
+          width: 8px;
+          height: 8px;
+          border-radius: 50%;
+        }
+      }
+
+      .column-content {
+        padding: 16px;
+        min-height: 400px;
+        max-height: 600px;
+        overflow-y: auto;
+
+        .task-card {
+          margin-bottom: 12px;
+          cursor: move;
+          transition: all 0.3s ease;
+          border: 1px solid #e8e8e8;
+
+          &:hover {
+            border-color: #1890ff;
+            box-shadow: 0 4px 12px rgba(24, 144, 255, 0.15);
+            transform: none;
+          }
+
+          &.dragging {
+            opacity: 0.7;
+            transform: none;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+            z-index: 1000;
+          }
+
+          &:last-child {
+            margin-bottom: 0;
+          }
+
+          .ant-card-body {
+            padding: 12px;
+          }
+
+          .task-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 8px;
+            gap: 8px;
+
+            .task-title {
+              flex: 1;
+              line-height: 1.4;
+              word-break: break-word;
+            }
+          }
+
+          .task-description {
+            display: block;
+            margin-bottom: 12px;
+            line-height: 1.4;
+            font-size: 12px;
+            color: #666;
+          }
+
+          .task-tags {
+            margin-bottom: 12px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 4px;
+
+            .ant-tag {
+              margin: 0;
+              font-size: 11px;
+            }
+          }
+
+          .task-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            .assignee-name {
+              font-size: 12px;
+            }
+
+            .task-meta {
+              .anticon {
+                font-size: 12px;
+              }
+            }
+          }
+        }
+
+        .empty-column {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          height: 100px;
+          border: 2px dashed #d9d9d9;
+          border-radius: 8px;
+          background: #fafafa;
+        }
+      }
+    }
+  }
+}
+
+// 滚动条样式
+.kanban-columns {
+  &::-webkit-scrollbar {
+    height: 8px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 4px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: #c1c1c1;
+    border-radius: 4px;
+
+    &:hover {
+      background: #a8a8a8;
+    }
+  }
+}
+
+.column-content {
+  &::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 3px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: #c1c1c1;
+    border-radius: 3px;
+
+    &:hover {
+      background: #a8a8a8;
+    }
+  }
+}
+
+// 动画效果
+@keyframes taskDrop {
+  0% {
+    transform: none;
+    opacity: 0.8;
+  }
+  100% {
+    transform: none;
+    opacity: 1;
+  }
+}
+
+.task-card {
+  &.task-dropped {
+    animation: taskDrop 0.3s ease;
+  }
+}
+
+// 响应式设计
+@media (max-width: 768px) {
+  .kanban-board {
+    .kanban-columns {
+      flex-direction: column;
+      gap: 12px;
+
+      .kanban-column {
+        min-width: auto;
+        width: 100%;
+
+        .column-content {
+          min-height: 200px;
+          max-height: 300px;
+        }
+
+        .task-card {
+          .task-header {
+            .task-title {
+              font-size: 14px;
+            }
+          }
+
+          .task-description {
+            font-size: 11px;
+          }
+
+          .task-footer {
+            .assignee-name {
+              font-size: 11px;
+            }
+          }
+        }
+      }
+    }
+  }
+}

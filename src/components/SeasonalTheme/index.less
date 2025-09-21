@@ -1,0 +1,235 @@
+// 季节主题基础样式
+.seasonal-theme {
+  min-height: 100vh;
+  background: var(--seasonal-background);
+  transition: all 0.8s ease;
+  position: relative;
+  overflow: hidden;
+
+  // 全局卡片样式
+  .ant-card {
+    background: var(--seasonal-card-bg);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  }
+
+  // 全局按钮样式增强
+  .ant-btn {
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    
+    &:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+    }
+  }
+}
+
+// 春天主题
+.season-spring {
+  .ant-btn {
+    &:hover::before {
+      content: '🌸';
+      position: absolute;
+      top: -5px;
+      right: -5px;
+      font-size: 12px;
+      animation: petalFloat 2s ease-in-out infinite;
+    }
+    
+    &.ant-btn-primary:hover {
+      background: linear-gradient(135deg, #52c41a 0%, #73d13d 100%);
+      border-color: #52c41a;
+      
+      &::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+        animation: shimmer 1.5s ease-in-out infinite;
+      }
+    }
+  }
+
+  .ant-card {
+    border: 1px solid rgba(82, 196, 26, 0.2);
+    
+    &:hover {
+      border-color: rgba(82, 196, 26, 0.4);
+      box-shadow: 0 12px 40px rgba(82, 196, 26, 0.15);
+    }
+  }
+}
+
+// 夏天主题
+.season-summer {
+  .ant-btn {
+    &:hover::before {
+      content: '☀️';
+      position: absolute;
+      top: -8px;
+      right: -8px;
+      font-size: 14px;
+      animation: sunGlow 1.5s ease-in-out infinite;
+    }
+    
+    &.ant-btn-primary:hover {
+      background: linear-gradient(135deg, #1890ff 0%, #40a9ff 100%);
+      border-color: #1890ff;
+      box-shadow: 0 0 20px rgba(24, 144, 255, 0.4);
+    }
+  }
+
+  .ant-card {
+    border: 1px solid rgba(24, 144, 255, 0.2);
+    
+    &:hover {
+      border-color: rgba(24, 144, 255, 0.4);
+      box-shadow: 0 12px 40px rgba(24, 144, 255, 0.15);
+    }
+  }
+}
+
+// 秋天主题
+.season-autumn {
+  .ant-btn {
+    &:hover::before {
+      content: '🍂';
+      position: absolute;
+      top: -5px;
+      right: -5px;
+      font-size: 12px;
+      animation: leafFall 2.5s ease-in-out infinite;
+    }
+    
+    &.ant-btn-primary:hover {
+      background: linear-gradient(135deg, #fa8c16 0%, #ffa940 100%);
+      border-color: #fa8c16;
+      
+      &::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: radial-gradient(circle at 50% 50%, rgba(255, 169, 64, 0.3) 0%, transparent 70%);
+        animation: autumnGlow 2s ease-in-out infinite;
+      }
+    }
+  }
+
+  .ant-card {
+    border: 1px solid rgba(250, 140, 22, 0.2);
+    
+    &:hover {
+      border-color: rgba(250, 140, 22, 0.4);
+      box-shadow: 0 12px 40px rgba(250, 140, 22, 0.15);
+    }
+  }
+}
+
+// 冬天主题
+.season-winter {
+  .ant-btn {
+    &:hover::before {
+      content: '❄️';
+      position: absolute;
+      top: -8px;
+      left: -8px;
+      font-size: 14px;
+      animation: snowFlake 3s ease-in-out infinite;
+    }
+    
+    &:hover::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(45deg, 
+        rgba(255, 255, 255, 0.1) 0%, 
+        rgba(255, 255, 255, 0.3) 25%, 
+        rgba(255, 255, 255, 0.1) 50%, 
+        rgba(255, 255, 255, 0.3) 75%, 
+        rgba(255, 255, 255, 0.1) 100%);
+      background-size: 20px 20px;
+      animation: snowPattern 2s linear infinite;
+      pointer-events: none;
+    }
+    
+    &.ant-btn-primary:hover {
+      background: linear-gradient(135deg, #722ed1 0%, #9254de 100%);
+      border-color: #722ed1;
+      box-shadow: 0 0 25px rgba(114, 46, 209, 0.4);
+    }
+  }
+
+  .ant-card {
+    border: 1px solid rgba(114, 46, 209, 0.2);
+    
+    &:hover {
+      border-color: rgba(114, 46, 209, 0.4);
+      box-shadow: 0 12px 40px rgba(114, 46, 209, 0.15);
+    }
+  }
+}
+
+// 动画效果
+@keyframes petalFloat {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-8px) rotate(180deg); }
+}
+
+@keyframes sunGlow {
+  0%, 100% { transform: scale(1) rotate(0deg); opacity: 1; }
+  50% { transform: scale(1.2) rotate(180deg); opacity: 0.8; }
+}
+
+@keyframes leafFall {
+  0% { transform: translateY(0) rotate(0deg); }
+  25% { transform: translateY(-5px) rotate(-10deg); }
+  50% { transform: translateY(0) rotate(0deg); }
+  75% { transform: translateY(-3px) rotate(10deg); }
+  100% { transform: translateY(0) rotate(0deg); }
+}
+
+@keyframes snowFlake {
+  0%, 100% { transform: rotate(0deg) scale(1); }
+  25% { transform: rotate(90deg) scale(1.1); }
+  50% { transform: rotate(180deg) scale(0.9); }
+  75% { transform: rotate(270deg) scale(1.1); }
+}
+
+@keyframes shimmer {
+  0% { left: -100%; }
+  100% { left: 100%; }
+}
+
+@keyframes autumnGlow {
+  0%, 100% { opacity: 0.3; }
+  50% { opacity: 0.6; }
+}
+
+@keyframes snowPattern {
+  0% { background-position: 0 0; }
+  100% { background-position: 20px 20px; }
+}
+
+// 响应式设计
+@media (max-width: 768px) {
+  .seasonal-theme {
+    .ant-btn {
+      &:hover::before,
+      &:hover::after {
+        display: none; // 移动端隐藏装饰效果
+      }
+    }
+  }
+}

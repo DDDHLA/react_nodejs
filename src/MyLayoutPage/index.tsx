@@ -15,6 +15,11 @@ import CustomIcon from "../assets/react.svg";
 import { getUserInfo, updateUserInfo, updatePassword } from "@/api/user";
 import UserInfoModal from "./components/userInfoModal"; // 引入UserInfoModal组件
 import ChangePasswordModal from "./components/ChangePasswordModal"; // 引入ChangePasswordModal组件
+import SimpleTabsNav from "@/components/TabsNav/SimpleTabsNav"; // 引入标签页组件
+import ThemeSwitcher from "@/components/ThemeSwitcher"; // 引入主题切换组件
+import { SeasonalThemeProvider } from "@/components/SeasonalTheme"; // 引入季节主题提供者
+import SeasonSwitcher from "@/components/SeasonalTheme/SeasonSwitcher"; // 引入季节切换器
+import ParticleEffect from "@/components/SeasonalTheme/ParticleEffect"; // 引入粒子效果
 
 // 从Layout组件中解构出需要的子组件
 const { Header, Content, Sider } = Layout;
@@ -195,7 +200,9 @@ const MyLayoutPage = () => {
   // 查看生成的菜单项
 
   return (
-    <Layout style={{ height: "100vh" }}>
+    <SeasonalThemeProvider>
+      <ParticleEffect />
+      <Layout style={{ height: "100vh" }}>
       {/* 顶部导航栏 */}
       <Header
         style={{
@@ -209,7 +216,12 @@ const MyLayoutPage = () => {
         <img src={CustomIcon} alt="Custom Icon" style={{ height: 40 }} />
         
         {/* 右侧用户信息 */}
-        <div style={{ display: "flex", alignItems: "center" }}>
+        <div style={{ display: "flex", alignItems: "center", gap: "16px" }}>
+          {/* 季节主题切换器 */}
+          <SeasonSwitcher />
+          {/* 主题切换器 */}
+          <ThemeSwitcher />
+          
           {/* 用户头像 - 如果有图片则显示图片，否则显示用户名首字母 */}
           {info.user_pic ? (
             <img
@@ -276,8 +288,22 @@ const MyLayoutPage = () => {
         
         {/* 右侧内容区 */}
         <Layout style={{ padding: "0 24px 24px" }}>
-          {/* 面包屑导航 */}
-          <Breadcrumb items={breadcrumbItems} style={{ margin: "16px 0" }} />
+          {/* 面包屑和标签页导航行 */}
+          <div style={{ 
+            display: "flex", 
+            alignItems: "center", 
+            gap: "16px",
+            margin: "16px 0 8px 0",
+            minHeight: "32px"
+          }}>
+            {/* 面包屑导航 - 固定 */}
+            <Breadcrumb items={breadcrumbItems} style={{ flexShrink: 0 }} />
+            
+            {/* 标签页导航 - 可滚动 */}
+            <div style={{ flex: 1, minWidth: 0 }}>
+              <SimpleTabsNav routes={routes[0]?.children || []} />
+            </div>
+          </div>
           
           {/* 主内容区 */}
           <Content
@@ -313,6 +339,7 @@ const MyLayoutPage = () => {
         />
       )}
     </Layout>
+    </SeasonalThemeProvider>
   );
 };
 

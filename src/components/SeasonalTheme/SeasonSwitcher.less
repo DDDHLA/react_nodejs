@@ -1,0 +1,239 @@
+// 季节切换器样式
+.season-switcher-btn {
+  position: relative;
+  border: 1px solid transparent !important;
+  border-radius: 8px !important;
+  transition: all 0.3s ease !important;
+  
+  &:hover {
+    background: var(--seasonal-secondary) !important;
+    border-color: var(--seasonal-primary) !important;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  }
+
+  .current-season-icon {
+    font-size: 16px;
+    animation: seasonPulse 2s ease-in-out infinite;
+  }
+}
+
+.season-switcher-dropdown {
+  .ant-dropdown-menu {
+    padding: 0;
+    border-radius: 12px;
+    box-shadow: 0 12px 48px rgba(0, 0, 0, 0.15);
+    backdrop-filter: blur(20px);
+  }
+}
+
+.season-selector-card {
+  width: 320px;
+  border-radius: 12px;
+  border: none;
+  box-shadow: 0 12px 48px rgba(0, 0, 0, 0.15);
+  backdrop-filter: blur(20px);
+  
+  .season-selector-title {
+    margin-bottom: 16px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+    
+    .anticon {
+      color: var(--seasonal-primary);
+    }
+  }
+}
+
+.season-options {
+  margin-bottom: 16px;
+}
+
+.season-option {
+  position: relative;
+  padding: 12px;
+  border: 2px solid transparent;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  overflow: hidden;
+  
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+    border-color: currentColor;
+  }
+  
+  &.active {
+    border-color: currentColor;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+    
+    .season-color-bar {
+      height: 4px;
+    }
+  }
+  
+  .season-preview {
+    position: relative;
+    z-index: 2;
+  }
+  
+  .season-color-bar {
+    height: 2px;
+    border-radius: 1px;
+    margin-bottom: 8px;
+    transition: height 0.3s ease;
+  }
+  
+  .season-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    
+    .season-icon {
+      font-size: 16px;
+    }
+  }
+}
+
+// 季节装饰效果
+.season-decoration {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  pointer-events: none;
+  z-index: 1;
+  
+  .decoration-item {
+    position: absolute;
+    font-size: 10px;
+    opacity: 0.6;
+  }
+}
+
+// 冬天装饰
+.season-winter {
+  .snow-1 {
+    top: 15%;
+    right: 20%;
+    animation: winterSnow1 3s ease-in-out infinite;
+  }
+  
+  .snow-2 {
+    bottom: 20%;
+    left: 15%;
+    animation: winterSnow2 2.5s ease-in-out infinite 0.5s;
+  }
+}
+
+// 秋天装饰
+.season-autumn {
+  .leaf-1 {
+    top: 10%;
+    right: 15%;
+    animation: autumnLeaf1 2.8s ease-in-out infinite;
+  }
+  
+  .leaf-2 {
+    bottom: 15%;
+    left: 20%;
+    animation: autumnLeaf2 3.2s ease-in-out infinite 0.8s;
+  }
+}
+
+// 春天装饰
+.season-spring {
+  .petal-1 {
+    top: 20%;
+    right: 25%;
+    animation: springPetal1 2.5s ease-in-out infinite;
+  }
+  
+  .petal-2 {
+    bottom: 25%;
+    left: 15%;
+    animation: springPetal2 3s ease-in-out infinite 0.6s;
+  }
+}
+
+// 夏天装饰
+.season-summer {
+  .sun-1 {
+    top: 15%;
+    right: 20%;
+    animation: summerSun1 2s ease-in-out infinite;
+  }
+  
+  .sun-2 {
+    bottom: 20%;
+    left: 25%;
+    animation: summerSun2 2.3s ease-in-out infinite 0.4s;
+  }
+}
+
+.season-tip {
+  padding-top: 12px;
+  border-top: 1px solid rgba(0, 0, 0, 0.06);
+  text-align: center;
+}
+
+// 动画定义
+@keyframes seasonPulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+}
+
+@keyframes winterSnow1 {
+  0%, 100% { transform: translateY(0) rotate(0deg); opacity: 0.6; }
+  50% { transform: translateY(-3px) rotate(180deg); opacity: 0.8; }
+}
+
+@keyframes winterSnow2 {
+  0%, 100% { transform: translateY(0) rotate(0deg); opacity: 0.4; }
+  50% { transform: translateY(2px) rotate(-180deg); opacity: 0.7; }
+}
+
+@keyframes autumnLeaf1 {
+  0%, 100% { transform: translateY(0) rotate(0deg); opacity: 0.6; }
+  25% { transform: translateY(-2px) rotate(-15deg); opacity: 0.8; }
+  75% { transform: translateY(1px) rotate(10deg); opacity: 0.7; }
+}
+
+@keyframes autumnLeaf2 {
+  0%, 100% { transform: translateY(0) rotate(0deg); opacity: 0.5; }
+  33% { transform: translateY(-1px) rotate(20deg); opacity: 0.7; }
+  67% { transform: translateY(1px) rotate(-10deg); opacity: 0.6; }
+}
+
+@keyframes springPetal1 {
+  0%, 100% { transform: translateY(0) rotate(0deg); opacity: 0.7; }
+  50% { transform: translateY(-4px) rotate(180deg); opacity: 0.9; }
+}
+
+@keyframes springPetal2 {
+  0%, 100% { transform: translateY(0) rotate(0deg); opacity: 0.5; }
+  50% { transform: translateY(-2px) rotate(-180deg); opacity: 0.8; }
+}
+
+@keyframes summerSun1 {
+  0%, 100% { transform: scale(1) rotate(0deg); opacity: 0.8; }
+  50% { transform: scale(1.15) rotate(180deg); opacity: 1; }
+}
+
+@keyframes summerSun2 {
+  0%, 100% { transform: scale(1) rotate(0deg); opacity: 0.6; }
+  50% { transform: scale(1.1) rotate(-180deg); opacity: 0.9; }
+}
+
+// 响应式
+@media (max-width: 768px) {
+  .season-selector-card {
+    width: 280px;
+  }
+  
+  .season-decoration {
+    display: none; // 移动端隐藏装饰效果
+  }
+}

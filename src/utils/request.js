@@ -1,12 +1,10 @@
 import { message } from "antd";
 import axios from "axios";
 
-// 创建axios实例（优先使用环境变量，其次开发指向本地后端，生产同域相对路径）
-// 创建axios实例（开发指向本地后端，生产同域相对路径）
-// const baseURL = import.meta?.env?.DEV ? "http://127.0.0.1:3000" : "";
+// 创建axios实例（开发环境使用vite代理，生产环境使用相对路径）
 const baseURL =
   import.meta?.env?.VITE_API_BASE ||
-  (import.meta?.env?.DEV ? "http://127.0.0.1:3000" : "");
+  (import.meta?.env?.DEV ? "" : ""); // 开发环境使用代理，生产环境使用相对路径
 const service = axios.create({
   baseURL,
   timeout: 5000, // 请求超时时间

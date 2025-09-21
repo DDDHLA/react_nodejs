@@ -1,0 +1,338 @@
+// 液态玻璃页面样式
+.liquid-glass-page {
+  height: calc(100vh - 200px);
+  min-height: 700px;
+  box-sizing: border-box;
+  overflow: hidden;
+  position: relative;
+  background: #000;
+  
+  .liquid-content {
+    position: relative;
+    z-index: 10;
+    padding: 24px;
+    height: 100%;
+    overflow-y: auto;
+    
+    // 自定义滚动条
+    &::-webkit-scrollbar {
+      width: 8px;
+    }
+    
+    &::-webkit-scrollbar-track {
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 4px;
+    }
+    
+    &::-webkit-scrollbar-thumb {
+      background: rgba(255, 255, 255, 0.3);
+      border-radius: 4px;
+      
+      &:hover {
+        background: rgba(255, 255, 255, 0.5);
+      }
+    }
+  }
+
+  .liquid-header {
+    margin-bottom: 32px;
+    
+    .header-card {
+      text-align: center;
+      padding: 32px;
+      
+      .ant-typography h1 {
+        text-shadow: 0 2px 10px rgba(255, 255, 255, 0.3);
+        font-weight: 300;
+        letter-spacing: 2px;
+      }
+    }
+  }
+
+  // 玻璃拟态卡片基础样式
+  .glass-card {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 20px;
+    box-shadow: 
+      0 8px 32px rgba(0, 0, 0, 0.3),
+      inset 0 1px 0 rgba(255, 255, 255, 0.4);
+    transition: all 0.3s ease;
+    
+    &:hover {
+      background: rgba(255, 255, 255, 0.15);
+      border-color: rgba(255, 255, 255, 0.3);
+      transform: translateY(-2px);
+      box-shadow: 
+        0 12px 40px rgba(0, 0, 0, 0.4),
+        inset 0 1px 0 rgba(255, 255, 255, 0.5);
+    }
+  }
+
+  .control-panel {
+    padding: 24px;
+    
+    .current-effect-info {
+      text-align: center;
+      padding: 20px;
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 16px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      
+      .effect-icon {
+        font-size: 32px;
+        margin-bottom: 12px;
+        filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+      }
+    }
+
+    .parameter-controls {
+      .control-item {
+        margin-bottom: 20px;
+        
+        .glass-slider {
+          margin-top: 8px;
+          
+          .ant-slider-rail {
+            background: rgba(255, 255, 255, 0.2);
+            height: 6px;
+            border-radius: 3px;
+          }
+          
+          .ant-slider-track {
+            background: linear-gradient(90deg, rgba(255, 255, 255, 0.6) 0%, rgba(255, 255, 255, 0.8) 100%);
+            height: 6px;
+            border-radius: 3px;
+          }
+          
+          .ant-slider-handle {
+            width: 18px;
+            height: 18px;
+            background: rgba(255, 255, 255, 0.9);
+            border: 2px solid rgba(255, 255, 255, 0.5);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+            
+            &:hover, &:focus {
+              background: rgba(255, 255, 255, 1);
+              box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+            }
+          }
+        }
+
+        .glass-select {
+          .ant-select-selector {
+            background: rgba(255, 255, 255, 0.1) !important;
+            border: 1px solid rgba(255, 255, 255, 0.2) !important;
+            border-radius: 12px !important;
+            backdrop-filter: blur(10px);
+            color: rgba(255, 255, 255, 0.9) !important;
+            
+            &:hover {
+              background: rgba(255, 255, 255, 0.15) !important;
+              border-color: rgba(255, 255, 255, 0.3) !important;
+            }
+          }
+          
+          &.ant-select-focused .ant-select-selector {
+            background: rgba(255, 255, 255, 0.2) !important;
+            border-color: rgba(255, 255, 255, 0.4) !important;
+            box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.2) !important;
+          }
+          
+          .ant-select-arrow {
+            color: rgba(255, 255, 255, 0.7);
+          }
+        }
+      }
+    }
+
+    .season-info {
+      padding: 16px;
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+  }
+
+  .liquid-display {
+    height: 400px;
+    padding: 0;
+    overflow: hidden;
+  }
+
+  .demo-card {
+    padding: 20px;
+    height: 160px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .tech-info {
+    padding: 24px;
+  }
+
+  // 玻璃按钮样式
+  .glass-button {
+    background: rgba(255, 255, 255, 0.1) !important;
+    border: 1px solid rgba(255, 255, 255, 0.2) !important;
+    border-radius: 12px !important;
+    color: rgba(255, 255, 255, 0.9) !important;
+    backdrop-filter: blur(10px);
+    font-weight: 500;
+    
+    &:hover {
+      background: rgba(255, 255, 255, 0.2) !important;
+      border-color: rgba(255, 255, 255, 0.3) !important;
+      color: rgba(255, 255, 255, 1) !important;
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    }
+    
+    &.ant-btn-primary {
+      background: rgba(255, 255, 255, 0.2) !important;
+      border-color: rgba(255, 255, 255, 0.3) !important;
+      
+      &:hover {
+        background: rgba(255, 255, 255, 0.3) !important;
+        border-color: rgba(255, 255, 255, 0.4) !important;
+      }
+    }
+  }
+}
+
+// 季节特定样式
+.season-spring.liquid-glass-page {
+  .glass-card {
+    box-shadow: 
+      0 8px 32px rgba(82, 196, 26, 0.2),
+      inset 0 1px 0 rgba(255, 255, 255, 0.4);
+    
+    &:hover {
+      box-shadow: 
+        0 12px 40px rgba(82, 196, 26, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.5);
+    }
+  }
+}
+
+.season-summer.liquid-glass-page {
+  .glass-card {
+    box-shadow: 
+      0 8px 32px rgba(24, 144, 255, 0.2),
+      inset 0 1px 0 rgba(255, 255, 255, 0.4);
+    
+    &:hover {
+      box-shadow: 
+        0 12px 40px rgba(24, 144, 255, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.5);
+    }
+  }
+}
+
+.season-autumn.liquid-glass-page {
+  .glass-card {
+    box-shadow: 
+      0 8px 32px rgba(250, 140, 22, 0.2),
+      inset 0 1px 0 rgba(255, 255, 255, 0.4);
+    
+    &:hover {
+      box-shadow: 
+        0 12px 40px rgba(250, 140, 22, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.5);
+    }
+  }
+}
+
+.season-winter.liquid-glass-page {
+  .glass-card {
+    box-shadow: 
+      0 8px 32px rgba(114, 46, 209, 0.2),
+      inset 0 1px 0 rgba(255, 255, 255, 0.4);
+    
+    &:hover {
+      box-shadow: 
+        0 12px 40px rgba(114, 46, 209, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.5);
+    }
+  }
+}
+
+// 响应式设计
+@media (max-width: 1200px) {
+  .liquid-glass-page {
+    .liquid-content {
+      padding: 16px;
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .liquid-glass-page {
+    .liquid-content {
+      padding: 12px;
+    }
+    
+    .liquid-header .header-card {
+      padding: 20px;
+      
+      .ant-space {
+        flex-direction: column;
+        
+        span {
+          font-size: 36px !important;
+        }
+      }
+    }
+    
+    .control-panel {
+      padding: 16px;
+      margin-bottom: 16px;
+    }
+    
+    .liquid-display {
+      height: 300px;
+    }
+    
+    .demo-card {
+      height: auto;
+      min-height: 120px;
+      padding: 16px;
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .liquid-glass-page {
+    .liquid-content {
+      padding: 8px;
+    }
+    
+    .liquid-header .header-card {
+      padding: 16px;
+    }
+    
+    .liquid-display {
+      height: 250px;
+    }
+  }
+}
+
+// 性能优化
+@media (prefers-reduced-motion: reduce) {
+  .liquid-glass-page {
+    .glass-card {
+      transition: none;
+      
+      &:hover {
+        transform: none;
+      }
+    }
+    
+    .glass-button:hover {
+      transform: none;
+    }
+  }
+}

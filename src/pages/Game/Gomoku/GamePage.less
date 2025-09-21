@@ -1,0 +1,250 @@
+:root {
+  --primary-color: #1890ff;
+  --heading-color: rgba(0, 0, 0, 0.85);
+  --text-color: rgba(0, 0, 0, 0.65);
+  --text-color-secondary: rgba(0, 0, 0, 0.45);
+}
+
+.game-page {
+  display: flex;
+  flex-direction: column;
+  min-height: calc(100vh - 200px);
+  background: #f0f2f5;
+  padding: 0;
+  margin: 0;
+  
+  .game-header {
+    margin-bottom: 24px;
+    
+    .header-card {
+      border-radius: 0 0 8px 8px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      
+      .game-icon {
+        font-size: 36px;
+        color: var(--primary-color);
+      }
+      
+      .game-title {
+        margin: 0;
+        color: var(--heading-color);
+      }
+      
+      .game-description {
+        margin: 8px 0 0;
+        font-size: 16px;
+      }
+    }
+  }
+  
+  .game-content {
+    flex: 1;
+    padding: 0 24px 24px;
+    
+    .board-container {
+      background: #fff;
+      border-radius: 8px;
+      padding: 24px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      margin: 0 auto;
+      max-width: 800px;
+      
+      .game-status {
+        text-align: center;
+        margin-bottom: 16px;
+        font-size: 18px;
+        font-weight: 500;
+        color: var(--text-color);
+      }
+      
+      .board {
+        border: 2px solid #8b4513;
+        background: #deb887;
+        border-radius: 8px;
+        padding: 10px;
+        box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.2);
+        margin: 0 auto;
+      }
+      
+      .board-row {
+        display: flex;
+      }
+      
+      .cell {
+        width: 36px;
+        height: 36px;
+        border: 1px solid #8b4513;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        cursor: pointer;
+        transition: all 0.2s ease;
+        
+        &:hover {
+          background: rgba(255, 255, 255, 0.3);
+        }
+        
+        &.clickable {
+          cursor: pointer;
+          
+          &:hover {
+            background: rgba(24, 144, 255, 0.2);
+            transform: scale(1.05);
+          }
+        }
+      }
+      
+      .piece {
+        width: 28px;
+        height: 28px;
+        border-radius: 50%;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        animation: pieceDrop 0.3s ease-out;
+        
+        &.player {
+          background: radial-gradient(circle at 30% 30%, #fff, #000);
+          border: 2px solid #333;
+        }
+        
+        &.ai {
+          background: radial-gradient(circle at 30% 30%, #fff, #ff4d4f);
+          border: 2px solid #ff4d4f;
+        }
+      }
+      
+      @keyframes pieceDrop {
+        0% {
+          transform: translateY(-20px) scale(0.8);
+          opacity: 0;
+        }
+        50% {
+          transform: translateY(-5px) scale(1.1);
+          opacity: 0.8;
+        }
+        100% {
+          transform: translateY(0) scale(1);
+          opacity: 1;
+        }
+      }
+    }
+  }
+  
+  .game-footer {
+    margin-top: 24px;
+    padding: 0 24px 24px;
+    
+    .footer-card {
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      
+      .game-stat {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 0 16px;
+        
+        .ant-typography {
+          margin: 0;
+          line-height: 1.5;
+        }
+      }
+    }
+  }
+  
+  // 响应式设计
+  @media (max-width: 768px) {
+    .game-content {
+      padding: 0 16px 16px;
+      
+      .board-container {
+        padding: 16px;
+        
+        .cell {
+          width: 28px;
+          height: 28px;
+        }
+        
+        .piece {
+          width: 22px;
+          height: 22px;
+        }
+      }
+    }
+    
+    .game-footer {
+      padding: 0 16px 16px;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .game-content {
+      .board-container {
+        padding: 12px;
+        
+        .cell {
+          width: 24px;
+          height: 24px;
+        }
+        
+        .piece {
+          width: 18px;
+          height: 18px;
+        }
+      }
+    }
+  }
+}
+
+// 按钮样式
+.ant-btn {
+  border-radius: 6px;
+  font-weight: 500;
+  transition: all 0.3s;
+  
+  &-primary {
+    background: var(--primary-color);
+    border-color: var(--primary-color);
+    
+    &:hover, &:focus {
+      background: color-mix(in srgb, var(--primary-color), white 20%);
+      border-color: color-mix(in srgb, var(--primary-color), white 20%);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    }
+  }
+  
+  &-default {
+    &:hover, &:focus {
+      color: var(--primary-color);
+      border-color: var(--primary-color);
+      color: var(--primary-color);
+      border-color: var(--primary-color);
+    }
+  }
+  
+  &-icon {
+    margin-right: 8px;
+  }
+}
+
+// 卡片标题样式
+.ant-card-head-title {
+  font-weight: 600;
+  color: var(--heading-color);
+}
+
+// 统计卡片样式
+.ant-statistic {
+  .ant-statistic-title {
+    color: var(--text-color-secondary);
+    font-size: 14px;
+    margin-bottom: 4px;
+  }
+  
+  .ant-statistic-content {
+    font-size: 24px;
+    font-weight: 600;
+    color: var(--heading-color);
+  }
+}

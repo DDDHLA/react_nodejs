@@ -1,0 +1,332 @@
+// 季节演示页面样式
+.seasonal-demo {
+  height: calc(100vh - 200px);
+  min-height: 500px;
+  box-sizing: border-box;
+  overflow: hidden;
+  overflow-y: auto;
+  padding: 24px;
+  
+  .demo-header {
+    text-align: center;
+    margin-bottom: 32px;
+    
+    .ant-typography h1 {
+      background: linear-gradient(135deg, var(--seasonal-primary) 0%, var(--seasonal-accent) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+  }
+
+  // 主题信息卡片
+  .theme-info-card {
+    background: var(--seasonal-card-bg);
+    border: 1px solid rgba(0, 0, 0, 0.06);
+    
+    .info-item {
+      text-align: center;
+      padding: 16px;
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.5);
+      backdrop-filter: blur(5px);
+      
+      .ant-typography {
+        margin: 0;
+      }
+    }
+  }
+
+  // 演示卡片
+  .demo-card {
+    height: 100%;
+    transition: all 0.3s ease;
+    background: var(--seasonal-card-bg);
+    border: 1px solid rgba(0, 0, 0, 0.06);
+    
+    &:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.12);
+      border-color: var(--seasonal-primary);
+    }
+    
+    .card-content {
+      text-align: center;
+      
+      .card-icon {
+        margin-bottom: 16px;
+        
+        span {
+          display: inline-block;
+          padding: 16px;
+          border-radius: 50%;
+          background: linear-gradient(135deg, var(--seasonal-secondary) 0%, rgba(255, 255, 255, 0.8) 100%);
+          box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+      }
+    }
+    
+    .ant-card-actions {
+      background: rgba(255, 255, 255, 0.8);
+      backdrop-filter: blur(10px);
+      
+      .ant-btn {
+        color: var(--seasonal-primary);
+        
+        &:hover {
+          color: var(--seasonal-accent);
+          background: var(--seasonal-secondary);
+        }
+      }
+    }
+  }
+
+  // 用户卡片
+  .user-card {
+    .user-profile {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 16px;
+      
+      .ant-avatar {
+        border: 3px solid var(--seasonal-primary);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      }
+      
+      .user-info {
+        flex: 1;
+      }
+    }
+    
+    .user-stat {
+      display: flex;
+      align-items: center;
+      padding: 8px 0;
+      
+      .anticon {
+        color: var(--seasonal-primary);
+      }
+    }
+  }
+
+  // 统计卡片
+  .stats-card {
+    .stat-item {
+      text-align: center;
+      padding: 16px 8px;
+      border-radius: 8px;
+      background: linear-gradient(135deg, var(--seasonal-secondary) 0%, rgba(255, 255, 255, 0.8) 100%);
+      transition: all 0.3s ease;
+      
+      &:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+      }
+      
+      .ant-typography h2 {
+        font-weight: bold;
+        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      }
+    }
+  }
+
+  // 全局卡片样式增强
+  .ant-card {
+    border-radius: 12px;
+    overflow: hidden;
+    
+    .ant-card-head {
+      background: linear-gradient(135deg, var(--seasonal-secondary) 0%, rgba(255, 255, 255, 0.9) 100%);
+      border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+      
+      .ant-card-head-title {
+        color: var(--seasonal-text-primary);
+        font-weight: 600;
+      }
+    }
+    
+    .ant-card-body {
+      background: var(--seasonal-card-bg);
+    }
+  }
+
+  // 按钮区域
+  .ant-space-item {
+    .ant-btn {
+      border-radius: 8px;
+      font-weight: 500;
+      
+      &.ant-btn-primary {
+        background: linear-gradient(135deg, var(--seasonal-primary) 0%, var(--seasonal-accent) 100%);
+        border: none;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        
+        &:hover {
+          transform: translateY(-2px);
+          box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+        }
+      }
+      
+      &.ant-btn-default {
+        border-color: var(--seasonal-primary);
+        color: var(--seasonal-primary);
+        
+        &:hover {
+          background: var(--seasonal-secondary);
+          border-color: var(--seasonal-accent);
+          color: var(--seasonal-accent);
+        }
+      }
+    }
+  }
+
+  // 标签样式
+  .ant-tag {
+    border-radius: 12px;
+    font-size: 12px;
+    padding: 2px 8px;
+    border: none;
+    
+    &.ant-tag-default {
+      background: rgba(255, 255, 255, 0.8);
+      color: var(--seasonal-text-primary);
+      border: 1px solid rgba(0, 0, 0, 0.1);
+    }
+  }
+
+  // 分割线
+  .ant-divider {
+    border-color: rgba(0, 0, 0, 0.06);
+  }
+
+  // 滚动条样式
+  &::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.05);
+    border-radius: 4px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: var(--seasonal-primary);
+    border-radius: 4px;
+    opacity: 0.6;
+    
+    &:hover {
+      opacity: 0.8;
+    }
+  }
+}
+
+// 季节特定的样式增强
+.season-spring .seasonal-demo {
+  .demo-header {
+    .ant-typography h1 {
+      text-shadow: 0 2px 8px rgba(82, 196, 26, 0.3);
+    }
+  }
+  
+  .demo-card:hover {
+    box-shadow: 0 12px 40px rgba(82, 196, 26, 0.15);
+  }
+}
+
+.season-summer .seasonal-demo {
+  .demo-header {
+    .ant-typography h1 {
+      text-shadow: 0 2px 8px rgba(24, 144, 255, 0.3);
+    }
+  }
+  
+  .demo-card:hover {
+    box-shadow: 0 12px 40px rgba(24, 144, 255, 0.15);
+  }
+}
+
+.season-autumn .seasonal-demo {
+  .demo-header {
+    .ant-typography h1 {
+      text-shadow: 0 2px 8px rgba(250, 140, 22, 0.3);
+    }
+  }
+  
+  .demo-card:hover {
+    box-shadow: 0 12px 40px rgba(250, 140, 22, 0.15);
+  }
+}
+
+.season-winter .seasonal-demo {
+  .demo-header {
+    .ant-typography h1 {
+      text-shadow: 0 2px 8px rgba(114, 46, 209, 0.3);
+    }
+  }
+  
+  .demo-card:hover {
+    box-shadow: 0 12px 40px rgba(114, 46, 209, 0.15);
+  }
+}
+
+// 响应式设计
+@media (max-width: 768px) {
+  .seasonal-demo {
+    padding: 16px;
+    
+    .demo-header {
+      margin-bottom: 24px;
+      
+      .ant-space {
+        flex-direction: column;
+        
+        span {
+          font-size: 36px !important;
+        }
+      }
+    }
+    
+    .demo-card {
+      margin-bottom: 16px;
+      
+      .card-icon span {
+        font-size: 24px;
+        padding: 12px;
+      }
+    }
+    
+    .user-profile {
+      flex-direction: column;
+      text-align: center;
+      
+      .ant-avatar {
+        margin-bottom: 12px;
+      }
+    }
+    
+    .stats-card {
+      .ant-row {
+        .ant-col {
+          margin-bottom: 12px;
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .seasonal-demo {
+    padding: 12px;
+    
+    .ant-card {
+      .ant-card-body {
+        padding: 16px;
+      }
+    }
+    
+    .ant-space {
+      gap: 8px !important;
+    }
+  }
+}

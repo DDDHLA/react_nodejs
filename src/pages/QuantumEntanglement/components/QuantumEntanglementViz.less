@@ -1,0 +1,172 @@
+// 量子纠缠可视化样式
+.quantum-entanglement-viz {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  background: linear-gradient(135deg, rgba(0, 0, 0, 0.02) 0%, rgba(114, 46, 209, 0.05) 100%);
+  
+  .quantum-viz-controls {
+    padding: 16px 24px;
+    background: linear-gradient(135deg, rgba(114, 46, 209, 0.1) 0%, rgba(19, 194, 194, 0.1) 100%);
+    border-bottom: 1px solid rgba(114, 46, 209, 0.2);
+    
+    .ant-btn {
+      &.ant-btn-primary {
+        background: linear-gradient(135deg, #722ed1 0%, #13c2c2 100%);
+        border: none;
+        box-shadow: 0 2px 8px rgba(114, 46, 209, 0.3);
+        
+        &:hover {
+          transform: translateY(-1px);
+          box-shadow: 0 4px 12px rgba(114, 46, 209, 0.4);
+        }
+      }
+      
+      &.ant-btn-default {
+        border-color: rgba(114, 46, 209, 0.3);
+        color: #722ed1;
+        
+        &:hover {
+          background: rgba(114, 46, 209, 0.1);
+          border-color: #13c2c2;
+          color: #13c2c2;
+        }
+      }
+    }
+  }
+
+  .quantum-canvas-container {
+    flex: 1;
+    position: relative;
+    overflow: hidden;
+    background: radial-gradient(ellipse at center, rgba(114, 46, 209, 0.03) 0%, rgba(0, 0, 0, 0.01) 100%);
+    
+    .quantum-canvas {
+      width: 100%;
+      height: 100%;
+      display: block;
+      cursor: crosshair;
+    }
+    
+    .quantum-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      pointer-events: none;
+      
+      .quantum-stats {
+        position: absolute;
+        top: 16px;
+        right: 16px;
+        background: rgba(0, 0, 0, 0.7);
+        padding: 8px 12px;
+        border-radius: 8px;
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(114, 46, 209, 0.3);
+      }
+    }
+  }
+
+  .quantum-explanation {
+    padding: 12px 24px;
+    background: rgba(255, 255, 255, 0.8);
+    border-top: 1px solid rgba(114, 46, 209, 0.2);
+    backdrop-filter: blur(10px);
+  }
+}
+
+// 季节特定样式
+.season-spring .quantum-entanglement-viz {
+  .quantum-canvas-container {
+    background: radial-gradient(ellipse at center, rgba(82, 196, 26, 0.03) 0%, rgba(0, 0, 0, 0.01) 100%);
+  }
+  
+  .quantum-overlay .quantum-stats {
+    border-color: rgba(82, 196, 26, 0.3);
+  }
+}
+
+.season-summer .quantum-entanglement-viz {
+  .quantum-canvas-container {
+    background: radial-gradient(ellipse at center, rgba(24, 144, 255, 0.03) 0%, rgba(0, 0, 0, 0.01) 100%);
+  }
+  
+  .quantum-overlay .quantum-stats {
+    border-color: rgba(24, 144, 255, 0.3);
+  }
+}
+
+.season-autumn .quantum-entanglement-viz {
+  .quantum-canvas-container {
+    background: radial-gradient(ellipse at center, rgba(250, 140, 22, 0.03) 0%, rgba(0, 0, 0, 0.01) 100%);
+  }
+  
+  .quantum-overlay .quantum-stats {
+    border-color: rgba(250, 140, 22, 0.3);
+  }
+}
+
+.season-winter .quantum-entanglement-viz {
+  .quantum-canvas-container {
+    background: radial-gradient(ellipse at center, rgba(114, 46, 209, 0.03) 0%, rgba(0, 0, 0, 0.01) 100%);
+  }
+  
+  .quantum-overlay .quantum-stats {
+    border-color: rgba(114, 46, 209, 0.3);
+  }
+}
+
+// 响应式设计
+@media (max-width: 768px) {
+  .quantum-entanglement-viz {
+    .quantum-viz-controls {
+      padding: 12px 16px;
+      
+      .ant-space {
+        flex-wrap: wrap;
+        gap: 8px !important;
+      }
+      
+      .ant-btn {
+        font-size: 12px;
+        padding: 4px 8px;
+      }
+    }
+    
+    .quantum-overlay .quantum-stats {
+      top: 8px;
+      right: 8px;
+      font-size: 11px;
+      padding: 6px 8px;
+    }
+    
+    .quantum-explanation {
+      padding: 8px 16px;
+      font-size: 11px;
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .quantum-entanglement-viz {
+    .quantum-viz-controls {
+      padding: 8px 12px;
+      
+      .ant-space {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 6px !important;
+      }
+    }
+    
+    .quantum-overlay .quantum-stats {
+      position: relative;
+      top: auto;
+      right: auto;
+      margin: 8px;
+      background: rgba(0, 0, 0, 0.8);
+    }
+  }
+}

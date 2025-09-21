@@ -1,26 +1,22 @@
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import "./App.css";
 import { ConfigProvider } from "antd";
-import { themes } from "./config/themeConfig.js";
 import zhCN from "antd/locale/zh_CN";
 import enUS from "antd/locale/en_US";
 import { useRoutes } from "react-router-dom"; // 确保使用 useRoutes
 import routes from "./router/index.jsx"; // 引入路由配置
 import SSEHandler from "./SSEHandler";
+import { useThemeStore } from "./store/themeStore";
+import { generateAntdTheme } from "./config/theme";
+
 function App() {
-  // theme
-  function getDefaultTheme() {
-    const theme = import.meta.env.VITE_THEME;
-    if (theme === "red") return themes.redTheme;
-    if (theme === "green") return themes.greenTheme;
-    return themes.greenTheme;
-  }
-  const defaultTheme = getDefaultTheme();
-  const [currentTheme, setCurrentTheme] = useState(defaultTheme);
+  // 新的主题系统
+  const { themeConfig } = useThemeStore();
+  const antdTheme = useMemo(() => generateAntdTheme(themeConfig), [themeConfig]);
 
   // language
   const language = import.meta.env.VITE_LANGUAGE;
-  const [currentLanguage, setCurrentLanguage] = useState(language);
+  const [currentLanguage] = useState(language);
   function getLanguage(lang: string) {
     if (lang === "CN") {
       return zhCN;
@@ -34,7 +30,7 @@ function App() {
   const element = useRoutes(routes); // 使用 useRoutes 渲染路由
 
   return (
-    <ConfigProvider locale={getLanguage(currentLanguage)} theme={currentTheme}>
+    <ConfigProvider locale={getLanguage(currentLanguage)} theme={antdTheme}>
       <SSEHandler />
       {element}
     </ConfigProvider>

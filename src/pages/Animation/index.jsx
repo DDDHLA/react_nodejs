@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Card } from 'antd';
-import './index.css';
+import './index.less';
 
 const Animation = () => {
   const [animatingText, setAnimatingText] = useState('');

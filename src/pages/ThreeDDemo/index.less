@@ -1,0 +1,351 @@
+// 3D效果展示页面样式
+.threed-demo {
+  height: calc(100vh - 200px);
+  min-height: 600px;
+  box-sizing: border-box;
+  overflow: hidden;
+  overflow-y: auto;
+  padding: 24px;
+  
+  .demo-header {
+    text-align: center;
+    margin-bottom: 32px;
+    
+    .ant-typography h1 {
+      background: linear-gradient(135deg, var(--seasonal-primary) 0%, var(--seasonal-accent) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      text-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+  }
+
+  // 控制面板
+  .control-panel {
+    height: fit-content;
+    position: sticky;
+    top: 24px;
+    background: var(--seasonal-card-bg);
+    border: 1px solid rgba(0, 0, 0, 0.06);
+    border-radius: 12px;
+    
+    .ant-card-head {
+      background: linear-gradient(135deg, var(--seasonal-secondary) 0%, rgba(255, 255, 255, 0.9) 100%);
+      border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+    }
+
+    .current-effect {
+      text-align: center;
+      padding: 16px;
+      background: linear-gradient(135deg, var(--seasonal-secondary) 0%, rgba(255, 255, 255, 0.8) 100%);
+      border-radius: 8px;
+      
+      .effect-icon {
+        margin-bottom: 12px;
+        
+        span {
+          display: inline-block;
+          padding: 12px;
+          border-radius: 50%;
+          background: rgba(255, 255, 255, 0.9);
+          box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+      }
+    }
+
+    .animation-controls {
+      .control-item {
+        margin-bottom: 16px;
+        
+        .ant-slider {
+          margin-top: 8px;
+          
+          .ant-slider-rail {
+            background: rgba(0, 0, 0, 0.1);
+          }
+          
+          .ant-slider-track {
+            background: var(--seasonal-primary);
+          }
+          
+          .ant-slider-handle {
+            border-color: var(--seasonal-primary);
+            
+            &:hover, &:focus {
+              border-color: var(--seasonal-accent);
+              box-shadow: 0 0 0 5px rgba(0, 0, 0, 0.1);
+            }
+          }
+        }
+      }
+    }
+
+    .features-list {
+      ul {
+        margin: 0;
+        padding-left: 16px;
+        
+        li {
+          margin-bottom: 4px;
+          color: var(--seasonal-text-secondary);
+        }
+      }
+    }
+
+    .theme-info {
+      padding: 12px;
+      background: rgba(255, 255, 255, 0.5);
+      border-radius: 8px;
+      border: 1px solid rgba(0, 0, 0, 0.06);
+    }
+  }
+
+  // 展示区域
+  .display-area {
+    background: var(--seasonal-card-bg);
+    border: 1px solid rgba(0, 0, 0, 0.06);
+    border-radius: 12px;
+    min-height: 600px;
+    
+    .ant-card-body {
+      padding: 0;
+      height: 600px;
+    }
+    
+    .ant-tabs {
+      height: 100%;
+      
+      .ant-tabs-nav {
+        background: linear-gradient(135deg, var(--seasonal-secondary) 0%, rgba(255, 255, 255, 0.9) 100%);
+        margin: 0;
+        padding: 0 24px;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+        
+        .ant-tabs-tab {
+          border: none;
+          background: transparent;
+          
+          &.ant-tabs-tab-active {
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 8px 8px 0 0;
+            
+            .ant-tabs-tab-btn {
+              color: var(--seasonal-primary);
+              font-weight: 600;
+            }
+          }
+          
+          &:hover {
+            background: rgba(255, 255, 255, 0.6);
+            border-radius: 8px 8px 0 0;
+          }
+        }
+        
+        .ant-tabs-extra-content {
+          .ant-btn {
+            color: var(--seasonal-primary);
+            
+            &:hover {
+              background: rgba(255, 255, 255, 0.8);
+              color: var(--seasonal-accent);
+            }
+          }
+        }
+      }
+      
+      .ant-tabs-content-holder {
+        height: calc(100% - 56px);
+        
+        .ant-tabs-content {
+          height: 100%;
+          
+          .ant-tabs-tabpane {
+            height: 100%;
+            padding: 0;
+          }
+        }
+      }
+    }
+  }
+
+  // 全局按钮样式
+  .ant-btn {
+    border-radius: 8px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    
+    &.ant-btn-primary {
+      background: linear-gradient(135deg, var(--seasonal-primary) 0%, var(--seasonal-accent) 100%);
+      border: none;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+      
+      &:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+      }
+    }
+    
+    &.ant-btn-default {
+      border-color: var(--seasonal-primary);
+      color: var(--seasonal-primary);
+      
+      &:hover {
+        background: var(--seasonal-secondary);
+        border-color: var(--seasonal-accent);
+        color: var(--seasonal-accent);
+        transform: translateY(-1px);
+      }
+    }
+  }
+
+  // 卡片样式增强
+  .ant-card {
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    
+    .ant-card-head {
+      .ant-card-head-title {
+        color: var(--seasonal-text-primary);
+        font-weight: 600;
+      }
+    }
+  }
+
+  // 滚动条样式
+  &::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.05);
+    border-radius: 4px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: var(--seasonal-primary);
+    border-radius: 4px;
+    opacity: 0.6;
+    
+    &:hover {
+      opacity: 0.8;
+    }
+  }
+}
+
+// 季节特定样式
+.season-spring .threed-demo {
+  .demo-header .ant-typography h1 {
+    text-shadow: 0 2px 8px rgba(82, 196, 26, 0.3);
+  }
+}
+
+.season-summer .threed-demo {
+  .demo-header .ant-typography h1 {
+    text-shadow: 0 2px 8px rgba(24, 144, 255, 0.3);
+  }
+}
+
+.season-autumn .threed-demo {
+  .demo-header .ant-typography h1 {
+    text-shadow: 0 2px 8px rgba(250, 140, 22, 0.3);
+  }
+}
+
+.season-winter .threed-demo {
+  .demo-header .ant-typography h1 {
+    text-shadow: 0 2px 8px rgba(114, 46, 209, 0.3);
+  }
+}
+
+// 响应式设计
+@media (max-width: 1200px) {
+  .threed-demo {
+    .control-panel {
+      position: static;
+      margin-bottom: 24px;
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .threed-demo {
+    padding: 16px;
+    
+    .demo-header {
+      margin-bottom: 24px;
+      
+      .ant-space {
+        flex-direction: column;
+        
+        span {
+          font-size: 36px !important;
+        }
+      }
+    }
+    
+    .display-area {
+      min-height: 400px;
+      
+      .ant-card-body {
+        height: 400px;
+      }
+      
+      .ant-tabs {
+        .ant-tabs-nav {
+          padding: 0 12px;
+          
+          .ant-tabs-tab {
+            padding: 8px 12px;
+            font-size: 12px;
+          }
+        }
+        
+        .ant-tabs-content-holder {
+          height: calc(100% - 48px);
+        }
+      }
+    }
+    
+    .control-panel {
+      .current-effect {
+        padding: 12px;
+        
+        .effect-icon span {
+          font-size: 24px;
+          padding: 8px;
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .threed-demo {
+    padding: 12px;
+    
+    .display-area {
+      min-height: 300px;
+      
+      .ant-card-body {
+        height: 300px;
+      }
+    }
+    
+    .ant-tabs {
+      .ant-tabs-nav {
+        .ant-tabs-tab {
+          padding: 6px 8px;
+          
+          .ant-space {
+            gap: 4px !important;
+          }
+        }
+        
+        .ant-tabs-extra-content {
+          display: none; // 隐藏额外按钮
+        }
+      }
+    }
+  }
+}
