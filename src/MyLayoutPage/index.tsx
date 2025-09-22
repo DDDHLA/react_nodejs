@@ -287,14 +287,14 @@ const MyLayoutPage = () => {
         </Sider>
         
         {/* 右侧内容区 */}
-        <Layout style={{ padding: "0 24px 24px" }}>
+        <Layout style={{ padding: "0 16px 16px" }}> {/* 减少左右和底部padding */}
           {/* 面包屑和标签页导航行 */}
           <div style={{ 
             display: "flex", 
             alignItems: "center", 
-            gap: "16px",
-            margin: "16px 0 8px 0",
-            minHeight: "32px"
+            gap: "12px", // 减少间距
+            margin: "12px 0 6px 0", // 减少上下边距
+            minHeight: "28px" // 减少最小高度
           }}>
             {/* 面包屑导航 - 固定 */}
             <Breadcrumb items={breadcrumbItems} style={{ flexShrink: 0 }} />
@@ -308,9 +308,11 @@ const MyLayoutPage = () => {
           {/* 主内容区 */}
           <Content
             style={{
-              padding: 24,
+              padding: 16, // 减少内边距从24px到16px
               margin: 0,
-              minHeight: 280,
+              minHeight: "auto",
+              height: "calc(100vh - 140px)", // 增加高度，减少顶部预留空间
+              overflowY: "auto", // 允许垂直滚动
               background: colorBgContainer,
               borderRadius: borderRadiusLG,
             }}
