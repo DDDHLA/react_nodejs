@@ -10,9 +10,9 @@ export default defineConfig({
       less: {
         javascriptEnabled: true,
         modifyVars: {
-          'primary-color': '#1890ff',
-          'link-color': '#1890ff',
-          'border-radius-base': '4px',
+          "primary-color": "#1890ff",
+          "link-color": "#1890ff",
+          "border-radius-base": "4px",
         },
       },
     },
@@ -23,6 +23,7 @@ export default defineConfig({
     },
   },
   server: {
+    port: 8083, // 本地开发端口
     host: "0.0.0.0",
     allowedHosts: ["all"],
     proxy: {

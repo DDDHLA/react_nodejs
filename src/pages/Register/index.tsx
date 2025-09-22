@@ -1,16 +1,10 @@
 import { Form, Input, Button, message } from "antd";
 import { useNavigate } from "react-router-dom";
-import { register } from "@/api/user";
+import { register, type RegisterParams } from "@/api/user.ts";
 const Register = () => {
   const navigate = useNavigate();
 
-  const onFinish = async (values: {
-    username: string;
-    password: string;
-    nickname?: string;
-    email?: string;
-    confirmPassword: string;
-  }): Promise<void> => {
+  const onFinish = async (values: RegisterParams & { confirmPassword?: string }): Promise<void> => {
     console.log("Received values of form: ", values);
     delete values.confirmPassword;
     try {
