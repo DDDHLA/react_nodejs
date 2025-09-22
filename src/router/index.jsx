@@ -14,6 +14,7 @@ import {
   NodeIndexOutlined,
   LaptopOutlined,
   BulbOutlined,
+  MessageOutlined,
 } from "@ant-design/icons"; // 引入图标
 import AuthRoute from "@/components/AuthRoute";
 const Login = lazy(() => import("@/pages/Login"));
@@ -46,6 +47,7 @@ const SeasonalDemo = lazy(() => import("../pages/SeasonalDemo"));
 const QuantumEntanglement = lazy(() => import("../pages/QuantumEntanglement"));
 const LiquidGlass = lazy(() => import("../pages/LiquidGlass"));
 const LightGlass = lazy(() => import("../pages/LightGlass"));
+const ChatBox = lazy(() => import("../pages/ChatBox"));
 const lazyLoad = (Component) => (
   <Suspense fallback={<div>页面加载中...</div>}>
     <Component />
@@ -213,6 +215,12 @@ const routes = [
         label: "光影玻璃实验室",
         icon: <BulbOutlined />,
         element: lazyLoad(LightGlass),
+      },
+      {
+        path: "/chatbox",
+        label: "对话框",
+        icon: <MessageOutlined />,
+        element: lazyLoad(ChatBox),
       },
       {
         path: "/game",

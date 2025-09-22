@@ -10,16 +10,19 @@ import {
   message,
 } from "antd";
 import { Outlet, useNavigate, useLocation } from "react-router-dom";
-import routes from "../router"; // 引入路由配置
+// @ts-expect-error - 路由文件类型问题
+import routes from "../router";
 import CustomIcon from "../assets/react.svg";
-import { getUserInfo, updateUserInfo, updatePassword } from "@/api/user";
-import UserInfoModal from "./components/userInfoModal"; // 引入UserInfoModal组件
-import ChangePasswordModal from "./components/ChangePasswordModal"; // 引入ChangePasswordModal组件
-import SimpleTabsNav from "@/components/TabsNav/SimpleTabsNav"; // 引入标签页组件
-import ThemeSwitcher from "@/components/ThemeSwitcher"; // 引入主题切换组件
-import { SeasonalThemeProvider } from "@/components/SeasonalTheme"; // 引入季节主题提供者
-import SeasonSwitcher from "@/components/SeasonalTheme/SeasonSwitcher"; // 引入季节切换器
-import ParticleEffect from "@/components/SeasonalTheme/ParticleEffect"; // 引入粒子效果
+import { getUserInfo, updateUserInfo, updatePassword, type UpdatePasswordParams } from "@/api/user";
+// @ts-expect-error - JSX 组件类型声明
+import UserInfoModal from "./components/userInfoModal";
+// @ts-expect-error - JSX 组件类型声明
+import ChangePasswordModal from "./components/ChangePasswordModal";
+import SimpleTabsNav from "@/components/TabsNav/SimpleTabsNav";
+import ThemeSwitcher from "@/components/ThemeSwitcher";
+import { SeasonalThemeProvider } from "@/components/SeasonalTheme";
+import SeasonSwitcher from "@/components/SeasonalTheme/SeasonSwitcher";
+import ParticleEffect from "@/components/SeasonalTheme/ParticleEffect";
 
 // 从Layout组件中解构出需要的子组件
 const { Header, Content, Sider } = Layout;
@@ -34,18 +37,14 @@ interface UserInfo {
 
 // 定义路由项的接口
 interface RouteItem {
-  path: string;             // 路由路径
-  label?: string;           // 菜单显示的标签
-  icon?: React.ReactNode;   // 菜单图标
-  children?: RouteItem[];   // 子路由/子菜单
-  [key: string]: unknown;   // 修复了类型为 any 的问题
+  path: string;
+  label?: string;
+  icon?: React.ReactNode;
+  element?: React.ReactNode;
+  children?: RouteItem[];
+  [key: string]: unknown;
 }
 
-// const breadcrumbNameMap: Record<string, string> = {
-//   "/home": "首页",
-//   "/article": "文章管理",
-//   "/publish": "发布文章",
-// };
 
 // 递归函数：将路由配置转换为 Menu items
 const mapRoutesToMenuItems = (
@@ -53,8 +52,8 @@ const mapRoutesToMenuItems = (
   parentPath = ""
 ): MenuProps["items"] => {
   return routeList
-    ?.filter((route) => route.label) // 只处理有label的路由（可在菜单中显示的路由）
-    .map((route) => {
+    ?.filter((route: RouteItem) => route.label) // 只处理有label的路由（可在菜单中显示的路由）
+    .map((route: RouteItem) => {
       // 构建完整路径
       const fullPath = route.path.startsWith("/")
         ? route.path  // 如果是以/开头，则为绝对路径
@@ -94,7 +93,7 @@ const MyLayoutPage = () => {
     try {
       const res = await getUserInfo();
       if (res.status !== 0) return message.error(res.message);
-      setInfo(res.data);
+      setInfo((res.data as unknown as UserInfo) || {});
     } catch (error) {
       console.log(error);
     }
@@ -129,7 +128,12 @@ const MyLayoutPage = () => {
   // 处理密码更新提交
   const handlePasswordSubmit = async (values: {oldPwd: string, newPwd: string, rePwd: string}) => {
     try {
-      const res = await updatePassword(values);
+      // 转换为 API 期望的格式
+      const passwordData: UpdatePasswordParams = {
+        oldPassword: values.oldPwd,
+        newPassword: values.newPwd
+      };
+      const res = await updatePassword(passwordData);
       if (res.status !== 0) return message.error(res.message);
       setIsPasswordModalVisible(false);
       message.success(res.message);
@@ -152,7 +156,9 @@ const MyLayoutPage = () => {
       key: "2",
       label: <span>退出登录</span>,
       onClick: () => {
+        // 清除登录token
         localStorage.removeItem("token");
+        // 跳转到登录页
         navigate("/login");
       },
     },
@@ -194,10 +200,8 @@ const MyLayoutPage = () => {
 
   // 动态生成侧边栏菜单项 - 使用递归函数
   const siderMenuItems: MenuProps["items"] = mapRoutesToMenuItems(
-    routes.find((route) => route.path === "/")?.children || []
+    (routes.find((route: RouteItem) => route.path === "/")?.children as RouteItem[]) || []
   );
-  // siderMenuItems  是object对象怎么查看值？
-  // 查看生成的菜单项
 
   return (
     <SeasonalThemeProvider>

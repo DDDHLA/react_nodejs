@@ -1,0 +1,506 @@
+.chat-container {
+  display: flex;
+  height: 100%;
+  background: #f5f5f5;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+
+  /* 左侧联系人面板 */
+  .contacts-panel {
+    width: 300px;
+    background: #ffffff;
+    border-right: 1px solid #f0f0f0;
+    display: flex;
+    flex-direction: column;
+    transition: width 0.3s ease;
+    overflow: hidden;
+
+    &.collapsed {
+      width: 80px;
+    }
+
+    &.collapsing {
+      .contact-info {
+        opacity: 0;
+        pointer-events: none;
+      }
+    }
+
+    .contacts-header {
+      padding: 20px 24px 16px;
+      border-bottom: 1px solid #f0f0f0;
+      background: white;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      h3 {
+        margin: 0;
+        font-size: 18px;
+        font-weight: 600;
+        color: #262626;
+        transition: opacity 0.2s ease;
+        white-space: nowrap;
+      }
+
+      .collapse-btn {
+        color: #8c8c8c;
+        
+        &:hover {
+          color: #1890ff;
+          background: #f0f8ff;
+        }
+      }
+    }
+
+    &.collapsed .contacts-header {
+      padding: 20px 12px 16px;
+      justify-content: center;
+    }
+
+    .contacts-list {
+      flex: 1;
+      overflow-y: auto;
+
+      .contact-item {
+        display: flex;
+        align-items: center;
+        padding: 14px 20px;
+        cursor: pointer;
+        transition: all 0.2s ease;
+        border-bottom: 1px solid #f5f5f5;
+        gap: 16px;
+
+        &:hover {
+          background: #f8f9fa;
+        }
+
+        &.active {
+          background: #e6f7ff;
+          border-right: 3px solid #1890ff;
+        }
+
+        .contact-status {
+          position: relative;
+          flex-shrink: 0;
+
+          .status-dot {
+            position: absolute;
+            bottom: 2px;
+            right: 2px;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            border: 2px solid white;
+
+            &.online {
+              background: #52c41a;
+            }
+
+            &.offline {
+              background: #d9d9d9;
+            }
+          }
+        }
+
+        .contact-info {
+          flex: 1;
+          min-width: 0;
+          opacity: 1;
+          transition: opacity 0.2s ease;
+
+          .contact-name-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 4px;
+
+            .contact-name {
+              font-weight: 500;
+              color: #262626;
+              white-space: nowrap;
+              overflow: hidden;
+              text-overflow: ellipsis;
+              flex: 1;
+              min-width: 0;
+            }
+
+            .contact-time {
+              font-size: 11px;
+              color: #8c8c8c;
+              white-space: nowrap;
+              margin-left: 8px;
+              flex-shrink: 0;
+            }
+          }
+
+          .contact-message {
+            font-size: 12px;
+            color: #8c8c8c;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+          }
+        }
+      }
+
+    }
+
+    /* 折叠状态下的联系人列表 */
+    .collapsed-contacts {
+      flex: 1;
+      padding: 8px 0;
+      overflow-y: auto;
+
+      .collapsed-contact-item {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 8px;
+        margin: 4px 8px;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: all 0.2s ease;
+        position: relative;
+
+        &:hover {
+          background: #f5f5f5;
+        }
+
+        &.active {
+          background: #e6f7ff;
+          border: 1px solid #91d5ff;
+        }
+
+        .status-indicator {
+          position: absolute;
+          bottom: 2px;
+          right: 2px;
+          width: 8px;
+          height: 8px;
+          border-radius: 50%;
+          border: 2px solid white;
+
+          &.online {
+            background: #52c41a;
+          }
+
+          &.offline {
+            background: #d9d9d9;
+          }
+        }
+      }
+    }
+  }
+
+  /* 右侧对话面板 */
+  .chat-panel {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    background: #ffffff;
+
+    .chat-header {
+      padding: 16px 24px;
+      border-bottom: 1px solid #f0f0f0;
+      background: white;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      .chat-user-info {
+        display: flex;
+        align-items: center;
+
+        .chat-user-details {
+          margin-left: 12px;
+
+          .chat-user-name {
+            font-weight: 500;
+            color: #262626;
+            margin-bottom: 4px;
+          }
+
+          .chat-user-status {
+            display: flex;
+            align-items: center;
+            font-size: 12px;
+            color: #8c8c8c;
+
+            .status-indicator {
+              width: 8px;
+              height: 8px;
+              border-radius: 50%;
+              margin-right: 6px;
+
+              &.online {
+                background: #52c41a;
+              }
+
+              &.offline {
+                background: #d9d9d9;
+              }
+            }
+          }
+        }
+      }
+
+      .chat-actions {
+        display: flex;
+        gap: 8px;
+
+        .ant-btn {
+          color: #8c8c8c;
+          
+          &:hover {
+            color: #1890ff;
+            background: #f0f8ff;
+          }
+        }
+      }
+    }
+
+    .messages-container {
+      flex: 1;
+      padding: 20px;
+      overflow-y: auto;
+      background: linear-gradient(to bottom, #f8f9fa, #ffffff);
+
+      /* 时间分隔线 */
+      .time-divider {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 20px 0;
+        position: relative;
+
+        &::before {
+          content: '';
+          position: absolute;
+          top: 50%;
+          left: 0;
+          right: 0;
+          height: 1px;
+          background: linear-gradient(to right, transparent, #e8e8e8, transparent);
+        }
+
+        .time-text {
+          background: white;
+          padding: 4px 12px;
+          font-size: 12px;
+          color: #8c8c8c;
+          border-radius: 12px;
+          border: 1px solid #f0f0f0;
+          box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+          z-index: 1;
+          position: relative;
+        }
+      }
+
+      .message-wrapper {
+        display: flex;
+        margin-bottom: 20px;
+        align-items: flex-end;
+        gap: 12px;
+
+        &.user {
+          justify-content: flex-end;
+
+          .message-bubble {
+            background: linear-gradient(135deg, #1890ff, #096dd9);
+            color: white;
+
+            .message-content {
+              color: white;
+            }
+
+            .message-time {
+              color: rgba(255, 255, 255, 0.9);
+            }
+          }
+        }
+
+        &.bot {
+          justify-content: flex-start;
+
+          .message-bubble {
+            background: white;
+            border: 1px solid #f0f0f0;
+          }
+        }
+
+        .message-bubble {
+          max-width: 65%;
+          padding: 14px 18px;
+          border-radius: 20px;
+          box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+          position: relative;
+
+          .message-content {
+            word-wrap: break-word;
+            line-height: 1.5;
+            margin-bottom: 6px;
+            font-size: 14px;
+          }
+
+          .message-time {
+            font-size: 11px;
+            color: #8c8c8c;
+            text-align: right;
+            margin-top: 2px;
+          }
+        }
+
+        .typing-indicator {
+          display: flex;
+          align-items: center;
+          padding: 14px 18px;
+          background: white;
+          border: 1px solid #f0f0f0;
+          border-radius: 20px;
+          box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+
+          .typing-dots {
+            display: flex;
+            gap: 4px;
+
+            span {
+              width: 6px;
+              height: 6px;
+              border-radius: 50%;
+              background: #d9d9d9;
+              animation: typing 1.4s infinite ease-in-out;
+
+              &:nth-child(1) {
+                animation-delay: -0.32s;
+              }
+
+              &:nth-child(2) {
+                animation-delay: -0.16s;
+              }
+            }
+          }
+        }
+      }
+    }
+
+    .input-panel {
+      border-top: 1px solid #f0f0f0;
+      background: white;
+
+      .input-toolbar {
+        padding: 8px 16px;
+        border-bottom: 1px solid #f5f5f5;
+        display: flex;
+        gap: 8px;
+      }
+
+      .input-area {
+        padding: 16px;
+        display: flex;
+        align-items: flex-end;
+        gap: 12px;
+
+        .ant-input {
+          flex: 1;
+          border: none;
+          box-shadow: none;
+          resize: none;
+          font-size: 14px;
+
+          &:focus {
+            box-shadow: none;
+          }
+        }
+
+        .send-button {
+          border-radius: 20px;
+          height: 36px;
+          padding: 0 20px;
+          background: linear-gradient(135deg, #1890ff, #096dd9);
+          border: none;
+          box-shadow: 0 2px 4px rgba(24, 144, 255, 0.3);
+
+          &:hover {
+            background: linear-gradient(135deg, #40a9ff, #1890ff);
+            transform: translateY(-1px);
+            box-shadow: 0 4px 8px rgba(24, 144, 255, 0.4);
+          }
+
+          &:disabled {
+            background: #d9d9d9;
+            box-shadow: none;
+            transform: none;
+          }
+        }
+      }
+    }
+  }
+}
+
+/* 打字动画 */
+@keyframes typing {
+  0%, 60%, 100% {
+    transform: translateY(0);
+    opacity: 0.4;
+  }
+  30% {
+    transform: translateY(-10px);
+    opacity: 1;
+  }
+}
+
+/* 滚动条样式 */
+.messages-container::-webkit-scrollbar,
+.contacts-list::-webkit-scrollbar,
+.collapsed-contacts::-webkit-scrollbar {
+  width: 6px;
+}
+
+.messages-container::-webkit-scrollbar-track,
+.contacts-list::-webkit-scrollbar-track,
+.collapsed-contacts::-webkit-scrollbar-track {
+  background: #f5f5f5;
+  border-radius: 3px;
+}
+
+.messages-container::-webkit-scrollbar-thumb,
+.contacts-list::-webkit-scrollbar-thumb,
+.collapsed-contacts::-webkit-scrollbar-thumb {
+  background: #d9d9d9;
+  border-radius: 3px;
+}
+
+.messages-container::-webkit-scrollbar-thumb:hover,
+.contacts-list::-webkit-scrollbar-thumb:hover,
+.collapsed-contacts::-webkit-scrollbar-thumb:hover {
+  background: #bfbfbf;
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+  .chat-container {
+    .contacts-panel {
+      width: 250px;
+
+      &.collapsed {
+        width: 60px;
+      }
+    }
+
+    .messages-container {
+      .message-wrapper .message-bubble {
+        max-width: 80%;
+      }
+    }
+  }
+}
+
+@media (max-width: 576px) {
+  .chat-container {
+    .contacts-panel {
+      display: none;
+    }
+  }
+}
