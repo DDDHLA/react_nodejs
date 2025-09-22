@@ -15,6 +15,8 @@ import {
   LaptopOutlined,
   BulbOutlined,
   MessageOutlined,
+  EditOutlined,
+  ScanOutlined,
 } from "@ant-design/icons"; // 引入图标
 import AuthRoute from "@/components/AuthRoute";
 const Login = lazy(() => import("@/pages/Login"));
@@ -48,6 +50,8 @@ const QuantumEntanglement = lazy(() => import("../pages/QuantumEntanglement"));
 const LiquidGlass = lazy(() => import("../pages/LiquidGlass"));
 const LightGlass = lazy(() => import("../pages/LightGlass"));
 const ChatBox = lazy(() => import("../pages/ChatBox"));
+const TypingTest = lazy(() => import("../pages/TypingTest"));
+const TextRecognition = lazy(() => import("../pages/TextRecognition"));
 const lazyLoad = (Component) => (
   <Suspense fallback={<div>页面加载中...</div>}>
     <Component />
@@ -221,6 +225,18 @@ const routes = [
         label: "对话框",
         icon: <MessageOutlined />,
         element: lazyLoad(ChatBox),
+      },
+      {
+        path: "/typing-test",
+        label: "打字速度测试",
+        icon: <EditOutlined />,
+        element: lazyLoad(TypingTest),
+      },
+      {
+        path: "/text-recognition",
+        label: "文字识别",
+        icon: <ScanOutlined />,
+        element: lazyLoad(TextRecognition),
       },
       {
         path: "/game",

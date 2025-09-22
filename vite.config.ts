@@ -37,6 +37,16 @@ export default defineConfig({
         changeOrigin: true,
         secure: false,
       },
+      // 百度OCR代理
+      "/baidu-api": {
+        target: "https://aip.baidubce.com",
+        changeOrigin: true,
+        secure: true,
+        rewrite: (path) => path.replace(/^\/baidu-api/, ""),
+        headers: {
+          "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+        }
+      },
     },
   },
 });
