@@ -17,6 +17,9 @@ import {
   MessageOutlined,
   EditOutlined,
   ScanOutlined,
+  AudioOutlined,
+  PictureOutlined,
+  FunctionOutlined,
 } from "@ant-design/icons"; // 引入图标
 import AuthRoute from "@/components/AuthRoute";
 const Login = lazy(() => import("@/pages/Login"));
@@ -52,6 +55,9 @@ const LightGlass = lazy(() => import("../pages/LightGlass"));
 const ChatBox = lazy(() => import("../pages/ChatBox"));
 const TypingTest = lazy(() => import("../pages/TypingTest"));
 const TextRecognition = lazy(() => import("../pages/TextRecognition"));
+const AudioVisualizer = lazy(() => import("../pages/AudioVisualizer"));
+const PixelArtEditor = lazy(() => import("../pages/PixelArtEditor"));
+const MathPlotter = lazy(() => import("../pages/MathPlotter"));
 const lazyLoad = (Component) => (
   <Suspense fallback={<div>页面加载中...</div>}>
     <Component />
@@ -237,6 +243,24 @@ const routes = [
         label: "文字识别",
         icon: <ScanOutlined />,
         element: lazyLoad(TextRecognition),
+      },
+      {
+        path: "/audio-visualizer",
+        label: "音频可视化器",
+        icon: <AudioOutlined />,
+        element: lazyLoad(AudioVisualizer),
+      },
+      {
+        path: "/pixel-art-editor",
+        label: "像素画编辑器",
+        icon: <PictureOutlined />,
+        element: lazyLoad(PixelArtEditor),
+      },
+      {
+        path: "/math-plotter",
+        label: "数学函数绘图器",
+        icon: <FunctionOutlined />,
+        element: lazyLoad(MathPlotter),
       },
       {
         path: "/game",

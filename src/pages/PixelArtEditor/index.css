@@ -1,0 +1,310 @@
+.pixel-art-editor-container {
+  height: calc(100vh - 200px);
+  min-height: 600px;
+  padding: 20px;
+  background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 50%, #fecfef 100%);
+  overflow: auto;
+  box-sizing: border-box;
+}
+
+/* 页面标题样式 */
+.pixel-art-editor-container .ant-typography-h2 {
+  color: #1a1a1a !important;
+  text-shadow: 0 2px 4px rgba(255, 255, 255, 0.3);
+  font-weight: 700 !important;
+  margin-bottom: 24px !important;
+}
+
+.canvas-card {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 16px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  text-align: center;
+  height: fit-content;
+}
+
+.pixel-canvas {
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-radius: 8px;
+  cursor: crosshair;
+  background: white;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  max-width: 100%;
+  height: auto;
+}
+
+.pixel-canvas:hover {
+  border-color: rgba(255, 255, 255, 0.5);
+}
+
+.tool-card,
+.settings-card,
+.actions-card {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 12px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+}
+
+.tool-card .ant-card-head,
+.settings-card .ant-card-head,
+.actions-card .ant-card-head {
+  background: rgba(255, 255, 255, 0.05);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px 12px 0 0;
+}
+
+.tool-card .ant-card-head-title,
+.settings-card .ant-card-head-title,
+.actions-card .ant-card-head-title {
+  color: rgba(255, 255, 255, 0.9);
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.tool-card .ant-card-body,
+.settings-card .ant-card-body,
+.actions-card .ant-card-body {
+  background: transparent;
+  padding: 16px;
+}
+
+.tool-card .ant-typography,
+.settings-card .ant-typography,
+.actions-card .ant-typography {
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 12px;
+  margin-bottom: 4px;
+}
+
+/* 按钮样式 */
+.tool-card .ant-btn,
+.settings-card .ant-btn,
+.actions-card .ant-btn {
+  border-radius: 6px;
+  font-weight: 500;
+  font-size: 12px;
+  height: 32px;
+  transition: all 0.3s ease;
+}
+
+.tool-card .ant-btn:hover,
+.settings-card .ant-btn:hover,
+.actions-card .ant-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.actions-card .ant-btn-primary {
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  border: none;
+}
+
+.actions-card .ant-btn-primary:hover {
+  background: linear-gradient(135deg, #764ba2, #667eea);
+}
+
+.actions-card .ant-btn-dangerous {
+  background: linear-gradient(135deg, #ff6b6b, #ee5a52);
+  border: none;
+  color: white;
+}
+
+.actions-card .ant-btn-dangerous:hover {
+  background: linear-gradient(135deg, #ee5a52, #ff6b6b);
+}
+
+/* 选择器样式 */
+.tool-card .ant-select,
+.settings-card .ant-select {
+  font-size: 12px;
+}
+
+.tool-card .ant-select .ant-select-selector,
+.settings-card .ant-select .ant-select-selector {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 6px;
+  color: white;
+  height: 32px;
+}
+
+.tool-card .ant-select .ant-select-selector:hover,
+.settings-card .ant-select .ant-select-selector:hover {
+  border-color: rgba(255, 255, 255, 0.4);
+}
+
+/* 颜色选择器样式 */
+.tool-card .ant-color-picker {
+  width: 100%;
+  height: 32px;
+}
+
+.tool-card .ant-color-picker .ant-color-picker-trigger {
+  width: 100%;
+  height: 32px;
+  border-radius: 6px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.tool-card .ant-color-picker .ant-color-picker-trigger:hover {
+  border-color: rgba(255, 255, 255, 0.4);
+}
+
+/* 滑块样式 */
+.pixel-art-editor-container .ant-slider {
+  margin: 12px 0 8px 0 !important;
+  padding: 4px 0 !important;
+}
+
+.pixel-art-editor-container .ant-slider-rail {
+  background: rgba(255, 255, 255, 0.4) !important;
+  height: 8px !important;
+  border-radius: 4px !important;
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+.pixel-art-editor-container .ant-slider-track {
+  background: linear-gradient(90deg, #ff9a9e, #fecfef) !important;
+  height: 8px !important;
+  border-radius: 4px !important;
+  box-shadow: 0 2px 6px rgba(255, 154, 158, 0.3);
+}
+
+.pixel-art-editor-container .ant-slider-handle {
+  border: 3px solid #ff9a9e !important;
+  background: white !important;
+  width: 24px !important;
+  height: 24px !important;
+  margin-top: -8px !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25), 0 2px 6px rgba(255, 154, 158, 0.3) !important;
+  border-radius: 50% !important;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+.pixel-art-editor-container .ant-slider-handle:hover {
+  border-color: #fecfef !important;
+  transform: scale(1.15) !important;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3), 0 3px 8px rgba(254, 207, 239, 0.4) !important;
+}
+
+.pixel-art-editor-container .ant-slider-handle::after {
+  content: '';
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  right: 3px;
+  bottom: 3px;
+  background: linear-gradient(135deg, #ff9a9e, #fecfef);
+  border-radius: 50%;
+  opacity: 0.8;
+  pointer-events: none;
+}
+
+/* 文件上传按钮 */
+label[for="load-project"] {
+  cursor: pointer;
+  width: 100%;
+  display: block;
+}
+
+label[for="load-project"] .ant-btn {
+  width: 100%;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: rgba(255, 255, 255, 0.9);
+}
+
+label[for="load-project"] .ant-btn:hover {
+  background: rgba(255, 255, 255, 0.2);
+  border-color: rgba(255, 255, 255, 0.4);
+  color: white;
+}
+
+/* 模态框样式 */
+.ant-modal .ant-modal-content {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  border-radius: 12px;
+}
+
+.ant-modal .ant-modal-header {
+  background: transparent;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.ant-modal .ant-input {
+  border-radius: 6px;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+.ant-modal .ant-input:hover,
+.ant-modal .ant-input:focus {
+  border-color: #ff9a9e;
+  box-shadow: 0 0 0 2px rgba(255, 154, 158, 0.2);
+}
+
+/* 响应式设计 */
+@media (max-width: 1200px) {
+  .pixel-art-editor-container {
+    padding: 15px;
+  }
+  
+  .pixel-canvas {
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 768px) {
+  .pixel-art-editor-container {
+    padding: 10px;
+    height: calc(100vh - 150px);
+  }
+  
+  .pixel-art-editor-container .ant-row {
+    flex-direction: column;
+  }
+  
+  .pixel-art-editor-container .ant-col {
+    width: 100% !important;
+    margin-bottom: 16px;
+  }
+  
+  .tool-card,
+  .settings-card,
+  .actions-card {
+    margin-bottom: 12px;
+  }
+}
+
+/* 动画效果 */
+@keyframes colorShift {
+  0% { filter: hue-rotate(0deg); }
+  100% { filter: hue-rotate(360deg); }
+}
+
+.canvas-card:hover {
+  animation: colorShift 3s ease-in-out infinite;
+}
+
+/* 工具提示样式 */
+.pixel-canvas[data-tool="pen"] {
+  cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16"><circle cx="8" cy="8" r="2" fill="black"/></svg>') 8 8, crosshair;
+}
+
+.pixel-canvas[data-tool="eraser"] {
+  cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16"><rect x="4" y="4" width="8" height="8" fill="white" stroke="black"/></svg>') 8 8, crosshair;
+}
+
+.pixel-canvas[data-tool="fill"] {
+  cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16"><path d="M8 2l6 6-6 6-6-6z" fill="blue"/></svg>') 8 8, crosshair;
+}
+
+.pixel-canvas[data-tool="eyedropper"] {
+  cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16"><circle cx="8" cy="8" r="3" fill="none" stroke="red" stroke-width="2"/></svg>') 8 8, crosshair;
+}
