@@ -9,6 +9,7 @@ import {
   Button,
   message,
 } from "antd";
+import { MenuFoldOutlined, MenuUnfoldOutlined } from "@ant-design/icons";
 import { Outlet, useNavigate, useLocation } from "react-router-dom";
 // @ts-expect-error - 路由文件类型问题
 import routes from "../router";
@@ -86,6 +87,10 @@ const MyLayoutPage = () => {
   // 控制用户信息和密码修改模态框的显示状态
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [isPasswordModalVisible, setIsPasswordModalVisible] = useState(false);
+  
+  // 控制左侧导航栏的折叠状态
+  const [collapsed, setCollapsed] = useState(false);
+  
   const navigate = useNavigate();
 
   // 获取用户信息的函数
@@ -267,31 +272,76 @@ const MyLayoutPage = () => {
         {/* 左侧菜单栏 */}
         <Sider
           width={200}
-          style={{ background: colorBgContainer, overflow: "auto" }}
+          collapsible
+          collapsed={collapsed}
+          onCollapse={(value) => setCollapsed(value)}
+          style={{ 
+            background: colorBgContainer, 
+            overflow: "auto",
+            transition: "all 0.2s" // 添加平滑过渡动画
+          }}
+          trigger={null} // 隐藏默认的折叠按钮，我们将自定义一个
         >
-          <Menu
-            mode="inline"
-            selectedKeys={[location.pathname]}
-            style={{ height: "100%", borderRight: 0 }}
-            items={siderMenuItems}
-            onClick={({ key }) => {
-              navigate(key);
-              // 以下注释代码是检查菜单项是否有子菜单的逻辑，目前未使用
-              // const hasChildren = siderMenuItems.some(
-              //   (item) =>
-              //     item.key === key && item.children && item.children.length > 0
-              // );
+          <div style={{ 
+            height: "100%", 
+            display: "flex", 
+            flexDirection: "column" 
+          }}>
+            {/* 菜单区域 */}
+            <Menu
+              mode="inline"
+              selectedKeys={[location.pathname]}
+              style={{ 
+                flex: 1, 
+                borderRight: 0,
+                overflow: "auto"
+              }}
+              items={siderMenuItems}
+              onClick={({ key }) => {
+                navigate(key);
+                // 以下注释代码是检查菜单项是否有子菜单的逻辑，目前未使用
+                // const hasChildren = siderMenuItems.some(
+                //   (item) =>
+                //     item.key === key && item.children && item.children.length > 0
+                // );
 
-              // // 只有当点击的不是有子菜单的项时才导航
-              // if (!hasChildren) {
-              //   navigate(key);
-              // }
-            }}
-          />
+                // // 只有当点击的不是有子菜单的项时才导航
+                // if (!hasChildren) {
+                //   navigate(key);
+                // }
+              }}
+            />
+            
+            {/* 自定义折叠按钮 */}
+            <div style={{ 
+              padding: "16px", 
+              borderTop: "1px solid #f0f0f0",
+              textAlign: "center"
+            }}>
+              <Button
+                type="text"
+                icon={collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
+                onClick={() => setCollapsed(!collapsed)}
+                style={{
+                  fontSize: "16px",
+                  width: "100%",
+                  height: "40px",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center"
+                }}
+              >
+                {!collapsed && <span style={{ marginLeft: "8px" }}>折叠菜单</span>}
+              </Button>
+            </div>
+          </div>
         </Sider>
         
         {/* 右侧内容区 */}
-        <Layout style={{ padding: "0 16px 16px" }}> {/* 减少左右和底部padding */}
+        <Layout style={{ 
+          padding: "0 16px 16px",
+          transition: "all 0.2s" // 添加平滑过渡动画
+        }}>
           {/* 面包屑和标签页导航行 */}
           <div style={{ 
             display: "flex", 

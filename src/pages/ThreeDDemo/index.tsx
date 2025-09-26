@@ -1,9 +1,7 @@
 import React, { useState } from 'react';
-import { Card, Tabs, Row, Col, Space, Typography, Button, Slider, Switch } from 'antd';
+import { Card, Tabs, Row, Col, Space, Typography, Button, Slider } from 'antd';
 import { 
-  EyeOutlined, 
   RotateLeftOutlined, 
-  RotateRightOutlined,
   PlayCircleOutlined,
   PauseOutlined,
   SettingOutlined,
@@ -13,7 +11,6 @@ import { useSeasonalTheme } from '@/components/SeasonalTheme';
 import FlipCard3D from './components/FlipCard3D';
 import ParticleStarfield from './components/ParticleStarfield';
 import ModelViewer from './components/ModelViewer';
-import PanoramaViewer from './components/PanoramaViewer';
 import './index.less';
 
 const { Title, Paragraph, Text } = Typography;
@@ -226,17 +223,6 @@ const ThreeDDemo: React.FC = () => {
                 />
               </TabPane>
 
-              <TabPane tab={
-                <Space>
-                  <span>🌐</span>
-                  <span>全景浏览</span>
-                </Space>
-              } key="panorama">
-                <PanoramaViewer 
-                  season={currentSeason}
-                  isPlaying={isPlaying}
-                />
-              </TabPane>
             </Tabs>
           </Card>
         </Col>

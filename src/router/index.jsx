@@ -20,6 +20,28 @@ import {
   AudioOutlined,
   PictureOutlined,
   FunctionOutlined,
+  // 新增的图标
+  DatabaseOutlined,
+  FileTextOutlined,
+  SendOutlined,
+  GlobalOutlined,
+  RadarChartOutlined,
+  ShareAltOutlined,
+  InfoCircleOutlined,
+  EnvironmentOutlined,
+  CompassOutlined,
+  BarChartOutlined,
+  DashboardOutlined,
+  MonitorOutlined,
+  ThunderboltOutlined,
+  DragOutlined,
+  ExperimentOutlined,
+  CameraOutlined,
+  AppstoreOutlined,
+  CalculatorOutlined,
+  TrophyOutlined,
+  BorderOutlined,
+  BoxPlotOutlined,
 } from "@ant-design/icons"; // 引入图标
 import AuthRoute from "@/components/AuthRoute";
 const Login = lazy(() => import("@/pages/Login"));
@@ -58,6 +80,7 @@ const TextRecognition = lazy(() => import("../pages/TextRecognition"));
 const AudioVisualizer = lazy(() => import("../pages/AudioVisualizer"));
 const PixelArtEditor = lazy(() => import("../pages/PixelArtEditor"));
 const MathPlotter = lazy(() => import("../pages/MathPlotter"));
+const ThreeDDemo = lazy(() => import("../pages/ThreeDDemo"));
 const lazyLoad = (Component) => (
   <Suspense fallback={<div>页面加载中...</div>}>
     <Component />
@@ -84,72 +107,72 @@ const routes = [
       {
         path: "/home",
         element: lazyLoad(Home),
-        icon: <UserOutlined />, // 添加图标
+        icon: <DatabaseOutlined />, // 流式数据图标
         label: "流式数据", // 添加标签
       },
       {
         path: "/article",
         element: lazyLoad(Article),
-        icon: <LaptopOutlined />, // 添加图标
+        icon: <FileTextOutlined />, // 文章管理图标
         label: "文章管理", // 添加标签
       },
       {
         path: "/publish",
         element: lazyLoad(Publish),
-        icon: <NotificationOutlined />, // 添加图标
+        icon: <SendOutlined />, // WebSocket通信图标
         label: "websocket", // 添加标签
       },
       {
         path: "/mapbox",
         element: lazyLoad(Mapbox),
-        icon: <NotificationOutlined />, // 添加图标
+        icon: <GlobalOutlined />, // 地图服务图标
         label: "mapbox", // 添加标签
       },
       {
         path: "/rodar",
         element: lazyLoad(Rodar),
-        icon: <NotificationOutlined />, // 添加图标
+        icon: <RadarChartOutlined />, // 雷达图标
         label: "雷达", // 添加标签
       },
       {
         path: "/relation",
         element: lazyLoad(Relation),
-        icon: <NotificationOutlined />, // 添加图标
+        icon: <ShareAltOutlined />, // 关系图标
         label: "关系", // 添加标签
       },
       {
         path: "/info",
         element: lazyLoad(Info),
-        icon: <NotificationOutlined />, // 添加图标
+        icon: <InfoCircleOutlined />, // 信息测试图标
         label: "信息发送测试", // 添加标签
       },
       {
         path: "/openlayers",
         label: "openlayers",
-        icon: <NotificationOutlined />,
+        icon: <EnvironmentOutlined />,
         children: [
           {
             path: "first", // 这里必须是相对路径
             label: "first",
-            icon: <NotificationOutlined />,
+            icon: <FileOutlined />,
             element: lazyLoad(MyOpenLayersFirst),
           },
           {
             path: "second",
             label: "second",
-            icon: <NotificationOutlined />,
+            icon: <CompassOutlined />,
             element: lazyLoad(MyOpenLayersSecond),
           },
           {
             path: "third",
             label: "third",
-            icon: <NotificationOutlined />,
+            icon: <EnvironmentOutlined />,
             element: lazyLoad(MyOpenLayersThird),
           },
           {
             path: "ways",
             label: "ways",
-            icon: <NotificationOutlined />,
+            icon: <NodeIndexOutlined />,
             element: lazyLoad(Ways),
           },
         ],
@@ -157,31 +180,31 @@ const routes = [
       {
         path: "/canva",
         label: "canva",
-        icon: <NotificationOutlined />,
+        icon: <PictureOutlined />,
         element: lazyLoad(Canva),
       },
       {
         path: "/video",
         label: "video",
-        icon: <NotificationOutlined />,
+        icon: <VideoCameraOutlined />,
         element: lazyLoad(Video),
       },
       {
         path: "/echarts",
         label: "echarts",
-        icon: <NotificationOutlined />,
+        icon: <BarChartOutlined />,
         element: lazyLoad(Echarts),
       },
       {
         path: "/datascreen",
         label: "datascreen",
-        icon: <NotificationOutlined />,
+        icon: <DashboardOutlined />,
         element: lazyLoad(DataScreen),
       },
       {
         path: "/government-data-screen",
         label: "government-data-screen",
-        icon: <NotificationOutlined />,
+        icon: <MonitorOutlined />,
         element: lazyLoad(GovernmentDataScreen),
       },
       {
@@ -193,13 +216,13 @@ const routes = [
       {
         path: "/animation",
         label: "动画",
-        icon: <NotificationOutlined />,
+        icon: <ThunderboltOutlined />,
         element: lazyLoad(Animation),
       },
       {
         path: "/drag-demo",
         label: "拖拽组件演示",
-        icon: <NotificationOutlined />,
+        icon: <DragOutlined />,
         element: lazyLoad(DragDemo),
       },
       {
@@ -211,13 +234,13 @@ const routes = [
       {
         path: "/quantum-entanglement",
         label: "量子纠缠实验室",
-        icon: <NodeIndexOutlined />,
+        icon: <ExperimentOutlined />,
         element: lazyLoad(QuantumEntanglement),
       },
       {
         path: "/liquid-glass",
         label: "液态玻璃实验室",
-        icon: <LaptopOutlined />,
+        icon: <DesktopOutlined />,
         element: lazyLoad(LiquidGlass),
       },
       {
@@ -241,7 +264,7 @@ const routes = [
       {
         path: "/text-recognition",
         label: "文字识别",
-        icon: <ScanOutlined />,
+        icon: <CameraOutlined />,
         element: lazyLoad(TextRecognition),
       },
       {
@@ -253,14 +276,20 @@ const routes = [
       {
         path: "/pixel-art-editor",
         label: "像素画编辑器",
-        icon: <PictureOutlined />,
+        icon: <AppstoreOutlined />,
         element: lazyLoad(PixelArtEditor),
       },
       {
         path: "/math-plotter",
         label: "数学函数绘图器",
-        icon: <FunctionOutlined />,
+        icon: <CalculatorOutlined />,
         element: lazyLoad(MathPlotter),
+      },
+      {
+        path: "/3d-demo",
+        label: "3D效果演示",
+        icon: <BoxPlotOutlined />,
+        element: lazyLoad(ThreeDDemo),
       },
       {
         path: "/game",
@@ -270,11 +299,13 @@ const routes = [
           {
             path: "gomoku",
             label: "五子棋",
+            icon: <BorderOutlined />,
             element: lazyLoad(GomokuGame),
           },
           {
             path: "chinese-chess",
             label: "中国象棋",
+            icon: <TrophyOutlined />,
             element: lazyLoad(ChessGame),
           },
           {
