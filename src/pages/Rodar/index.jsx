@@ -68,6 +68,7 @@ function RadarChart() {
     chartInstance.setOption(option);
 
     return () => {
+      // 销毁图表实例
       chartInstance.dispose();
     };
   }, []);

@@ -29,7 +29,7 @@ import {
 import { BaiduOCRService } from '../../utils/ocrService';
 import './index.less';
 
-const { Title, Text } = Typography;
+const { Text } = Typography;
 const { TextArea } = Input;
 const { Option } = Select;
 
@@ -70,6 +70,7 @@ const TextRecognition: React.FC = () => {
     const ctx = canvas.getContext('2d', { willReadFrequently: true });
     if (!ctx) return;
 
+    // 获取Canvas当前状态， 保存到历史记录， 限制历史记录数量 20 个 (包括当前状态)
     const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
     
     setCanvasHistory(prevHistory => {
@@ -85,6 +86,7 @@ const TextRecognition: React.FC = () => {
       }
     });
     
+    // 更新历史记录索引
     setHistoryIndex(prev => Math.min(prev + 1, 19));
   }, [historyIndex]);
 

@@ -4,6 +4,9 @@ const Publish: React.FC = () => {
   const [messages, setMessages] = useState<string[]>([]);
 
   useEffect(() => {
+    // 连接WebSocket
+    // 代码解释 ws://localhost:3000 是 WebSocket 的协议，localhost:3000 是 WebSocket 服务器的地址
+    // ?token=Bearer 你的token
     const token = JSON.parse(localStorage.getItem("token") || '""');
     const n = token.replace("Bearer ", "");
     const ws = new WebSocket(`ws://localhost:3000?token=${n}`);
@@ -11,10 +14,12 @@ const Publish: React.FC = () => {
       console.log("连接成功");
     };
 
+    // 接收消息
     ws.onmessage = (event) => {
       setMessages((prev) => [...prev, event.data]);
     };
 
+    // 关闭连接
     ws.onclose = () => {
       console.log("连接关闭");
     };

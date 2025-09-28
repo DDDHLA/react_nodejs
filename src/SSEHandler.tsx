@@ -4,6 +4,7 @@ import { useSSEStore } from "./store/sseStore";
 const SSEHandler = () => {
   const addMessage = useSSEStore((state) => state.addMessage);
 
+  // 连接 EventSource
   useEffect(() => {
     const token = JSON.parse(localStorage.getItem("token") || '""');
     const n = token.replace("Bearer ", "");
@@ -24,7 +25,7 @@ const SSEHandler = () => {
     return () => {
       eventSource.close();
     };
-  }, []);
+  }, [addMessage]);
 
   return null; // 不渲染任何内容
 };

@@ -7,7 +7,7 @@ import { useRoutes } from "react-router-dom"; // 确保使用 useRoutes
 import routes from "./router/index.jsx"; // 引入路由配置
 import SSEHandler from "./SSEHandler";
 import { useThemeStore } from "./store/themeStore";
-import { generateAntdTheme } from "./config/theme";
+import { generateAntdTheme } from "./config/theme";// 生成Antd主题
 
 function App() {
   // 新的主题系统

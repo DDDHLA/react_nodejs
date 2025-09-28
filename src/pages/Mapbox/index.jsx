@@ -19,6 +19,7 @@ function BarChart() {
   }, []);
 
   useEffect(() => {
+    // 初始化图表
     const chartInstance = echarts.init(chartRef.current);
     const option = {
       title: { text: "ECharts 入门示例" },
@@ -31,6 +32,7 @@ function BarChart() {
     chartInstance.setOption(option);
 
     return () => {
+      // 销毁图表
       chartInstance.dispose();
     };
   }, [data]);

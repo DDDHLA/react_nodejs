@@ -1,5 +1,11 @@
-import { useEffect } from 'react';
-import { useUserStore, useAppStore, useGameStore, useDataStore, useThemeStore } from './index';
+import { useEffect } from "react";
+import {
+  useUserStore,
+  useAppStore,
+  useGameStore,
+  useDataStore,
+  useThemeStore,
+} from "./index";
 
 // 用户相关hooks
 export const useAuth = () => {
@@ -83,6 +89,7 @@ export const useNotifications = () => {
   };
 };
 
+// 加载状态相关hooks
 export const useGlobalLoading = () => {
   const { globalLoading, loadingText, setGlobalLoading } = useAppStore();
   return { globalLoading, loadingText, setGlobalLoading };
@@ -118,12 +125,8 @@ export const useCurrentGame = () => {
 };
 
 export const useGameRecords = () => {
-  const {
-    gameRecords,
-    addGameRecord,
-    clearGameRecords,
-    getGameRecords,
-  } = useGameStore();
+  const { gameRecords, addGameRecord, clearGameRecords, getGameRecords } =
+    useGameStore();
 
   return {
     gameRecords,
@@ -134,11 +137,7 @@ export const useGameRecords = () => {
 };
 
 export const useGameStats = () => {
-  const {
-    gameStats,
-    updateGameStats,
-    getGameStats,
-  } = useGameStore();
+  const { gameStats, updateGameStats, getGameStats } = useGameStore();
 
   return {
     gameStats,
@@ -148,10 +147,7 @@ export const useGameStats = () => {
 };
 
 export const useGameSettings = () => {
-  const {
-    gameSettings,
-    updateGameSettings,
-  } = useGameStore();
+  const { gameSettings, updateGameSettings } = useGameStore();
 
   return {
     gameSettings,
@@ -181,13 +177,8 @@ export const useApiState = (key: string) => {
 };
 
 export const useCache = <T = unknown>(key: string) => {
-  const {
-    setCache,
-    getCache,
-    clearCache,
-    isCacheValid,
-    getCacheInfo,
-  } = useDataStore();
+  const { setCache, getCache, clearCache, isCacheValid, getCacheInfo } =
+    useDataStore();
 
   return {
     data: getCache<T>(key),
@@ -199,11 +190,7 @@ export const useCache = <T = unknown>(key: string) => {
 };
 
 export const useOfflineData = (key: string) => {
-  const {
-    setOfflineData,
-    getOfflineData,
-    clearOfflineData,
-  } = useDataStore();
+  const { setOfflineData, getOfflineData, clearOfflineData } = useDataStore();
 
   return {
     data: getOfflineData(key),
@@ -214,17 +201,17 @@ export const useOfflineData = (key: string) => {
 
 export const useNetworkStatus = () => {
   const { isOnline, setOnlineStatus } = useDataStore();
-  
+
   useEffect(() => {
     const handleOnline = () => setOnlineStatus(true);
     const handleOffline = () => setOnlineStatus(false);
-    
-    window.addEventListener('online', handleOnline);
-    window.addEventListener('offline', handleOffline);
-    
+
+    window.addEventListener("online", handleOnline);
+    window.addEventListener("offline", handleOffline);
+
     return () => {
-      window.removeEventListener('online', handleOnline);
-      window.removeEventListener('offline', handleOffline);
+      window.removeEventListener("online", handleOnline);
+      window.removeEventListener("offline", handleOffline);
     };
   }, [setOnlineStatus]);
 

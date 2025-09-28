@@ -2,8 +2,10 @@ import { Form, Input, Button, message } from "antd";
 import { useNavigate } from "react-router-dom";
 import { register, type RegisterParams } from "@/api/user.ts";
 const Register = () => {
+  // 导入useNavigate
   const navigate = useNavigate();
 
+  // 表单提交: 注册
   const onFinish = async (values: RegisterParams & { confirmPassword?: string }): Promise<void> => {
     console.log("Received values of form: ", values);
     delete values.confirmPassword;
