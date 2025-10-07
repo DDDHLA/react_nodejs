@@ -356,10 +356,10 @@ const ParticleStarfield: React.FC<ParticleStarfieldProps> = ({
         <div className="season-overlay">
           <div className="season-info">
             <Text style={{ color: 'rgba(255, 255, 255, 0.8)' }}>
-              {season === 'spring' && '🌸 春天：花瓣飘舞的粒子效果'}
-              {season === 'summer' && '⭐ 夏天：闪烁星光的粒子效果'}
-              {season === 'autumn' && '🍂 秋天：叶子飘落的粒子效果'}
-              {season === 'winter' && '❄️ 冬天：雪花连线的粒子效果'}
+              {season === 'spring' && '🌸 朝霓：花瓣飘舞的粒子效果'}
+              {season === 'summer' && '⭐ 烈阳：闪烁星光的粒子效果'}
+              {season === 'autumn' && '🍂 落霓：叶子飘落的粒子效果'}
+              {season === 'winter' && '❄️ 星辰：雪花连线的粒子效果'}
             </Text>
           </div>
         </div>

@@ -8,7 +8,7 @@ export type SeasonType = 'spring' | 'summer' | 'autumn' | 'winter';
 // 季节主题配置
 export const seasonalThemes = {
   spring: {
-    name: '春天',
+    name: '朝霓',
     icon: '🌸',
     colors: {
       primary: '#52c41a',
@@ -26,7 +26,7 @@ export const seasonalThemes = {
     }
   },
   summer: {
-    name: '夏天',
+    name: '烈阳',
     icon: '☀️',
     colors: {
       primary: '#1890ff',
@@ -44,7 +44,7 @@ export const seasonalThemes = {
     }
   },
   autumn: {
-    name: '秋天',
+    name: '落霓',
     icon: '🍂',
     colors: {
       primary: '#fa8c16',
@@ -62,7 +62,7 @@ export const seasonalThemes = {
     }
   },
   winter: {
-    name: '冬天',
+    name: '星辰',
     icon: '❄️',
     colors: {
       primary: '#722ed1',
