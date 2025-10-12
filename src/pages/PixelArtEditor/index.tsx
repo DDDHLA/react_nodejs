@@ -7,8 +7,6 @@ import {
   UndoOutlined, 
   RedoOutlined,
   SaveOutlined,
-  PictureOutlined,
-  BgColorsOutlined,
   BorderOutlined
 } from '@ant-design/icons';
 import type { Color } from 'antd/es/color-picker';
@@ -17,6 +15,7 @@ import './index.css';
 const { Title, Text } = Typography;
 const { Option } = Select;
 
+ 
 interface PixelArtEditorProps {}
 
 interface HistoryState {
@@ -189,9 +188,10 @@ const PixelArtEditor: React.FC<PixelArtEditorProps> = () => {
       case 'eraser':
         newPixels[y][x] = backgroundColor;
         break;
-      case 'fill':
+      case 'fill': {
         const originalColor = pixels[y][x];
         return floodFill(x, y, currentColor, originalColor);
+      }
       case 'eyedropper':
         setCurrentColor(pixels[y][x]);
         return pixels;

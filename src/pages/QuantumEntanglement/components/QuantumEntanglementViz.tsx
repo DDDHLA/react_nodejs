@@ -161,7 +161,7 @@ const QuantumEntanglementViz: React.FC<QuantumEntanglementVizProps> = ({
         const entangledParticle = particles.find(p => p.id === particle.entangledWith);
         if (entangledParticle) {
           // 纠缠粒子的量子关联
-          const distance = Math.sqrt(
+          const _distance = Math.sqrt(
             Math.pow(particle.x - entangledParticle.x, 2) + 
             Math.pow(particle.y - entangledParticle.y, 2)
           );
@@ -420,7 +420,7 @@ const QuantumEntanglementViz: React.FC<QuantumEntanglementVizProps> = ({
   };
 
   // 绘制量子信息
-  const drawQuantumInfo = (ctx: CanvasRenderingContext2D, canvas: HTMLCanvasElement) => {
+  const drawQuantumInfo = (ctx: CanvasRenderingContext2D, _canvas: HTMLCanvasElement) => {
     ctx.fillStyle = colors.primary;
     ctx.font = '14px monospace';
     ctx.fillText(`纠缠对: ${entangledPairs}`, 20, 30);

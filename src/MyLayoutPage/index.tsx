@@ -14,7 +14,7 @@ import { Outlet, useNavigate, useLocation } from "react-router-dom";
 // @ts-expect-error - 路由文件类型问题
 import routes from "../router";
 import CustomIcon from "../assets/react.svg";
-import { getUserInfo, updateUserInfo, updatePassword, type UpdatePasswordParams } from "@/api/user";
+import { getUserInfo, updateUserInfo, updatePassword } from "@/api/user";
 // @ts-expect-error - JSX 组件类型声明
 import UserInfoModal from "./components/userInfoModal";
 // @ts-expect-error - JSX 组件类型声明
@@ -131,14 +131,9 @@ const MyLayoutPage = () => {
   };
 
   // 处理密码更新提交
-  const handlePasswordSubmit = async (values: {oldPwd: string, newPwd: string, rePwd: string}) => {
+  const handlePasswordSubmit = async (values: {oldPassword: string, newPassword: string}) => {
     try {
-      // 转换为 API 期望的格式
-      const passwordData: UpdatePasswordParams = {
-        oldPassword: values.oldPwd,
-        newPassword: values.newPwd
-      };
-      const res = await updatePassword(passwordData);
+      const res = await updatePassword(values);
       if (res.status !== 0) return message.error(res.message);
       setIsPasswordModalVisible(false);
       message.success(res.message);

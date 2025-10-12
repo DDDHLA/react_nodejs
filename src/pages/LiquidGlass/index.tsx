@@ -1,12 +1,9 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { Card, Row, Col, Space, Typography, Button, Slider, Switch, Select } from 'antd';
+import React, { useState } from 'react';
+import { Row, Col, Space, Typography, Button, Slider, Select } from 'antd';
 import { 
   PlayCircleOutlined, 
   PauseOutlined, 
-  ReloadOutlined,
-  SettingOutlined,
-  EyeOutlined,
-  BgColorsOutlined
+  ReloadOutlined
 } from '@ant-design/icons';
 import { useSeasonalTheme } from '@/components/SeasonalTheme';
 import LiquidBackground from './components/LiquidBackground';

@@ -1,13 +1,10 @@
 import React, { useRef, useEffect, useState, useCallback } from 'react';
 import { Card, Button, Input, Space, Typography, Row, Col, Select, Slider, Switch, message, Tabs } from 'antd';
 import { 
-  PlayCircleOutlined, 
   ClearOutlined, 
   DownloadOutlined, 
   PlusOutlined,
-  DeleteOutlined,
-  SettingOutlined,
-  FunctionOutlined
+  DeleteOutlined
 } from '@ant-design/icons';
 import './index.css';
 
@@ -15,6 +12,7 @@ const { Title, Text } = Typography;
 const { Option } = Select;
 const { TextArea } = Input;
 
+ 
 interface MathPlotterProps {}
 
 interface FunctionData {
@@ -85,7 +83,7 @@ const MathPlotter: React.FC<MathPlotterProps> = () => {
   const evaluateExpression = useCallback((expression: string, x: number, t: number = 0): number => {
     try {
       // 替换数学函数和常量
-      let expr = expression
+      const expr = expression
         .replace(/\^/g, '**')
         .replace(/sin/g, 'Math.sin')
         .replace(/cos/g, 'Math.cos')

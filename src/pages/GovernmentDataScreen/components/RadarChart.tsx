@@ -21,14 +21,18 @@ const RadarChart = ({ data = [] }) => {
     }
 
     const handleResize = () => {
-      chartInstance.current && chartInstance.current.resize();
+      if (chartInstance.current) {
+        chartInstance.current.resize();
+      }
     };
 
     window.addEventListener("resize", handleResize);
 
     return () => {
       window.removeEventListener("resize", handleResize);
-      chartInstance.current && chartInstance.current.dispose();
+      if (chartInstance.current) {
+        chartInstance.current.dispose();
+      }
     };
   }, []);
 

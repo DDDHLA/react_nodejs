@@ -11,9 +11,9 @@ const Login: React.FC = () => {
     // navigate("/home");
     try {
       const res = await login(values);
-      if (res.status === 0) {
+      if (res.status === 0 && res.data) {
         message.success(res.message);
-        localStorage.setItem("token", JSON.stringify(res.token));
+        localStorage.setItem("token", JSON.stringify(res.data.token));
         navigate("/home");
         return;
       }

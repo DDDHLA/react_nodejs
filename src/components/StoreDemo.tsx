@@ -1,5 +1,5 @@
 import React from 'react';
-import { Card, Button, Space, Typography, Divider, Tag, Progress, Switch, Slider } from 'antd';
+import { Card, Button, Space, Typography, Tag, Progress, Switch } from 'antd';
 import {
   useAuth,
   useLayout,

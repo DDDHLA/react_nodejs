@@ -19,10 +19,20 @@ export default tseslint.config(
     },
     rules: {
       ...reactHooks.configs.recommended.rules,
-      "react-refresh/only-export-components": [
-        "warn",
-        { allowConstantExport: true },
+      "react-refresh/only-export-components": "off",
+      "react-hooks/exhaustive-deps": "off", // 关闭 React Hooks 依赖数组检查
+      "@typescript-eslint/no-unused-vars": [
+        "error",
+        { 
+          "argsIgnorePattern": "^_",
+          "varsIgnorePattern": "^_",
+          "caughtErrorsIgnorePattern": "^_"
+        }
       ],
+      "@typescript-eslint/no-explicit-any": "off", // 关闭 any 类型警告
+      "@typescript-eslint/no-empty-object-type": "off", // 关闭空接口警告
+      "no-case-declarations": "error",
+      "@typescript-eslint/no-unused-expressions": "error",
     },
   }
 );

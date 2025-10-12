@@ -10,11 +10,9 @@ import ReactFlow, {
   Connection,
   Edge,
   Node,
-  NodeTypes,
   XYPosition,
 } from "reactflow";
 import "reactflow/dist/style.css";
-import { Button } from "antd";
 import NodeModal from "./NodeModal";
 import "./FlowCanvas.css";
 
@@ -40,7 +38,7 @@ const FlowCanvas: React.FC = () => {
     x: 0,
     y: 0,
   });
-  const [reactFlowInstance, setReactFlowInstance] = useState<any>(null);
+  const [reactFlowInstance, setReactFlowInstance] = useState<unknown>(null);
 
   // 处理连线
   const onConnect = useCallback(

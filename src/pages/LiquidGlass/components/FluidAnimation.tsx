@@ -82,7 +82,7 @@ const FluidAnimation: React.FC<FluidAnimationProps> = ({
 
       // 液态样式特定行为
       switch (liquidStyle) {
-        case 'fluid':
+        case 'fluid': {
           // 流体运动：有机波动
           const fluidForceX = Math.sin(timeRef.current + ball.phase) * fluidIntensity * 0.5;
           const fluidForceY = Math.cos(timeRef.current * 1.3 + ball.phase) * fluidIntensity * 0.3;
@@ -92,8 +92,8 @@ const FluidAnimation: React.FC<FluidAnimationProps> = ({
           // 半径变化
           ball.targetRadius = 30 + Math.sin(timeRef.current + index) * 20 * fluidIntensity;
           break;
-
-        case 'glass':
+        }
+        case 'glass': {
           // 玻璃效果：缓慢漂移
           ball.vx += (Math.random() - 0.5) * 0.05 * fluidIntensity;
           ball.vy += (Math.random() - 0.5) * 0.05 * fluidIntensity;
@@ -102,18 +102,19 @@ const FluidAnimation: React.FC<FluidAnimationProps> = ({
           
           ball.targetRadius = 40 + Math.sin(timeRef.current * 0.5 + index) * 10;
           break;
-
-        case 'morphism':
+        }
+        case 'morphism': {
           // 拟态效果：呼吸式变化
           const breathe = Math.sin(timeRef.current * 0.8 + index * 0.5) * fluidIntensity;
           ball.targetRadius = 35 + breathe * 25;
           
           // 轨道运动
-          const orbitRadius = 50 * fluidIntensity;
+          const _orbitRadius = 50 * fluidIntensity;
           const orbitSpeed = timeRef.current * 0.3 + index;
           ball.vx += Math.cos(orbitSpeed) * 0.02;
           ball.vy += Math.sin(orbitSpeed) * 0.02;
           break;
+        }
 
         case 'liquid':
           // 液态金属：快速变形

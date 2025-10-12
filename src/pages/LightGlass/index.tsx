@@ -1,12 +1,8 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState } from 'react';
 import { Card, Row, Col, Space, Typography, Button, Slider, Switch, Select } from 'antd';
 import { 
-  BulbOutlined, 
-  EyeOutlined, 
   ReloadOutlined,
-  SettingOutlined,
-  BgColorsOutlined,
-  ThunderboltOutlined
+  BgColorsOutlined
 } from '@ant-design/icons';
 import { useSeasonalTheme } from '@/components/SeasonalTheme';
 import GlassGrid from './components/GlassGrid';
@@ -27,30 +23,6 @@ const LightGlass: React.FC = () => {
   const [showLightSource, setShowLightSource] = useState(true);
   const [animationEnabled, setAnimationEnabled] = useState(true);
   const [glassPattern, setGlassPattern] = useState('grid');
-
-  // 光影效果配置
-  const lightEffects = {
-    soft: {
-      title: '柔和光源',
-      description: '温和的光线扩散，营造温馨氛围',
-      icon: '🕯️'
-    },
-    bright: {
-      title: '明亮光源',
-      description: '强烈的光线照射，清晰的明暗对比',
-      icon: '💡'
-    },
-    neon: {
-      title: '霓虹光源',
-      description: '彩色霓虹效果，科幻感十足',
-      icon: '🌈'
-    },
-    laser: {
-      title: '激光光源',
-      description: '聚焦激光束，精准的光线投射',
-      icon: '🔦'
-    }
-  };
 
   // 季节光源颜色配置
   const getSeasonalLightColors = () => {

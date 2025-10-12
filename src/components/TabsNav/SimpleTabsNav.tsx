@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback, useRef } from 'react';
-import { Tabs, message, Spin } from 'antd';
+import { Tabs, Spin } from 'antd';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { ReloadOutlined } from '@ant-design/icons';
 import './index.less';
@@ -112,10 +112,7 @@ const SimpleTabsNav: React.FC<SimpleTabsNavProps> = ({ routes }) => {
               : tab
           )
         );
-        // message.success(`页面 "${label}" 加载完成`);
       });
-    } else {
-      // message.info(`页面 "${label}" 从缓存加载`);
     }
   }, [location.pathname, getRouteLabel, cachedPaths]);
 
@@ -151,9 +148,6 @@ const SimpleTabsNav: React.FC<SimpleTabsNavProps> = ({ routes }) => {
     processedPaths.current.delete(targetKey);
     
     setTabs(newTabs);
-    
-    const label = getRouteLabel(targetKey);
-    // message.success(`标签 "${label}" 已关闭，缓存已清除`);
   };
 
   // 刷新标签
@@ -183,7 +177,6 @@ const SimpleTabsNav: React.FC<SimpleTabsNavProps> = ({ routes }) => {
             : tab
         )
       );
-      // message.success('页面刷新完成');
     });
   };
 

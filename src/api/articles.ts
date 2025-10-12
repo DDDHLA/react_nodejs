@@ -1,13 +1,28 @@
 import request from "../utils/request";
 
+// 定义通用响应接口
+interface ApiResponse<T = unknown> {
+  status: number;
+  message: string;
+  data?: T;
+  total?: number;
+}
+
+// 定义文章类型数据接口
+export interface ArticleItem {
+  id: string | number;
+  name: string;
+  alias: string;
+}
+
 // 获取文章分类列表
 export const getArticlesType = (data: {
   pageNo: number;
   pageSize: number;
   articleType: string;
   alias: string;
-}) => {
-  return request({
+}): Promise<ApiResponse<ArticleItem[]>> => {
+  return request<ApiResponse<ArticleItem[]>>({
     url: "/my/articles/cates",
     method: "POST",
     data,
@@ -15,8 +30,8 @@ export const getArticlesType = (data: {
 };
 
 // 删除文章分类
-export const deleteArticlesType = (id) => {
-  return request({
+export const deleteArticlesType = (id: string | number): Promise<ApiResponse> => {
+  return request<ApiResponse>({
     url: `/my/articles/delcate`,
     method: "POST",
     data: {
@@ -26,9 +41,9 @@ export const deleteArticlesType = (id) => {
 };
 
 // 新增文章分类
-export const addArticlesType = (data) => {
+export const addArticlesType = (data: FormData | { articleType: string; alias: string }): Promise<ApiResponse> => {
   console.log(data);
-  return request({
+  return request<ApiResponse>({
     url: `/my/articles/addcate`,
     method: "POST",
     // headers: {
@@ -40,7 +55,7 @@ export const addArticlesType = (data) => {
 
 
 // 下载
-export const download = (id: any) : Blob => {
+export const download = (id: string | number): Promise<Blob> => {
   return request({
     url: `/my/articles/download`,
     method: "POST",

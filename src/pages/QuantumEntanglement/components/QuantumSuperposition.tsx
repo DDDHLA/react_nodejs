@@ -13,14 +13,7 @@ interface QuantumSuperpositionProps {
   season: SeasonType;
 }
 
-const QuantumSuperposition: React.FC<QuantumSuperpositionProps> = ({
-  isPlaying,
-  animationSpeed,
-  particleCount,
-  quantumField,
-  visualMode,
-  season
-}) => {
+const QuantumSuperposition: React.FC<QuantumSuperpositionProps> = () => {
   return (
     <div className="quantum-superposition" style={{ 
       height: '100%', 

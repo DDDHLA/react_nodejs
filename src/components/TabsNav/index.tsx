@@ -96,6 +96,7 @@ const TabsNav: React.FC<TabsNavProps> = ({ routes }) => {
   };
 
   // 自定义渲染标签
+   
   const renderTabBar = (props: Record<string, unknown>, DefaultTabBar: React.ComponentType<any>) => (
     <DefaultTabBar {...props} className="custom-tab-bar" />
   );

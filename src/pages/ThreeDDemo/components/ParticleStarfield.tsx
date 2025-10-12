@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { Button, Space, Typography, Slider } from 'antd';
-import { PlayCircleOutlined, PauseOutlined, ReloadOutlined } from '@ant-design/icons';
+import { Button, Space, Typography } from 'antd';
+import { ReloadOutlined } from '@ant-design/icons';
 import { SeasonType } from '@/components/SeasonalTheme';
 import './ParticleStarfield.less';
 
@@ -84,8 +84,8 @@ const ParticleStarfield: React.FC<ParticleStarfieldProps> = ({
   // 更新粒子
   const updateParticles = (canvas: HTMLCanvasElement) => {
     const particles = particlesRef.current;
-    const centerX = canvas.width / 2;
-    const centerY = canvas.height / 2;
+    const _centerX = canvas.width / 2;
+    const _centerY = canvas.height / 2;
 
     particles.forEach((particle, index) => {
       // 基础运动

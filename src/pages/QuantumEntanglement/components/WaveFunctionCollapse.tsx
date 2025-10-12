@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Typography, Space, Button, Slider } from 'antd';
-import { EyeOutlined, ReloadOutlined, ThunderboltOutlined } from '@ant-design/icons';
+import { EyeOutlined, ReloadOutlined } from '@ant-design/icons';
 import { SeasonType } from '@/components/SeasonalTheme';
 import './WaveFunctionCollapse.less';
 
@@ -368,7 +368,7 @@ const WaveFunctionCollapse: React.FC<WaveFunctionCollapseProps> = ({
   };
 
   // 绘制波函数信息
-  const drawWaveInfo = (ctx: CanvasRenderingContext2D, canvas: HTMLCanvasElement) => {
+  const drawWaveInfo = (ctx: CanvasRenderingContext2D, _canvas: HTMLCanvasElement) => {
     ctx.fillStyle = colors.wave;
     ctx.font = '14px monospace';
     ctx.globalAlpha = 1;

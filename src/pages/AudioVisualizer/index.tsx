@@ -6,7 +6,8 @@ import './index.css';
 const { Title, Text } = Typography;
 const { Option } = Select;
 
-// eslint-disable-next-line @typescript-eslint/no-empty-interface
+ 
+ 
 interface AudioVisualizerProps {
   // 暂无props，预留接口
 }

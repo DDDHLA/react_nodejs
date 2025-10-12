@@ -1,10 +1,6 @@
-import React, { useState, useEffect } from "react";
-import { Modal, Form, Input, Upload, Button, Image } from "antd";
-import {
-  UploadOutlined,
-  LoadingOutlined,
-  PlusOutlined,
-} from "@ant-design/icons";
+import { useState, useEffect } from "react";
+import { Modal, Form, Input, Upload, Image, message } from "antd";
+import { PlusOutlined } from "@ant-design/icons";
 
 const UserInfoModal = ({ visible, onCancel, onSubmit, initialValues }) => {
   const [form] = Form.useForm();

@@ -13,14 +13,7 @@ interface QuantumTunnelingProps {
   season: SeasonType;
 }
 
-const QuantumTunneling: React.FC<QuantumTunnelingProps> = ({
-  isPlaying,
-  animationSpeed,
-  particleCount,
-  quantumField,
-  visualMode,
-  season
-}) => {
+const QuantumTunneling: React.FC<QuantumTunnelingProps> = () => {
   return (
     <div className="quantum-tunneling" style={{ 
       height: '100%', 

@@ -37,7 +37,7 @@ const GlassGrid: React.FC<GlassGridProps> = ({
   lightColor,
   animationEnabled,
   glassPattern,
-  seasonalColors
+  seasonalColors: _seasonalColors
 }) => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const animationRef = useRef<number>();
@@ -64,7 +64,7 @@ const GlassGrid: React.FC<GlassGridProps> = ({
     let x, y;
 
     switch (glassPattern) {
-      case 'grid':
+      case 'grid': {
         // 网格排列
         const cols = Math.ceil(Math.sqrt(glassCount));
         const rows = Math.ceil(glassCount / cols);
@@ -73,22 +73,23 @@ const GlassGrid: React.FC<GlassGridProps> = ({
         x = (col + 0.5) * (width / cols);
         y = (row + 0.5) * (height / rows);
         break;
-
-      case 'circle':
+      }
+      case 'circle': {
         // 圆形排列
         const radius = Math.min(width, height) * 0.3;
         const angle = (index / glassCount) * Math.PI * 2;
         x = width / 2 + Math.cos(angle) * radius;
         y = height / 2 + Math.sin(angle) * radius;
         break;
-
-      case 'spiral':
+      }
+      case 'spiral': {
         // 螺旋排列
         const spiralRadius = (index / glassCount) * Math.min(width, height) * 0.4;
         const spiralAngle = index * 0.5;
         x = width / 2 + Math.cos(spiralAngle) * spiralRadius;
         y = height / 2 + Math.sin(spiralAngle) * spiralRadius;
         break;
+      }
 
       case 'random':
       default:
@@ -159,7 +160,7 @@ const GlassGrid: React.FC<GlassGridProps> = ({
 
     const blocks = glassBlocksRef.current;
     
-    blocks.forEach((block, index) => {
+    blocks.forEach((block, _index) => {
       ctx.save();
       
       // 移动到玻璃块中心

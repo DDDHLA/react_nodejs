@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Tabs, message, Spin } from 'antd';
 import { useNavigate, useLocation } from 'react-router-dom';
-import { ReloadOutlined, CloseOutlined } from '@ant-design/icons';
+import { ReloadOutlined } from '@ant-design/icons';
 import './index.less';
 
 interface TabItem {
@@ -19,7 +19,13 @@ interface CachedComponent {
 }
 
 interface Props {
-  routes: any[]; // 路由配置
+  routes: RouteConfig[]; // 路由配置
+}
+
+interface RouteConfig {
+  path: string;
+  label?: string;
+  children?: RouteConfig[];
 }
 
 const TabsNavWithCache: React.FC<Props> = ({ routes }) => {
@@ -32,7 +38,7 @@ const TabsNavWithCache: React.FC<Props> = ({ routes }) => {
 
   // 从路由配置中获取页面标签信息
   const getRouteLabel = (path: string): string => {
-    const findLabel = (routeList: any[], targetPath: string): string => {
+    const findLabel = (routeList: RouteConfig[], targetPath: string): string => {
       for (const route of routeList) {
         if (route.path === targetPath && route.label) {
           return route.label;
@@ -49,7 +55,7 @@ const TabsNavWithCache: React.FC<Props> = ({ routes }) => {
   };
 
   // 模拟数据请求（这里可以替换为实际的API调用）
-  const mockDataRequest = (path: string): Promise<any> => {
+  const mockDataRequest = (path: string): Promise<{ path: string; data: string; timestamp: number }> => {
     return new Promise((resolve) => {
       // 模拟不同页面的加载时间
       const loadingTime = Math.random() * 1000 + 500; // 500-1500ms
@@ -281,6 +287,7 @@ const TabsNavWithCache: React.FC<Props> = ({ routes }) => {
   };
 
   // 自定义渲染标签
+   
   const renderTabBar = (props: any, DefaultTabBar: any) => (
     <DefaultTabBar {...props} className="custom-tab-bar" />
   );

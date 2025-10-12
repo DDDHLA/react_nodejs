@@ -33,7 +33,7 @@ export class BaiduOCRService {
       );
       const data = await response.json();
       return data.access_token;
-    } catch (error) {
+    } catch (_error) {
       throw new Error("获取百度OCR访问令牌失败");
     }
   }
@@ -243,7 +243,7 @@ export class BaiduOCRService {
       const data = await response.json();
       console.log(data, "oooooooo");
       return data.access_token;
-    } catch (error) {
+    } catch (_error) {
       throw new Error("获取访问令牌失败");
     }
   }
@@ -251,7 +251,7 @@ export class BaiduOCRService {
 
 // 腾讯云OCR服务
 export class TencentOCRService {
-  static async recognizeText(imageBase64: string): Promise<OCRResult> {
+  static async recognizeText(_imageBase64: string): Promise<OCRResult> {
     // 这里需要实现腾讯云OCR的调用逻辑
     // 由于需要复杂的签名算法，建议通过后端代理
     return {

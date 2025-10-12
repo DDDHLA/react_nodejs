@@ -92,7 +92,7 @@ const PanoramaViewer: React.FC<PanoramaViewerProps> = ({
     ctx.stroke();
 
     // 绘制场景对象
-    currentScene.objects.forEach((obj, index) => {
+    currentScene.objects.forEach((obj, _index) => {
       const objAngle = (obj.x / 100) * Math.PI; // 对象在全景中的角度
       const relativeAngle = objAngle - currentViewAngle;
       

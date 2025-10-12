@@ -1,6 +1,13 @@
 import { Modal, Form, Input, Button, Upload } from "antd";
 import { UploadOutlined } from "@ant-design/icons";
-const AddItem = ({ visible, onCancel, onSubmit }) => {
+
+interface AddItemProps {
+  visible: boolean;
+  onCancel: () => void;
+  onSubmit: (values: any) => void;
+}
+
+const AddItem = ({ visible, onCancel, onSubmit }: AddItemProps) => {
   const [form] = Form.useForm();
 
   const handleOk = async (): Promise<void> => {

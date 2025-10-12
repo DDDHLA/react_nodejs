@@ -84,29 +84,30 @@ const LiquidBackground: React.FC<LiquidBackgroundProps> = ({
 
       // 液态样式特定运动
       switch (liquidStyle) {
-        case 'fluid':
+        case 'fluid': {
           // 流体运动：波动和涡流
           const waveX = Math.sin(timeRef.current * 0.01 + particle.x * 0.01) * fluidIntensity;
           const waveY = Math.cos(timeRef.current * 0.008 + particle.y * 0.01) * fluidIntensity;
           particle.x += waveX * 0.5;
           particle.y += waveY * 0.3;
           break;
-
-        case 'glass':
+        }
+        case 'glass': {
           // 玻璃效果：缓慢飘动
           particle.vx += (Math.random() - 0.5) * 0.1 * fluidIntensity;
           particle.vy += (Math.random() - 0.5) * 0.1 * fluidIntensity;
           particle.vx *= 0.98;
           particle.vy *= 0.98;
           break;
-
-        case 'morphism':
+        }
+        case 'morphism': {
           // 拟态效果：有机形变
           const morphX = Math.sin(timeRef.current * 0.005 + index) * fluidIntensity * 2;
           const morphY = Math.cos(timeRef.current * 0.007 + index) * fluidIntensity * 2;
           particle.x += morphX * 0.3;
           particle.y += morphY * 0.3;
           break;
+        }
 
         case 'liquid':
           // 液态金属：快速流动
@@ -203,7 +204,7 @@ const LiquidBackground: React.FC<LiquidBackgroundProps> = ({
   };
 
   // 渲染流体粒子
-  const renderFluidParticle = (ctx: CanvasRenderingContext2D, particle: FluidParticle, index: number) => {
+  const renderFluidParticle = (ctx: CanvasRenderingContext2D, particle: FluidParticle, _index: number) => {
     const gradient = ctx.createRadialGradient(
       particle.x, particle.y, 0,
       particle.x, particle.y, particle.radius
@@ -220,7 +221,7 @@ const LiquidBackground: React.FC<LiquidBackgroundProps> = ({
   };
 
   // 渲染玻璃粒子
-  const renderGlassParticle = (ctx: CanvasRenderingContext2D, particle: FluidParticle, index: number) => {
+  const renderGlassParticle = (ctx: CanvasRenderingContext2D, particle: FluidParticle, _index: number) => {
     ctx.globalAlpha = particle.opacity * 0.5;
     
     const gradient = ctx.createRadialGradient(
@@ -245,7 +246,7 @@ const LiquidBackground: React.FC<LiquidBackgroundProps> = ({
   };
 
   // 渲染拟态粒子
-  const renderMorphismParticle = (ctx: CanvasRenderingContext2D, particle: FluidParticle, index: number) => {
+  const renderMorphismParticle = (ctx: CanvasRenderingContext2D, particle: FluidParticle, _index: number) => {
     ctx.globalAlpha = particle.opacity;
     
     // 有机形状
@@ -281,7 +282,7 @@ const LiquidBackground: React.FC<LiquidBackgroundProps> = ({
   };
 
   // 渲染液态金属粒子
-  const renderLiquidMetalParticle = (ctx: CanvasRenderingContext2D, particle: FluidParticle, index: number) => {
+  const renderLiquidMetalParticle = (ctx: CanvasRenderingContext2D, particle: FluidParticle, _index: number) => {
     ctx.globalAlpha = particle.opacity;
     
     // 金属光泽效果

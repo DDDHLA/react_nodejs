@@ -429,7 +429,7 @@ const TextRecognition: React.FC = () => {
   };
 
   // Google Vision OCR演示
-  const recognizeWithGoogleDemo = async (imageBase64: string) => {
+  const recognizeWithGoogleDemo = async (_imageBase64: string) => {
     setOcrProgress({ status: '正在连接Google Vision...', progress: 30 });
     await new Promise(resolve => setTimeout(resolve, 1000));
     

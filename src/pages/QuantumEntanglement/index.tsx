@@ -2,8 +2,6 @@ import React, { useState } from 'react';
 import { Card, Tabs, Row, Col, Space, Typography, Button, Slider, Switch, Select } from 'antd';
 import { 
   ExperimentOutlined, 
-  ThunderboltOutlined, 
-  RadarChartOutlined,
   PlayCircleOutlined,
   PauseOutlined,
   ReloadOutlined,
@@ -21,7 +19,7 @@ const { TabPane } = Tabs;
 const { Option } = Select;
 
 const QuantumEntanglement: React.FC = () => {
-  const { currentSeason, themeConfig } = useSeasonalTheme();
+  const { currentSeason } = useSeasonalTheme();
   const [activeTab, setActiveTab] = useState('entanglement');
   const [isPlaying, setIsPlaying] = useState(true);
   const [animationSpeed, setAnimationSpeed] = useState(1);

@@ -9,6 +9,7 @@ export interface ApiState {
 }
 
 // 缓存项接口
+ 
 export interface CacheItem<T = any> {
   data: T;
   timestamp: number;
@@ -24,6 +25,7 @@ interface DataStore {
   cache: Record<string, CacheItem>;
   
   // 离线数据
+   
   offlineData: Record<string, any>;
   
   // 网络状态
@@ -44,7 +46,9 @@ interface DataStore {
   getCacheInfo: (key: string) => { exists: boolean; expired: boolean; age: number } | null;
   
   // 操作方法 - 离线数据
+   
   setOfflineData: (key: string, data: any) => void;
+   
   getOfflineData: (key: string) => any;
   clearOfflineData: (key?: string) => void;
   
@@ -195,6 +199,7 @@ export const useDataStore = create<DataStore>()(
       },
 
       // 离线数据管理
+       
       setOfflineData: (key: string, data: any) => {
         set((state) => ({
           offlineData: {

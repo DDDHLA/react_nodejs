@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { Card, Row, Col, Button, Space, Typography } from 'antd';
-import { RotateLeftOutlined, RotateRightOutlined, ReloadOutlined } from '@ant-design/icons';
+import { Row, Col, Button, Space, Typography } from 'antd';
+import { RotateLeftOutlined, ReloadOutlined } from '@ant-design/icons';
 import { SeasonType } from '@/components/SeasonalTheme';
 import './FlipCard3D.less';
 

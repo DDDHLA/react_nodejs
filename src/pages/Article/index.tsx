@@ -6,6 +6,7 @@ import {
   addArticlesType,
   download,
 } from "@/api/articles";
+import type { ArticleItem } from "@/api/articles";
 import AddItem from "./components/addItem"; // 添加导入语句
 import styles from "./index.module.less";
 import { saveAs } from "file-saver";
@@ -20,14 +21,14 @@ const Article: React.FC = () => {
   const getArticlesList = useCallback(async () => {
     const res = await getArticlesType(querySearch);
     console.log(res);
-    setDataSource(res.data);
-    setTotal(res.total);
+    setDataSource(res.data || []);
+    setTotal(res.total || 0);
   }, [querySearch]);
   useEffect(() => {
     getArticlesList();
   }, [getArticlesList]);
   const [form] = Form.useForm();
-  const [dataSource, setDataSource] = useState([]);
+  const [dataSource, setDataSource] = useState<ArticleItem[]>([]);
   const [isModalVisible, setIsModalVisible] = useState(false);
 
   interface Values {
@@ -37,7 +38,7 @@ const Article: React.FC = () => {
   const onFinsh = (values: Values): void => {
     setQuerySearch(prev => ({ ...prev, ...values, pageNo: 1 }));
   };
-  const handleDelete = async (id: string): Promise<void> => {
+  const handleDelete = async (id: string | number): Promise<void> => {
     Modal.confirm({
       title: "确认删除",
       content: "您确定要删除这篇文章吗？",
@@ -68,7 +69,7 @@ const Article: React.FC = () => {
     }));
   };
 
-  const handleDownload = async (id: string): Promise<void> => {
+  const handleDownload = async (id: string | number): Promise<void> => {
     try {
       const res = await download(id);
       const fileType = res.type.split("/")[1]; // 从MIME类型获取文件后缀
@@ -82,7 +83,7 @@ const Article: React.FC = () => {
     {
       title: "序号",
       key: "index",
-      render: (text, record, index) => index + 1,
+      render: (_text: unknown, _record: ArticleItem, index: number) => index + 1,
     },
     {
       title: "名称",
@@ -97,7 +98,7 @@ const Article: React.FC = () => {
     {
       title: "操作",
       key: "action",
-      render: (_, record) => (
+      render: (_: ArticleItem, record: ArticleItem) => (
         <Space size="middle">
           <Button type="link" onClick={() => handleDownload(record.id)}>
             下载
@@ -117,13 +118,13 @@ const Article: React.FC = () => {
   const handleModalCancel = () => {
     setIsModalVisible(false);
   };
-  const [selectList, setSelectList] = useState([]);
-  const handleRowSelectionChange = (selectedRowKeys, selectedRows) => {
+  const [selectList, setSelectList] = useState<React.Key[]>([]);
+  const handleRowSelectionChange = (selectedRowKeys: React.Key[], selectedRows: ArticleItem[]) => {
     console.log(selectedRowKeys, selectedRows);
     setSelectList(selectedRowKeys);
   };
 
-  const handleModalSubmit = async (values) => {
+  const handleModalSubmit = async (values: { alias: string; name: string; file: { file: File } }) => {
     console.log(values);
     try {
       const formData = new FormData();
