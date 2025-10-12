@@ -8,18 +8,37 @@ const Login: React.FC = () => {
     username: string;
     password: string;
   }): Promise<void> => {
-    // navigate("/home");
     try {
       const res = await login(values);
-      if (res.status === 0 && res.data) {
-        message.success(res.message);
-        localStorage.setItem("token", JSON.stringify(res.data.token));
-        navigate("/home");
-        return;
+      console.log("登录响应:", res);
+      
+      // 判断登录是否成功
+      if (res.status === 0) {
+        // 获取 token（兼容两种数据结构）
+        const token = (res as any).data?.token || (res as any).token;
+        
+        if (token) {
+          // 先保存 token
+          localStorage.setItem("token", JSON.stringify(token));
+          // 显示成功消息
+          message.success(res.message || "登录成功");
+          // 延迟跳转，确保消息显示
+          setTimeout(() => {
+            navigate("/home");
+          }, 500);
+          return;
+        } else {
+          console.error("登录响应中没有 token:", res);
+          message.error("登录失败：未获取到 token");
+          return;
+        }
       }
-      message.error(res.message);
+      
+      // 登录失败
+      message.error(res.message || "登录失败");
     } catch (error) {
-      console.log("login error", error);
+      console.error("登录错误:", error);
+      message.error("登录失败，请稍后重试");
     }
   };
 
