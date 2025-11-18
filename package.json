@@ -13,6 +13,8 @@
     "build:red": "set VITE_THEME=red&& vite build"
   },
   "dependencies": {
+    "@antv/f-react": "^1.8.2",
+    "@antv/f2": "^5.14.0",
     "@jiaminghi/data-view-react": "^1.2.5",
     "antd": "^5.24.0",
     "axios": "^1.9.0",

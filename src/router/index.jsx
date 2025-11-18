@@ -81,6 +81,7 @@ const AudioVisualizer = lazy(() => import("../pages/AudioVisualizer"));
 const PixelArtEditor = lazy(() => import("../pages/PixelArtEditor"));
 const MathPlotter = lazy(() => import("../pages/MathPlotter"));
 const ThreeDDemo = lazy(() => import("../pages/ThreeDDemo"));
+const LineChart = lazy(() => import("../pages/LineChart"));
 const lazyLoad = (Component) => (
   <Suspense fallback={<div>页面加载中...</div>}>
     <Component />
@@ -290,6 +291,12 @@ const routes = [
         label: "3D效果演示",
         icon: <BoxPlotOutlined />,
         element: lazyLoad(ThreeDDemo),
+      },
+      {
+        path: "/line-chart",
+        label: "F2折线图",
+        icon: <BarChartOutlined />,
+        element: lazyLoad(LineChart),
       },
       {
         path: "/game",
