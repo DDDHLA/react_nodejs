@@ -24,6 +24,24 @@ const LineChart: React.FC = () => {
     const context = containerRef.current.getContext('2d');
     if (!context) return;
     
+    // 动态计算Y轴范围
+    const values = data.map(d => d.value);
+    const minValue = Math.min(...values);
+    const maxValue = Math.max(...values);
+    
+    // 方案1：百分比留白（推荐）
+    const padding = (maxValue - minValue) * 0.1; // 上下各留10%的空白
+    const yMin = Math.floor(minValue - padding);
+    const yMax = Math.ceil(maxValue + padding);
+    
+    // 方案2：固定值留白
+    // const yMin = Math.floor(minValue - 200);
+    // const yMax = Math.ceil(maxValue + 200);
+    
+    // 方案3：nice值（取整到更美观的数字）
+    // const yMin = Math.floor(minValue / 100) * 100 - 100;
+    // const yMax = Math.ceil(maxValue / 100) * 100 + 100;
+    
     // 创建图表配置
     const LineChartElement = {
       type: Canvas,
@@ -42,14 +60,18 @@ const LineChart: React.FC = () => {
                   tickCount: 6,
                   style: {
                     label: { align: 'between' },
-                  }
+                  },
+                  grid: null  // 隐藏X轴网格线
                 }
               },
               {
                 type: Axis,
                 props: {
                   field: 'value',
-                  tickCount: 5
+                  tickCount: 5,
+                  min: yMin,  // 动态计算的最小值
+                  max: yMax,  // 动态计算的最大值
+                  grid: null  // 隐藏Y轴网格线
                 }
               },
               {
